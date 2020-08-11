@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <p>Hi. Welcome to my site!</p>
+                <p>Hi. Welcome to my site...</p>
 
                 <p>—Nick</p>
             </div>

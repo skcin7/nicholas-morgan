@@ -1,0 +1,119 @@
+// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontello:
+@import "../fontello/css/fontello";
+@import "../fontello/css/animation";
+
+// Pages:
+//@import "Admin_Home";
+//@import "Post";
+//@import "Posts";
+
+//Components:
+@import "components/abc_checkbox";
+
+::selection {
+    // https://css-tricks.com/overriding-the-default-text-selection-color-with-css/
+    //background-color: #b3d4fc; // Generic/Basic Light Blue
+    //background-color: #ffb7b7; // Red
+    //background-color: #a8d1ff; // Blue
+    background-color: #fff2a8; // Yellow
+    //color: #fff;
+    text-shadow: none;
+}
+
+html {
+    min-height: 100%; // For stickyfooter
+    position: relative; // For stickyfooter
+}
+
+body {
+    background-color: #fff;
+    font-size: 16px;
+    margin: 0 0 100px; // bottom = footer height + 40px (extra margin)
+    padding: 0;
+}
+
+#header {
+    #navbar {
+        border-top: 4px solid $branding-color;
+        border-bottom: 2px solid gray;
+    }
+
+    $menu-height: 54px;
+
+    #avatar {
+        opacity: .75;
+        position: absolute;
+        left: 8px;
+        top: $menu-height + 14;
+        transition: opacity 0.4s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        img {
+            border-radius: 50% !important;
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    #hero {
+        background-color: #2c3429;
+        background-image: url('/images/hollyweird.jpg');
+        background-position: center center;
+        background-size: cover;
+        border-bottom: 4px solid gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        text-align: center;
+
+        h1 {
+            background-color: $primary;
+            color: #fff;
+            display: inline-block;
+            font-size: 46px;
+            font-weight: 700;
+            margin: 0;
+            padding: 0px 20px;
+        }
+    }
+}
+
+#footer {
+    background-color: #101c3d;
+    background-image: url('/images/dark-paths.png');
+    border-top: 2px solid gray;
+    bottom: 0;
+    color: #888;
+    font-size: 14px;
+    height: 60px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    & > .container {
+        margin: 20px auto 0 auto;
+
+        a {
+            color: #fff;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}

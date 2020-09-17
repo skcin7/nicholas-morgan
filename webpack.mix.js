@@ -25,3 +25,17 @@ mix.js([
 mix.sass("resources/sass/app.scss", "public/css/app.css")
     .sourceMaps()
     .version();
+
+
+
+// JavaScript (Contra):
+mix.js([
+    "resources/js/contra.js"
+], "public/js/contra.js")
+    .sourceMaps()
+    .version();
+
+// CSS (Contra):
+mix.sass("resources/sass/contra.scss", "public/css/contra.css")
+    .sourceMaps()
+    .version();

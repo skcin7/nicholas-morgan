@@ -1,0 +1,108 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Overpass+Mono:400,700,900');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontello
+@import "../fontello/css/fontello";
+@import "../fontello/css/animation";
+
+::selection {
+    background-color: $primary;
+    color: #fff;
+}
+
+html, html > body {
+    background-color: #000;
+    box-sizing: border-box;
+    color: #222;
+    font-family: $font-family-sans-serif;
+    font-size: 16px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    > header#menu {
+        border-bottom: 2px solid #ddd;
+        border-top: 4px solid $primary;
+        display: flex;
+        height: 70px;
+        padding: 10px;
+
+        .menu-item {
+            border: 2px solid #fff;
+            color: #fff;
+            display: inline-block;
+            font-family: $font-family-monospace;
+            font-weight: 600;
+            line-height: 40px;
+            height: 44px;
+            margin: 0;
+            padding: 0 10px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #fff;
+                color: #000;
+            }
+        }
+    }
+
+    > div#container {
+        flex: 1;
+        text-align: center;
+
+        #nes-canvas {
+            border: 2px solid $primary;
+            width: 400px;
+        }
+    }
+}
+
+
+
+
+.modal-dialog {
+    border-radius: 0;
+    box-shadow: 0 0 20px #000;
+    margin-top: 4px;
+
+    .modal-content {
+        border: 2px solid $primary;
+        border-radius: 0;
+        box-shadow: none;
+
+        .modal-header {
+            background: linear-gradient(to bottom, #ffffff 0%, #dddddd 100%);
+            border-bottom: 2px solid #bbb;
+
+            .modal-title {
+                font-weight: bold;
+            }
+        }
+
+        .modal-footer {
+            button {
+                border-radius: 0 !important;
+            }
+        }
+    }
+}
+
+.table-nonfluid {
+    width: auto !important;
+}

@@ -84,7 +84,7 @@
             </div>
         </header>
 
-        <main class="py-4">
+        <main class="py-4" id="page_content" name="@yield('pageName')">
             @yield('content')
         </main>
 
@@ -111,9 +111,9 @@
                 name: 'SomeComponent'
             }
         ],
-        modules: [
+        pages: [
             {
-                name: 'Welcome'
+                name: 'welcome'
             }
         ]
     });

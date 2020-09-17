@@ -29,4 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('contra', 'NesController@index');
+Route::group(['prefix' => 'contra'], function() {
+    Route::get('/', 'ContraController@contra')->name('contra');
+    Route::get('rom/{rom_filename?}', 'ContraController@getRom')->name('contra_rom');
+});

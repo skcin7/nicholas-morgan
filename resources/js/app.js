@@ -1,17 +1,16 @@
 require('./bootstrap'); // First load the application's bootstrapping procedures / dependencies:
 
-
 window.NickMorgan = {}; // Create namespace for the application:
 
 // Fire the self-executing function which loads the application:
 ;(function(app, $, mousetrap, undefined) {
 
     /**
-     * Modules loaded into the application.
+     * Pages loaded into the application.
      *
      * @type {Array}
      */
-    app.modules = [];
+    app.appPages = [];
 
     /**
      * Components loaded into the application.
@@ -54,19 +53,21 @@ window.NickMorgan = {}; // Create namespace for the application:
         // into the application as it is being created...
         app.appData = config.appData || {};
 
-        // Loop through all loaded modules, and initialize them, but only
-        // if the user is on the page that the module is intended for.
-        // If modules other than for the current page are needed for
+    // <main class="py-4" id="page_content" name="@yield('pageName')">
+
+        // Loop through all loaded pages, and initialize them, but only
+        // if the user is on the page that the page is intended for.
+        // If pages other than for the current page are needed for
         // some reason, they may be initialized manually.
-        if(config.modules) {
-            config.modules.forEach(function(module) {
-                let moduleMessage = 'Module: \'' + module.name + '\' has been loaded.';
-                // Only load module if the module is current page loaded in the application.
-                if($('main#page-content[name=' + module.name + ']').length === 1) {
-                    app.getModule(module.name).initModule(module.config);
-                    moduleMessage += '.. and initialized!';
+        if(config.pages) {
+            config.pages.forEach(function(page) {
+                let pageMessage = 'Page: \'' + page.name + '\' has been loaded.';
+                // Only load page if the page is current page loaded in the application.
+                if($('main#page_content[name=' + page.name + ']').length === 1) {
+                    app.getPage(page.name).init(page.config);
+                    pageMessage += '.. and initialized!';
                 }
-                console.log(moduleMessage);
+                console.log(pageMessage);
             });
         }
 
@@ -109,25 +110,12 @@ window.NickMorgan = {}; // Create namespace for the application:
 
         // Mirror:
         mousetrap.bind('m i r r o r', function() {
-            app.mirror *= -1;
-            $("html").css("-webkit-transform", "scaleX(" + app.mirror + ")");
-            $("html").css("-moz-transform", "scaleX(" + app.mirror + ")");
-            $("html").css("-o-transform", "scaleX(" + app.mirror + ")");
-            $("html").css("-ms-transform", "scaleX(" + app.mirror + ")");
-            $("html").css("transform", "scaleX(" + app.mirror + ")");
+            app.mirrorPage();
         });
 
         // Rotate:
         Mousetrap.bind("r o t a t e", function(e) {
-            app.rotation += 90;
-            if(app.rotation > 360) {
-                app.rotation = 0;
-            }
-            $("html").css("-webkit-transform", "rotate(" + app.rotation + "deg)");
-            $("html").css("-moz-transform", "rotate(" + app.rotation + "deg)");
-            $("html").css("-o-transform", "rotate(" + app.rotation + "deg)");
-            $("html").css("-ms-transform", "rotate(" + app.rotation + "deg)");
-            $("html").css("transform", "rotate(" + app.rotation + "deg)");
+            app.rotatePage();
         });
 
         // Play contra:
@@ -141,15 +129,15 @@ window.NickMorgan = {}; // Create namespace for the application:
     };
 
     /**
-     * Get a module loaded into the application.
+     * Get a page loaded into the application.
      *
-     * @param moduleName
+     * @param pageName
      * @returns {*}
      */
-    app.getModule = function(moduleName) {
-        for(let i = 0; i < app.modules.length; i++) {
-            if(moduleName === app.modules[i].moduleName) {
-                return app.modules[i];
+    app.getPage = function(pageName) {
+        for(let i = 0; i < app.appPages.length; i++) {
+            if(pageName === app.appPages[i].pageName) {
+                return app.appPages[i];
             }
         }
         return null;
@@ -180,8 +168,29 @@ window.NickMorgan = {}; // Create namespace for the application:
         return url.replace(/\/$/, ""); // Remove trailing slash, if there is one.
     };
 
+    app.mirrorPage = function() {
+        app.mirror *= -1;
+        $("html").css("-webkit-transform", "scaleX(" + app.mirror + ")");
+        $("html").css("-moz-transform", "scaleX(" + app.mirror + ")");
+        $("html").css("-o-transform", "scaleX(" + app.mirror + ")");
+        $("html").css("-ms-transform", "scaleX(" + app.mirror + ")");
+        $("html").css("transform", "scaleX(" + app.mirror + ")");
+    };
+
+    app.rotatePage = function() {
+        app.rotation += 90;
+        if(app.rotation > 360) {
+            app.rotation = 0;
+        }
+        $("html").css("-webkit-transform", "rotate(" + app.rotation + "deg)");
+        $("html").css("-moz-transform", "rotate(" + app.rotation + "deg)");
+        $("html").css("-o-transform", "rotate(" + app.rotation + "deg)");
+        $("html").css("-ms-transform", "rotate(" + app.rotation + "deg)");
+        $("html").css("transform", "rotate(" + app.rotation + "deg)");
+    };
+
 })(window.NickMorgan, window.jQuery, window.Mousetrap);
 
-// Load all modules that could possibly be used in the application.
+// Load all pages that could possibly be used in the application.
 require('./components/SomeComponent');
-require('./modules/Welcome');
+require('./pages/welcome');

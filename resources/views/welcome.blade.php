@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageName', 'welcome')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -13,6 +15,12 @@
                 <p>I use Bitbucket now for many things (free private repositories!) but here's <a href="https://github.com/skcin7" target="_blank">my public Github</a>.</p>
 
                 <p>—Nick</p>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" data-action="mirror">Mirror</button>
+                    <button class="btn btn-primary" data-action="rotate">Rotate</button>
+                    <button class="btn btn-primary" data-action="play_contra">Play Contra</button>
+                </div>
             </div>
         </div>
     </div>

@@ -108,7 +108,7 @@
                             <li><a class="hover-up" href="#" data-action="mirror">Mirror</a></li>
                             <li><a class="hover-up" href="#" data-action="rotate">Rotate</a></li>
                             <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a></li>
-                            <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>
+{{--                            <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>--}}
                         </ul>
                     </div>
                 </div>
@@ -120,8 +120,8 @@
                         @endguest
                         <br/>
                         <span class="small">
-{{--                            <a class="border-underlined" href="#">Do A Barrel Roll</a> |--}}
-                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Me</a>
+                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Nick</a>
+                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>
                         </span>
                     </div>
                 </div>

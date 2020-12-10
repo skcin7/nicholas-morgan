@@ -1,0 +1,38 @@
+body {
+
+    @-webkit-keyframes barrel_roll {
+        from {
+            -webkit-transform: rotate(0deg)
+        }
+        to {
+            -webkit-transform: rotate(360deg)
+        }
+    }
+
+    @-moz-keyframes barrel_roll {
+        from {
+            -moz-transform: rotate(0deg)
+        }
+        to {
+            -moz-transform: rotate(360deg)
+        }
+    }
+
+    @keyframes barrel_roll {
+        from {
+            transform: rotate(0deg)
+        }
+        to {
+            transform: rotate(360deg)
+        }
+    }
+
+    &.brb_doing_a_barrel_roll_lol {
+        -moz-animation-name: barrel_roll;
+        -moz-animation-duration: 3s;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-name: barrel_roll;
+        -webkit-animation-duration: 3s;
+        -webkit-animation-iteration-count: 1;
+    }
+}

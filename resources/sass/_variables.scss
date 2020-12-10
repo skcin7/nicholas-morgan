@@ -24,5 +24,8 @@ $cyan: #6cb2eb;
 $enable-rounded: false;
 $enable-shadows: false;
 $black: #000000;
-$white: #FFFFFF;
-$branding-color: #3490DC;
+$white: #ffffff;
+//$branding-color: #3490DC;
+$theme-colors: (
+    "branding": #3490DC,
+);

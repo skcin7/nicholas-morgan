@@ -40,6 +40,38 @@ class LoginController extends Controller
     }
 
     /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'login';
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'login' => [
+                'required',
+                'string',
+            ],
+            'password' => [
+                'required',
+                'string',
+            ],
+        ]);
+    }
+
+    /**
      * Attempt to log the user into the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,10 +81,10 @@ class LoginController extends Controller
     {
         // Attempt to log in by either their email address or username based
         // on whether an email or username was submitted.
-        $loginField = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        $loginField = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return $this->guard()->attempt([
-            $loginField => $request->input('email'),
+            $loginField => $request->input('login'),
             'password' => $request->input('password')
         ], $request->filled('remember'));
     }

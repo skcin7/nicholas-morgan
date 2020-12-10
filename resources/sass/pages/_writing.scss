@@ -1,0 +1,87 @@
+main#page_content[name=writings], main#page_content[name=writing], main#page_content[name=writing_edit] {
+
+    #action_buttons_container {
+        margin: 1rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    #writings_list {
+        list-style: none;
+        margin: 1.5rem 0;
+        padding: 0;
+
+        li {
+            .writing_date {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .writing_title {
+                border-bottom: 2px solid #FB5607;
+                color: #FB5607;
+                font-size: 20px;
+                text-decoration: none;
+
+                &:hover {
+                    border-bottom-color: #3A86FF;
+                    color: #3A86FF;
+                }
+            }
+        }
+    }
+
+    #body_headings {
+        height: 50px;
+        list-style: none;
+        //margin: 0;
+        //margin-bottom: 2rem;
+        margin: 0 0 2rem 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 50px;
+
+            &.heading_date {
+                color: #666;
+            }
+
+            &.heading_twitter {
+                border-left: 2px solid #bbb;
+                color: #3A86FF;
+                margin-left: 1rem;
+                padding-left: 1rem;
+            }
+        }
+    }
+
+    #writing_form {
+        input[name=title] {
+            &::placeholder {
+                color: #888;
+            }
+
+            border: none;
+            color: $black;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 58px;
+            margin: 2rem 0;
+        }
+
+        textarea[name=body] {
+            &::placeholder {
+                font-style: italic;
+            }
+
+            border: none;
+            font-size: 22px;
+        }
+    }
+
+}

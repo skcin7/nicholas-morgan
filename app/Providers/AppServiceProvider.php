@@ -13,7 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // List of whitelisted IP addresses to always run in debug mode
+        if(in_array(get_ip_address(), [
+            '98.224.99.239', // Nick (September 20, 2020)
+        ])) {
+            config(['app.debug' => true]);
+        }
     }
 
     /**

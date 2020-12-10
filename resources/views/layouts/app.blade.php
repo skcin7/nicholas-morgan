@@ -7,10 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Nick Morgan</title>
-
-{{--    <!-- Scripts -->--}}
-{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <title>{{ (App::environment(['development']) ? "[Dev] " : "") . (isset($title_prefix) ? $title_prefix . ' • ' : '') }}Nick Morgan</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -35,18 +32,23 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('welcome') }}">{{ __('Home') }}</a>
+                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                             </li>
+                            @if(Route::has('writing'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('writing') }}">{{ __('Writing') }}</a>
+                                </li>
+                            @endif
                         </ul>
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"><i class="icon-skull"></i></a>
-                                </li>
-                                @if (Route::has('register'))
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="{{ route('login') }}"><i class="icon-skull"></i></a>--}}
+{{--                                </li>--}}
+                                @if(Route::has('register'))
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
@@ -58,15 +60,17 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
                                             <i class="icon-off"></i> {{ __('Logout') }}
                                         </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                                        <form action="{{ route('logout') }}" class="d-none" id="logout_form" method="post">@csrf</form>
+                                        @if(Auth::user()->isAdmin())
+                                            <div class="dropdown-divider"></div>
+                                            <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>
+                                            <a class="dropdown-item" href="{{ route('admin') }}">
+                                                Home
+                                            </a>
+                                        @endif
                                     </div>
                                 </li>
                             @endguest
@@ -76,46 +80,71 @@
             </nav>
 
             <div id="avatar">
-                <a href="{{ url('/') }}"><img src="{{ url('images/avatar.jpg') }}"></a>
+                <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
             </div>
 
-            <div id="hero">
-                <h1>{{ isset($page_title) ? $page_title : 'Nick Morgan' }}</h1>
+            <div id="hero" style="display: none;">
+                <h1>{{ isset($title_prefix) ? $title_prefix : 'Nick Morgan' }}</h1>
             </div>
         </header>
 
-        <main class="py-4" id="page_content" name="@yield('pageName')">
+        <main id="page_content" name="@yield('pageName')">
             @yield('content')
         </main>
 
         <footer id="footer">
             <div class="container">
-                <div class="my-0">
-                    <i class="icon-copyright"></i> {{ date('Y') }} <a href="mailto:nick@nicholas-morgan.com">Nick Morgan</a>. All Rights Reserved.
-                    <a href="http://instagram.com/skcin7" target="_blank"><i class="icon-instagram"></i></a>
-{{--                    <a href="http://github.com/skcin7" target="_blank"><i class="icon-github"></i></a>--}}
-                    @auth <a href="{{ url('admin') }}">Admin</a>@endauth
+                <div class="row my-3">
+                    <div class="col footer_column">
+                        <h6 class="mb-2">Social Media</h6>
+                        <ul class="list-inline mb-3">
+                            <li class="list-inline-item"><a href="https://www.instagram.com/skcin7" target="_blank"><i class="icon-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://github.com/skcin7" target="_blank"><i class="icon-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col footer_column">
+                        <h6 class="mb-2">Highly Important</h6>
+                        <ul class="list-unstyled mb-3">
+                            <li><a class="hover-up" href="#" data-action="mirror">Mirror</a></li>
+                            <li><a class="hover-up" href="#" data-action="rotate">Rotate</a></li>
+                            <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a></li>
+                            <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col footer_copyright_column">
+                        <i class="icon-copyright"></i>{{ date('Y') }} <a href="{{ route('welcome') }}">Nick Morgan</a>. All Rights Reserved.
+                        @guest
+                            <a href="{{ route('login') }}"><i class="icon-skull"></i></a>
+                        @endguest
+                        <br/>
+                        <span class="small">
+{{--                            <a class="border-underlined" href="#">Do A Barrel Roll</a> |--}}
+                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Me</a>
+                        </span>
+                    </div>
                 </div>
             </div>
+
+{{--            <div class="container">--}}
+{{--                <div class="my-0">--}}
+{{--                    <i class="icon-copyright"></i> {{ date('Y') }} <a href="mailto:nick@nicholas-morgan.com">Nick Morgan</a>. All Rights Reserved.--}}
+{{--                    <a href="http://instagram.com/skcin7" target="_blank"><i class="icon-instagram"></i></a>--}}
+{{--                    <a href="http://github.com/skcin7" target="_blank"><i class="icon-github"></i></a>--}}
+{{--                    @auth <a href="{{ url('admin') }}">Admin</a>@endauth--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </footer>
     </div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript">
-    window.NickMorgan.init({
-        appData: {
-            appUrl: '{{ env('APP_URL') }}',
-        },
-        components: [
-            {
-                name: 'SomeComponent'
-            }
-        ],
-        pages: [
-            {
-                name: 'welcome'
-            }
-        ]
-    });
+    window.NicksFuckinAwesomeWebsite.setConfig({
+        "baseUrl": '{{ config('app.url') }}',
+        @if(auth()->check())
+        "authenticatedUser": true,
+        @endif
+    }).init();
 </script>
 </html>

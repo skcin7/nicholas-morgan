@@ -14,6 +14,27 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin');
+        return view('admin.admin_home')
+            ->with('title_prefix', 'Administration');
+    }
+
+    /**
+     * Show the phpinfo page.
+     *
+     * @return bool
+     */
+    public function showPhpinfo()
+    {
+        return phpinfo();
+    }
+
+    /**
+     * Show the Adminer page.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function showAdminer()
+    {
+        return redirect()->to(url('adminer/4.7.8/adminer-4.7.8-en.php'));
     }
 }

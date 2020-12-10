@@ -2,117 +2,242 @@
 //@import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-// Variables
+// variables:
 @import 'variables';
 
-// Bootstrap
+// bootstrap:
 @import '~bootstrap/scss/bootstrap';
 
-// Fontello:
+// fontello:
 @import "../fontello/css/fontello";
 @import "../fontello/css/animation";
 
-// Pages:
-//@import "Admin_Home";
-//@import "Post";
-//@import "Posts";
-
-//Components:
+// components:
 @import "components/abc_checkbox";
+@import "components/barrel_roll";
+@import "components/mirror";
+@import "components/rotate";
+
+// pages:
+@import "pages/nes";
+@import "pages/writing";
 
 ::selection {
     // https://css-tricks.com/overriding-the-default-text-selection-color-with-css/
     //background-color: #b3d4fc; // Generic/Basic Light Blue
     //background-color: #ffb7b7; // Red
     //background-color: #a8d1ff; // Blue
-    background-color: #fff2a8; // Yellow
+    //background-color: #fff2a8; // Yellow
     //color: #fff;
-    text-shadow: none;
+    //text-shadow: none;
+
+    background-color: hotpink;
+    //color: hotpink;
 }
 
-html {
-    min-height: 100%; // For stickyfooter
-    position: relative; // For stickyfooter
+html, html > body {
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #000;
+    font-family: $font-family-sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+html > body {
+    //line-height: $line-height-base !important;
+    //padding: 0;
+    //position: relative;
+
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #000;
+    font-family: $font-family-sans-serif;
+    line-height: $line-height-base !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 body {
-    background-color: #fff;
-    font-size: 16px;
-    margin: 0 0 100px; // bottom = footer height + 40px (extra margin)
-    padding: 0;
-}
-
-#header {
-    #navbar {
-        border-top: 4px solid $branding-color;
-        border-bottom: 2px solid gray;
-    }
-
-    $menu-height: 54px;
-
-    #avatar {
-        opacity: .75;
-        position: absolute;
-        left: 8px;
-        top: $menu-height + 14;
-        transition: opacity 0.4s ease;
-
-        &:hover {
-            opacity: 1;
-        }
-
-        img {
-            border-radius: 50% !important;
-            height: 50px;
-            width: 50px;
-        }
-    }
-
-    #hero {
-        background-color: #2c3429;
-        background-image: url('/images/hollyweird.jpg');
-        background-position: center center;
-        background-size: cover;
-        border-bottom: 4px solid gray;
+    #app {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 200px;
-        text-align: center;
+        flex-flow: column;
+        min-height: 100vh;
 
-        h1 {
-            background-color: $primary;
-            color: #fff;
-            display: inline-block;
-            font-size: 46px;
-            font-weight: 700;
-            margin: 0;
-            padding: 0px 20px;
+        header#header {
+            flex-basis: auto;
+            flex-grow: 0;
+            flex-shrink: 1;
+
+            #navbar {
+                border-top: 4px solid theme-color("branding");
+                border-bottom: 2px solid gray;
+            }
+
+            $navbar_height: 54px;
+
+            #avatar {
+                opacity: .75;
+                position: absolute;
+                left: 8px;
+                top: $navbar_height + 14;
+                transition: opacity 0.4s ease;
+                z-index: 10;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                img {
+                    border-radius: 50% !important;
+                    height: 50px;
+                    width: 50px;
+                }
+            }
+
+            #hero {
+                background-color: #2c3429;
+                background-image: url('./images/hollyweird.jpg');
+                background-position: center center;
+                background-size: cover;
+                border-bottom: 4px solid gray;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 200px;
+                text-align: center;
+
+                h1 {
+                    background-color: theme-color('branding');
+                    color: #fff;
+                    display: inline-block;
+                    font-size: 46px;
+                    font-weight: 700;
+                    margin: 0;
+                    padding: 0px 20px;
+                }
+            }
         }
+
+        main#page_content {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            position: relative;
+
+            .container, .container-fluid {
+                padding-bottom: 1rem !important;
+                padding-top: 1rem !important;
+                margin-bottom: 1rem !important;
+
+                h1 {
+                    font-style: italic;
+                    font-weight: bold;
+                    font-size: 58px;
+                    letter-spacing: -4px;
+                    margin: 2rem 0;
+                }
+            }
+        }
+
+        footer#footer {
+            background-image: url('./images/dark_paths.png');
+            border-top: 2px solid theme-color("branding");
+            color: #fff;
+            flex-basis: auto;
+            flex-grow: 0;
+            flex-shrink: 1;
+            margin: 0;
+
+            .footer_column {
+                h6 {
+                    color: #fff;
+                    display: block;
+                    font-size: 12px;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                }
+
+                a {
+                    color: $white;
+                    position: relative;
+
+                    &:hover {
+                        color: theme-color("branding");
+                        top: -1px;
+                    }
+                }
+            }
+
+            .footer_copyright_column {
+                color: #888;
+                display: block;
+                font-size: 14px;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+
+                a {
+                    color: #888;
+                    display: inline-block;
+                }
+
+                .border-underlined {
+                    border-bottom: 1px dotted #888;
+                    display: inline-block;
+                    text-decoration: none !important;
+
+                    &:hover {
+                        border-bottom: 1px solid #000;
+                    }
+                }
+            }
+
+            //background-color: #101c3d;
+            //background-image: url('./images/dark_paths.png');
+            //border-top: 2px solid gray;
+            //bottom: 0;
+            //color: #888;
+            //font-size: 14px;
+            //height: 60px;
+            //left: 0;
+            //position: absolute;
+            //text-align: center;
+            //width: 100%;
+
+            //& > .container {
+            //    margin: 20px auto 0 auto;
+            //
+            //    a {
+            //        color: #fff;
+            //
+            //        &:hover {
+            //            color: $primary;
+            //        }
+            //    }
+            //}
+        }
+
     }
 }
 
-#footer {
-    background-color: #101c3d;
-    background-image: url('/images/dark-paths.png');
-    border-top: 2px solid gray;
-    bottom: 0;
-    color: #888;
-    font-size: 14px;
-    height: 60px;
-    left: 0;
-    position: absolute;
-    text-align: center;
-    width: 100%;
+// custom tabs styles/appearance over-riding from Bootstrap
+.nav-tabs {
+    border-bottom-width: 2px !important;
 
-    & > .container {
-        margin: 20px auto 0 auto;
+    .nav-item {
+        margin-bottom: -2px !important;
 
-        a {
-            color: #fff;
+        .nav-link {
+            border-width: 2px !important;
+            margin: 0 5px !important;
 
-            &:hover {
-                color: $primary;
+            &.active {
+                background-color: #ffffff !important;
+                border-color: #dee2e6 #dee2e6 #ffffff !important;
             }
         }
     }

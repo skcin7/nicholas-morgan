@@ -19,6 +19,7 @@
                 <div class="mb-3">
                     <button class="btn btn-primary" data-action="mirror">Mirror</button>
                     <button class="btn btn-primary" data-action="rotate">Rotate</button>
+                    <button class="btn btn-primary" data-action="barrel_roll">Do A Barrel Roll</button>
 {{--                    <button class="btn btn-primary" data-action="play_contra">Play Contra</button>--}}
                 </div>
             </div>

@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-Route::get('/', 'GuestController@welcome')->name('welcome');
+// Basic application routes:
+Route::get('/', 'AppController@welcome')->name('welcome');
+Route::get('contact', 'AppController@contact')->name('contact');
+Route::get('about', 'AppController@about')->name('about');
 
 Auth::routes([
     'register' => false,
@@ -25,11 +24,29 @@ Auth::routes([
     'verify' => false
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'writing'], function() {
+    Route::get('/', 'WritingController@index')->name('writing');
+    Route::get('create', 'WritingController@create')->name('writing.create');
+    Route::post('create', 'WritingController@processCreate')->name('writing.create');
+    Route::get('{id}', 'WritingController@writing')->name('writing.writing');
+    Route::get('{id}/edit', 'WritingController@update')->name('writing.update');
+    Route::post('{id}/edit', 'WritingController@processUpdate')->name('writing.update');
+});
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+// Routes related to the JNES emulator/Contra:
+Route::group(['prefix' => 'nes'], function() {
+    Route::get('{rom?}', 'NesEmulatorController@play')->name('nes');
+//    Route::get('', 'NesEmulatorController@play')->name('contra_rom');
+});
 
-Route::group(['prefix' => 'contra'], function() {
-    Route::get('/', 'ContraController@contra')->name('contra');
-    Route::get('rom/{rom_filename?}', 'ContraController@getRom')->name('contra_rom');
+
+
+Route::get('home', 'HomeController@index')->name('home');
+
+
+// Admin routes:
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('phpinfo.php', "AdminController@showPhpinfo")->name('admin.phpinfo');
+    Route::get('adminer.php', "AdminController@showAdminer")->name('admin.adminer');
 });

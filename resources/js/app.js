@@ -1,9 +1,31 @@
-require('./bootstrap'); // First load the application's bootstrapping procedures / dependencies:
+// Bootstrap the application's JavaScript dependencies:
+require('./bootstrap');
 
-window.NickMorgan = {}; // Create namespace for the application:
+// Create the namespace for the application:
+window.NicksFuckinAwesomeWebsite = {};
 
-// Fire the self-executing function which loads the application:
+// Fire the self-executing function to load the application:
 ;(function(app, $, mousetrap, undefined) {
+
+    /**
+     * Components loaded into the application.
+     *
+     * @type {Array}
+     */
+    app.appComponents = [];
+
+    /**
+     * List of all the app components to be loaded!
+     *
+     * @type {*[]}
+     */
+    app.appComponentsToLoad = [
+        'barrel_roll',
+        'mirror',
+        'play_nes',
+        'rotate',
+        //'somecomponent',
+    ];
 
     /**
      * Pages loaded into the application.
@@ -13,32 +35,96 @@ window.NickMorgan = {}; // Create namespace for the application:
     app.appPages = [];
 
     /**
-     * Components loaded into the application.
+     * List of all the app pages to be loaded!
      *
-     * @type {Array}
+     * @type {*[]}
      */
-    app.components = [];
+    app.appPagesToLoad = [
+        'nes',
+        'welcome',
+    ];
 
     /**
-     * Store all data needed for the app here.
+     * Info about the user that is currently authenticated.
      *
-     * @type {{}}
+     * @type {null|{}}
      */
-    app.appData = {};
+    app.authenticatedUser = null;
 
     /**
-     * Whether or not to mirror the app.  1 for regular, -1 for mirrored.
+     * Base URL used for the application is stored here.
      *
-     * @type {number}
+     * @type {String}
      */
-    app.mirror = 1;
+    app.baseUrl = '';
 
     /**
-     * Number of degrees to rotate the app.  Will be a multiple of 90.
+     * Set the environment configuration/data.
      *
-     * @type {number}
+     * @param config
+     * @returns {{}|*}
      */
-    app.rotation = 0;
+    app.setConfig = function(config) {
+        console.log("Configuring the application ...");
+
+        app.authenticatedUser = config.authenticatedUser || false;
+
+        // Set the app's base URL:
+        app.baseUrl = config.baseUrl || '';
+
+        // Load the app's JS components:
+        if(app.appComponentsToLoad) {
+            app.appComponentsToLoad.forEach(function(component, index) {
+                let componentName, componentConfig;
+                if(typeof component === "string") {
+                    componentName = component;
+                    componentConfig = {};
+                }
+                else {
+                    componentName = component.name;
+                    componentConfig = component.config;
+                }
+
+                require('./components/' + componentName);
+
+                app.getComponent(componentName).setConfig(componentConfig).init();
+                console.log('Component: \'' + componentName + '\' has been loaded... and initialized!');
+            });
+        }
+
+        // Load the app's JS pages:
+        if(app.appPagesToLoad) {
+            app.appPagesToLoad.forEach(function(page, index) {
+                let pageName, pageConfig;
+                if(typeof page === "string") {
+                    pageName = page;
+                    pageConfig = {};
+                }
+                else {
+                    pageName = page.name;
+                    pageConfig = page.config;
+                }
+
+                require('./pages/' + pageName);
+
+                let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
+                // // Only load page if the page is current page loaded in the application.
+                // if($('main#page_content[name=' + pageName + ']').length === 1) {
+                //     app.getPage(pageName).setConfig(pageConfig).init();
+                //     pageMessage += '.. and initialized!';
+                // }
+                console.log(pageMessage);
+            });
+        }
+
+        // Initialize all pages:
+        app.appPages.forEach(function(thisAppPage, index) {
+            thisAppPage.setConfig().init();
+            console.log('Page: \'' + thisAppPage.pageName + '\' initialized.')
+        });
+
+        return app;
+    };
 
     /**
      * Initialize App.
@@ -46,41 +132,13 @@ window.NickMorgan = {}; // Create namespace for the application:
      * @param config
      */
     app.init = function(config) {
-        // Display friendly message:
-        console.log(config.message || "Initializing '" + (config.name || "nicholas-morgan") + "' application...");
 
-        // Set any application environment variables which may be passed
-        // into the application as it is being created...
-        app.appData = config.appData || {};
+        // Initialize all Bootstrap tooltip elements.
+        $('body').tooltip({
+            selector: '[data-toggle="tooltip"]',
+        });
 
-    // <main class="py-4" id="page_content" name="@yield('pageName')">
-
-        // Loop through all loaded pages, and initialize them, but only
-        // if the user is on the page that the page is intended for.
-        // If pages other than for the current page are needed for
-        // some reason, they may be initialized manually.
-        if(config.pages) {
-            config.pages.forEach(function(page) {
-                let pageMessage = 'Page: \'' + page.name + '\' has been loaded.';
-                // Only load page if the page is current page loaded in the application.
-                if($('main#page_content[name=' + page.name + ']').length === 1) {
-                    app.getPage(page.name).init(page.config);
-                    pageMessage += '.. and initialized!';
-                }
-                console.log(pageMessage);
-            });
-        }
-
-        // Loop through all loaded components, and initialize the one that
-        // the config of this app has defined to be used.
-        if(config.components) {
-            config.components.forEach(function(component) {
-                app.getComponent(component.name).initComponent(component.config);
-                console.log('Component: \'' + component.name + '\' has been loaded... and initialized!');
-            });
-        }
-
-        // Attach the scroll event to document so we can keep the logo following the screen if needed:
+        // Alter the scrolling behavior for the avatar to keep it at the top of the page, but underneath the header at all times.
         $(document).scroll(function() {
             if($(this).scrollTop() > 54) {
                 $('#avatar').css({
@@ -96,47 +154,24 @@ window.NickMorgan = {}; // Create namespace for the application:
             }
         });
 
-        // Autoresize specified <textarea> elements to be expanded
-        // vertically as a user types in them
-        // $('.autosize').autosize();
-
-
-
-        // Mousetrap events:
-        // Login:
+        // Mousetrap event to go to the login page:
         mousetrap.bind('l o g i n', function() {
             window.location = app.url('login');
         });
 
-        // Mirror:
-        mousetrap.bind('m i r r o r', function() {
-            app.mirrorPage();
-        });
-
-        // Rotate:
-        Mousetrap.bind("r o t a t e", function(e) {
-            app.rotatePage();
-        });
-
-        // Play contra:
-        mousetrap.bind([
-            'up up down down left right left right b a',
-            'up up down down left right left right b a b a',
-            'c o n t r a',
-        ], function() {
-            window.location = app.url('contra');
-        });
+        // Vertically expand all <textarea> elements as additional text is added into them.
+        $('.autosize').autosize();
     };
 
     /**
-     * Get a page loaded into the application.
+     * Get a page by its name.
      *
      * @param pageName
      * @returns {*}
      */
     app.getPage = function(pageName) {
         for(let i = 0; i < app.appPages.length; i++) {
-            if(pageName === app.appPages[i].pageName) {
+            if(pageName == app.appPages[i].pageName) {
                 return app.appPages[i];
             }
         }
@@ -144,53 +179,50 @@ window.NickMorgan = {}; // Create namespace for the application:
     };
 
     /**
-     * Get a component loaded into the application.
+     * Get a component by its name.
      *
      * @param componentName
      * @returns {*}
      */
     app.getComponent = function(componentName) {
-        for(let i = 0; i < app.components.length; i++) {
-            if(componentName === app.components[i].componentName) {
-                return app.components[i];
+        for(let i = 0; i < app.appComponents.length; i++) {
+            if(componentName == app.appComponents[i].componentName) {
+                return app.appComponents[i];
             }
         }
         return null;
     };
 
     /**
-     * Make a URL.
-     * @param path
+     * Form a URL for this application by concatenating the base URL with a URI.
+     *
+     * @param uri
      * @returns {string}
      */
-    app.url = function(path = '') {
-        let url = app.appData.appUrl + '/' + path;
+    app.url = function(uri = '') {
+        let url = app.baseUrl + '/' + uri;
         return url.replace(/\/$/, ""); // Remove trailing slash, if there is one.
     };
 
-    app.mirrorPage = function() {
-        app.mirror *= -1;
-        $("html").css("-webkit-transform", "scaleX(" + app.mirror + ")");
-        $("html").css("-moz-transform", "scaleX(" + app.mirror + ")");
-        $("html").css("-o-transform", "scaleX(" + app.mirror + ")");
-        $("html").css("-ms-transform", "scaleX(" + app.mirror + ")");
-        $("html").css("transform", "scaleX(" + app.mirror + ")");
-    };
+    /**
+     * Execute a function but only if user is logged in (or display a graceful unauthenticated message).
+     *
+     * @param fnToExecute
+     * @param action
+     */
+    app.isAuthenticated = function(fnToExecute, action = 'do that') {
+        if(! app.authenticatedUser) {
 
-    app.rotatePage = function() {
-        app.rotation += 90;
-        if(app.rotation > 360) {
-            app.rotation = 0;
+            // Not logged in, so notify user
+            $.notify("You must be logged in to " + action + "!", {
+                autoHideDelay: 8000,
+                className: "danger"
+            });
+            return;
         }
-        $("html").css("-webkit-transform", "rotate(" + app.rotation + "deg)");
-        $("html").css("-moz-transform", "rotate(" + app.rotation + "deg)");
-        $("html").css("-o-transform", "rotate(" + app.rotation + "deg)");
-        $("html").css("-ms-transform", "rotate(" + app.rotation + "deg)");
-        $("html").css("transform", "rotate(" + app.rotation + "deg)");
+
+        // User is logged in, so execute the function
+        fnToExecute.call(this);
     };
 
-})(window.NickMorgan, window.jQuery, window.Mousetrap);
-
-// Load all pages that could possibly be used in the application.
-require('./components/SomeComponent');
-require('./pages/welcome');
+})(window.NicksFuckinAwesomeWebsite, window.jQuery, window.Mousetrap);

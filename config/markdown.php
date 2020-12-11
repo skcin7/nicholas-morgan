@@ -41,7 +41,9 @@ return [
     |
     */
 
-    'extensions' => [],
+    'extensions' => [
+        \League\CommonMark\Extension\Table\TableExtension::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------

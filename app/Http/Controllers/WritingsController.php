@@ -62,6 +62,9 @@ class WritingsController extends Controller
                 'required',
                 'string',
             ],
+            'is_published' => [
+                'nullable',
+            ],
         ];
     }
 
@@ -92,6 +95,7 @@ class WritingsController extends Controller
 
         $writing = new Writing();
         $writing->fill($request->input());
+        $writing->is_published = filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL);
         $writing->save();
 
         return redirect()->route('writings.writing', ['id' => $writing->getSlug()])
@@ -114,6 +118,10 @@ class WritingsController extends Controller
 
         if(request()->user() && request()->user()->isAdmin()) {
             $writingQuery->withTrashed();
+        }
+
+        if(! admin()) {
+            $writingQuery->where('is_published', true);
         }
 
         // We use "RANDOM" as a special id value to denote we want to retrieve a random release.
@@ -178,12 +186,15 @@ class WritingsController extends Controller
             return redirect()->route('writings.writing', ['id' => $writing->getSlug()]);
         }
 
+        //dd($request->input('is_published'));
+
         $writing->fill($request->input());
+        $writing->is_published = filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL);
         $writing->save();
 
         return redirect()->route('writings.writing.edit', ['id' => $writing->getSlug()])
             ->with('flash_message', [
-                'message' => $this->getCompletedSuccessfullyMessage('writing', 'saved'),
+                'message' => $this->getCompletedSuccessfullyMessage('writing', 'updated'),
                 'type' => 'success',
             ]);
     }

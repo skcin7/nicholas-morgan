@@ -11,7 +11,10 @@
                 @foreach($writings as $writing)
                     <li>
                         @if($writing->trashed())
-                            <i class="icon-trash" title="This writing is in the trash." data-toggle="tooltip" data-placement="bottom"></i>
+                            <i class="icon-trash" title="The writing is in the trash." data-toggle="tooltip" data-placement="bottom"></i>
+                        @endif
+                        @if(! $writing->published())
+                            <i class="icon-eye-off" title="The writing is not published." data-toggle="tooltip" data-placement="bottom"></i>
                         @endif
                         <span class="writing_date">{{ $writing->created_at->format('F j') }}</span>
                         <a class="writing_title" href="{{ route('writings.writing', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>

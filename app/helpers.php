@@ -8,9 +8,20 @@
 |
 */
 
+if (! function_exists('admin')) {
+    /**
+     * admin() - Determine if the user is admin.
+     *
+     * @return string
+     */
+    function admin() {
+        return request()->user() && request()->user()->isAdmin();
+    }
+}
+
 if (! function_exists('get_ip_address')) {
     /**
-     * percentage() - get the IP address of the user accessing the service
+     * get_ip_address() - get the IP address of the user accessing the service
      *
      * @return string
      */

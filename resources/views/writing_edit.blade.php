@@ -44,7 +44,7 @@
                 </li>
             </ul>
 
-            <div class="tab-content mb-5">
+            <div class="tab-content">
                 <div class="tab-pane show active" id="editor">
 
                     <div class="form-group row">
@@ -62,7 +62,20 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" type="submit"><i class="icon-floppy"></i> Save Changes</button>
+            <div class="form-group row mb-5">
+                <div class="col">
+                    <div class="input-group">
+                        <div class="form-check abc-checkbox abc-checkbox-primary">
+                            <input class="form-check-input" id="is_published" name="is_published" type="checkbox" {{ $writing->published() ? 'checked' : '' }}/>
+                            <label class="form-check-label" for="is_published">
+                                Published
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit"><i class="icon-floppy"></i> Save Writing</button>
             @if($writing->exists)
                 <button class="btn btn-secondary" type="submit" name="cancel" value="1">Back To Writing</button>
 {{--                <button class="btn btn-danger" type="submit"><i class="icon-trash"></i> Delete Writing</button>--}}

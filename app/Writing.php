@@ -10,6 +10,35 @@ class Writing extends Model
     use SoftDeletes;
 
     /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    public $table = 'writings';
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'title' => '',
+        'body' => '',
+        'is_published' => false,
+    ];
+
+    /**
+     * Attributes to cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'title' => 'string',
+        'body' => 'string',
+        'is_published' => 'boolean',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -17,6 +46,7 @@ class Writing extends Model
     protected $fillable = [
         'title',
         'body',
+        //'is_published',
     ];
 
     /**
@@ -27,5 +57,15 @@ class Writing extends Model
     public function getSlug()
     {
         return slugify($this->id . '-' . $this->title);
+    }
+
+    /**
+     * Determine if the writing is published or not.
+     *
+     * @return bool
+     */
+    public function published()
+    {
+        return (bool) $this->is_published;
     }
 }

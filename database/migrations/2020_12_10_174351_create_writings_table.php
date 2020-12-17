@@ -17,6 +17,7 @@ class CreateWritingsTable extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('body');
+            $table->boolean('is_published');
             $table->timestamps();
         });
     }

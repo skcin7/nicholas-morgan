@@ -64,7 +64,7 @@
                                             <i class="icon-off"></i> {{ __('Logout') }}
                                         </a>
                                         <form action="{{ route('logout') }}" class="d-none" id="logout_form" method="post">@csrf</form>
-                                        @if(Auth::user()->isAdmin())
+                                        @if(admin())
                                             <div class="dropdown-divider"></div>
                                             <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>
                                             <a class="dropdown-item" href="{{ route('admin') }}">

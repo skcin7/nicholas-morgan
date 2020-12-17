@@ -2,6 +2,46 @@ main#page_content[name=nes] {
     background-color: $black;
     text-align: center;
 
+    #nes_container {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    @media (min-width: 576px) {
+        #nes_container {
+            max-width: 540px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #nes_container {
+            max-width: 720px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        #nes_container {
+            max-width: 960px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        #nes_container {
+            max-width: 1140px;
+        }
+    }
+
+    #nes_menu {
+        background-color: #fff;
+        display: none; // temporary
+        text-align: left;
+    }
+
+    #nes_screen {
+        //border: 10px solid theme-color('branding');
+    }
+
     //#nes_screen_container {
     //    display: flex;
     //    align-items: stretch;

@@ -107,7 +107,7 @@
                         <ul class="list-unstyled mb-3">
                             <li><a class="hover-up" href="#" data-action="mirror">Mirror</a></li>
                             <li><a class="hover-up" href="#" data-action="rotate">Rotate</a></li>
-                            <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a></li>
+                            <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a> | <a class="hover-up" href="#" data-action="barrel_roll_reverse">Reverse</a></li>
                             <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>
                         </ul>
                     </div>

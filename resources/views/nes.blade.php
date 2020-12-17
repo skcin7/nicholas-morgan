@@ -34,8 +34,13 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
-    <div id="nes_screen_container">
-        <canvas id="nes_screen" width="256" height="240" style="height: 480px;"></canvas>
+    <div id="nes_container">
+        <div id="nes_menu">
+            hi
+        </div>
+        <div id="nes_viewport">
+            <canvas id="nes_screen" width="256" height="240" style="height: 480px;"></canvas>
+        </div>
     </div>
 
     <script>
@@ -55,7 +60,7 @@
             var audio_samples_R = new Float32Array(SAMPLE_COUNT);
             var audio_write_cursor = 0, audio_read_cursor = 0;
 
-            var nes = new window.Jsnes.NES({
+            var jsnes = new window.Jsnes.NES({
                 onFrame: function(framebuffer_24){
                     for(var i = 0; i < FRAMEBUFFER_SIZE; i++) framebuffer_u32[i] = 0xFF000000 | framebuffer_24[i];
                 },
@@ -71,7 +76,7 @@
 
                 image.data.set(framebuffer_u8);
                 canvas_ctx.putImageData(image, 0, 0);
-                nes.frame();
+                jsnes.frame();
             }
 
             function audio_remain(){
@@ -83,7 +88,7 @@
                 var len = dst.length;
 
                 // Attempt to avoid buffer underruns.
-                if(audio_remain() < AUDIO_BUFFERING) nes.frame();
+                if(audio_remain() < AUDIO_BUFFERING) jsnes.frame();
 
                 var dst_l = dst.getChannelData(0);
                 var dst_r = dst.getChannelData(1);
@@ -100,23 +105,23 @@
                 var player = 1;
                 switch(event.keyCode){
                     case 38: // UP
-                        callback(player, jsnes.Controller.BUTTON_UP); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_UP); break;
                     case 40: // Down
-                        callback(player, jsnes.Controller.BUTTON_DOWN); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_DOWN); break;
                     case 37: // Left
-                        callback(player, jsnes.Controller.BUTTON_LEFT); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_LEFT); break;
                     case 39: // Right
-                        callback(player, jsnes.Controller.BUTTON_RIGHT); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_RIGHT); break;
                     case 65: // 'a' - qwerty, dvorak
                     case 81: // 'q' - azerty
-                        callback(player, jsnes.Controller.BUTTON_A); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_A); break;
                     case 83: // 's' - qwerty, azerty
                     case 79: // 'o' - dvorak
-                        callback(player, jsnes.Controller.BUTTON_B); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_B); break;
                     case 32: // Space
-                        callback(player, jsnes.Controller.BUTTON_SELECT); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_SELECT); break;
                     case 13: // Return
-                        callback(player, jsnes.Controller.BUTTON_START); break;
+                        callback(player, window.Jsnes.Controller.BUTTON_START); break;
                     default: break;
                 }
             }
@@ -158,7 +163,7 @@
             }
 
             function nes_boot(rom_data){
-                nes.loadROM(rom_data);
+                jsnes.loadROM(rom_data);
                 window.requestAnimationFrame(onAnimationFrame);
             }
 
@@ -188,8 +193,8 @@
                 req.send();
             }
 
-            document.addEventListener('keydown', (event) => {keyboard(nes.buttonDown, event)});
-            document.addEventListener('keyup', (event) => {keyboard(nes.buttonUp, event)});
+            document.addEventListener('keydown', (event) => {keyboard(jsnes.buttonDown, event)});
+            document.addEventListener('keyup', (event) => {keyboard(jsnes.buttonUp, event)});
 
 
 

@@ -11364,6 +11364,35 @@ body.brb_doing_a_barrel_roll_lol {
   -webkit-animation-iteration-count: 1;
 }
 
+@-webkit-keyframes barrel_roll_reverse {
+  from {
+    -webkit-transform: rotate(360deg);
+  }
+
+  to {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@keyframes barrel_roll_reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+body.watch_out_everyone_im_doing_a_barrel_roll_in_reverse_now {
+  -moz-animation-name: barrel_roll_reverse;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: 1;
+  -webkit-animation-name: barrel_roll_reverse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: 1;
+}
+
 body.mirrored {
   transform: scaleX(-1);
 }
@@ -11387,6 +11416,42 @@ body.rotation_270 {
 main#page_content[name=nes] {
   background-color: #000000;
   text-align: center;
+}
+
+main#page_content[name=nes] #nes_container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  main#page_content[name=nes] #nes_container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  main#page_content[name=nes] #nes_container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  main#page_content[name=nes] #nes_container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main#page_content[name=nes] #nes_container {
+    max-width: 1140px;
+  }
+}
+
+main#page_content[name=nes] #nes_menu {
+  background-color: #fff;
+  display: none;
+  text-align: left;
 }
 
 main#page_content[name=writing] #writings_list {
@@ -11584,7 +11649,6 @@ body #app main#page_content {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
-  margin-bottom: 2rem;
   position: relative;
 }
 

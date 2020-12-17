@@ -55,6 +55,7 @@ class Deploy extends Command
         $client = new \GuzzleHttp\Client();
         $client->post($trigger_url);
 
-        $this->info('Deployment Was Initiated!');
+        $this->info('The Deployment Was Initiated!');
+        $this->info('Deployment URL: ' . $trigger_url);
     }
 }

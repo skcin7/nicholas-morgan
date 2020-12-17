@@ -19,7 +19,7 @@
                 @endforeach
             </ul>
         @else
-            <p>No writings are here. :-/</p>
+            <p id="writings_list">No writings are here. :-/</p>
         @endif
 
         @if(Auth::check() && Auth::user()->isAdmin())

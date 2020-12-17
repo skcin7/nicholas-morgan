@@ -53,10 +53,10 @@ class SuperDeploy extends Command
             $process->mustRun($this->mustRunOutput());
 
             $this->call('deploy');
-            $this->info('Super Deployment Was Completed!');
+            $this->info('The Super Deployment Has Completed!');
 
         } catch (ProcessFailedException $ex) {
-            $this->error('The backup process has been failed.');
+            $this->error('The super deployment has failed.');
             $this->comment($ex->getMessage());
         }
     }

@@ -36,7 +36,7 @@
                             </li>
                             @if(Route::has('writings'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} ({{ \App\Writing::count() }})</a>
+                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::count() }}</span></a>
                                 </li>
                             @endif
                         </ul>

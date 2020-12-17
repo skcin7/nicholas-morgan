@@ -1,29 +1,40 @@
 main#page_content[name=writings] {
 
-    #writings_list {
-        list-style: none;
+    #writings_container {
         margin-bottom: 4rem;
-        padding: 0;
 
-        li {
-            margin-bottom: 0.5rem;
+        .writings_year {
+            color: darken(theme-color("branding"), 25%);
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+        }
 
-            .writing_date {
-                display: inline-block;
-                font-size: 16px;
-                font-weight: bold;
-                width: 180px;
-            }
+        .writings_by_year_list {
+            list-style: none;
+            padding: 0;
 
-            .writing_title {
-                border-bottom: 2px solid #FB5607;
-                color: #FB5607;
-                font-size: 20px;
-                text-decoration: none;
+            li {
+                margin-bottom: 1rem;
 
-                &:hover {
-                    border-bottom-color: #3A86FF;
-                    color: #3A86FF;
+                .writing_date {
+                    display: inline-block;
+                    font-size: 16px;
+                    font-weight: bold;
+                    width: 180px;
+                }
+
+                .writing_title {
+                    border-bottom: 2px solid #FB5607;
+                    color: #FB5607;
+                    font-size: 20px;
+                    text-decoration: none;
+
+                    &:hover {
+                        border-bottom-color: #3A86FF;
+                        color: #3A86FF;
+                    }
                 }
             }
         }

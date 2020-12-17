@@ -17,8 +17,12 @@ class WritingsController extends Controller
     {
         $writingsQuery = Writing::query();
 
-        if($request->user() && $request->user()->isAdmin()) {
+        if(admin()) {
             $writingsQuery->withTrashed();
+        }
+
+        if(! admin()) {
+            $writingsQuery->where('is_published', true);
         }
 
         switch(strtoupper($request->input('order_by'))) {
@@ -41,8 +45,21 @@ class WritingsController extends Controller
 
         $writings = $writingsQuery->paginate($this->getPerPageAmount());
 
+        // Group the writings by year
+        if($writings->count()) {
+            $writings_by_years = [];
+            foreach($writings as $writing) {
+                $year = $writing->created_at->format('Y');
+                if(! isset($writings_by_years[$year])) {
+                    $writings_by_years[$year] = [];
+                }
+                $writings_by_years[$year][] = $writing;
+            }
+        }
+
         return view('writings')
             ->with('writings', $writings)
+            ->with('writings_by_years', $writings_by_years)
             ->with('title_prefix', 'My Writings');
     }
 
@@ -116,7 +133,7 @@ class WritingsController extends Controller
     {
         $writingQuery = Writing::query();
 
-        if(request()->user() && request()->user()->isAdmin()) {
+        if(admin()) {
             $writingQuery->withTrashed();
         }
 

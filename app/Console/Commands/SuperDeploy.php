@@ -41,16 +41,16 @@ class SuperDeploy extends Command
     {
         try {
             $process = Process::fromShellCommandline('git add -A .');
-            $process->mustRun();
+            $process->mustRun($this->mustRunOutput());
 
             $process = Process::fromShellCommandline(sprintf(
                 'git commit -m "%s"',
                 $this->option('message'),
             ));
-            $process->mustRun();
+            $process->mustRun($this->mustRunOutput());
 
             $process = Process::fromShellCommandline('git push');
-            $process->mustRun();
+            $process->mustRun($this->mustRunOutput());
 
             $this->call('deploy');
             $this->info('Super Deployment Was Completed!');
@@ -59,5 +59,20 @@ class SuperDeploy extends Command
             $this->error('The backup process has been failed.');
             $this->comment($ex->getMessage());
         }
+    }
+
+    /**
+     * @return \Closure
+     */
+    private function mustRunOutput()
+    {
+        return function($type, $buffer) {
+            if(Process::ERR === $type) {
+                $this->error($buffer);
+            }
+            else {
+                $this->comment($buffer);
+            }
+        };
     }
 }

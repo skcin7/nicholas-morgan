@@ -50,6 +50,6 @@ Route::get('home', 'HomeController@index')->name('home');
 // Admin routes:
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
-    Route::get('phpinfo.php', "AdminController@showPhpinfo")->name('admin.phpinfo');
-    Route::get('adminer.php', "AdminController@showAdminer")->name('admin.adminer');
+    Route::get('phpinfo', "AdminController@showPhpinfo")->name('admin.phpinfo');
+    Route::get('adminer', "AdminController@showAdminer")->name('admin.adminer');
 });

@@ -13,7 +13,7 @@ class SuperDeploy extends Command
      *
      * @var string
      */
-    protected $signature = 'sdeploy { --message="Deployment Initiated." }';
+    protected $signature = 'sdeploy { --message=\"Super Deploy.\" }';
 
     /**
      * The console command description.

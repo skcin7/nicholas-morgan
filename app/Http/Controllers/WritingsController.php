@@ -45,9 +45,9 @@ class WritingsController extends Controller
 
         $writings = $writingsQuery->paginate($this->getPerPageAmount());
 
-        // Group the writings by year
+        // Put the writings into groups based on the year.
+        $writings_by_years = [];
         if($writings->count()) {
-            $writings_by_years = [];
             foreach($writings as $writing) {
                 $year = $writing->created_at->format('Y');
                 if(! isset($writings_by_years[$year])) {

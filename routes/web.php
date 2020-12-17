@@ -53,3 +53,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('phpinfo', "AdminController@showPhpinfo")->name('admin.phpinfo');
     Route::get('adminer', "AdminController@showAdminer")->name('admin.adminer');
 });
+
+// Users routes:
+Route::group(['prefix' => 'users'], function() {
+    Route::get('/', "UsersController@index")->name('users');
+});
+Route::get('@{id}', "UsersController@get")->name('users.user');
+Route::get('@{id}/secret', "UsersController@secret")->name('users.user.secret');
+Route::get('@{id}/logins', "UsersController@logins")->name('users.user.logins');

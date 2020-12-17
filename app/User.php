@@ -11,25 +11,17 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The model's default values for attributes.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'is_admin',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $attributes = [
+        'name' => '',
+        'email' => '',
+        'is_admin' => false,
+        'secret_json' => '',
+        'last_login_at' => null,
+        'login_count' => 0,
     ];
 
     /**
@@ -40,6 +32,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
+        'secret_json' => 'string',
+        'last_login_at' => 'datetime',
+        'login_count' => 'integer',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'is_admin',
+        'secret_json',
     ];
 
     /**
@@ -50,5 +68,15 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return (bool) $this->is_admin;
+    }
+
+    /**
+     * A user can have many successful logins.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logins()
+    {
+        return $this->hasMany('App\Login');
     }
 }

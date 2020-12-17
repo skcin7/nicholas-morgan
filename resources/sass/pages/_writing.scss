@@ -1,36 +1,11 @@
 main#page_content[name=writing] {
 
-    #writings_list {
-        list-style: none;
-        margin: 1.5rem 0;
-        padding: 0;
-
-        li {
-            .writing_date {
-                font-size: 16px;
-                font-weight: bold;
-            }
-
-            .writing_title {
-                border-bottom: 2px solid #FB5607;
-                color: #FB5607;
-                font-size: 20px;
-                text-decoration: none;
-
-                &:hover {
-                    border-bottom-color: #3A86FF;
-                    color: #3A86FF;
-                }
-            }
-        }
-    }
-
-    #writing_headings {
+    #writing_subheadings {
         height: 50px;
         list-style: none;
         //margin: 0;
         //margin-bottom: 2rem;
-        margin: 0 0 2rem 0;
+        margin: 0 0 0.5rem 0;
         padding: 0;
 
         li {
@@ -40,24 +15,29 @@ main#page_content[name=writing] {
             letter-spacing: -1px;
             line-height: 50px;
 
-            &.heading_date {
+            &.subheading_date {
                 color: #666;
             }
 
-            &.heading_twitter {
+            &.subheading_twitter {
                 border-left: 2px solid #bbb;
                 color: #3A86FF;
                 margin-left: 1rem;
                 padding-left: 1rem;
             }
 
-            &.heading_edit {
+            &.subheading_edit {
                 border-left: 2px solid #bbb;
                 color: #3A86FF;
                 margin-left: 1rem;
                 padding-left: 1rem;
             }
         }
+    }
+
+    #writing_heading {
+        font-style: normal !important;
+        margin-top: 0 !important;
     }
 
     #writing_body {
@@ -68,7 +48,8 @@ main#page_content[name=writing] {
             border: 1px solid #ddd;
             color: #212529;
             margin-bottom: 1rem;
-            width: 100%;
+            //width: 100%;
+            width: auto !important;
 
             thead {
                 border: 1px solid #454d55;

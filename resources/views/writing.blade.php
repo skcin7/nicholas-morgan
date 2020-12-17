@@ -7,24 +7,17 @@
 
         @include('_flash_messages')
 
-{{--        <ol class="breadcrumb">--}}
-{{--            <li class="breadcrumb-item"><a href="{{ route('writing') }}">Writings</a></li>--}}
-{{--            <li class="breadcrumb-item active">{{ ! $writing->exists ? 'Create Writing' : 'Editing ' . $writing->title }}</li>--}}
-{{--        </ol>--}}
-
         <p><a href="{{ route('writings') }}">← Back To Writings</a></p>
 
-        <h1>{{ $writing->title }}</h1>
-
-        <ul id="writing_headings">
-            <li class="heading_date">
+        <ul id="writing_subheadings">
+            <li class="subheading_date">
                 {{ $writing->created_at->format('F j, Y') }}
             </li>
-            <li class="heading_twitter">
-                skcin7
+            <li class="subheading_twitter">
+                @nick
             </li>
             @if(Auth::check() && Auth::user()->isAdmin())
-                <li class="heading_edit">
+                <li class="subheading_edit">
                     <a class="btn btn-primary" href="{{ route('writings.writing.edit', ['id' => $writing->getSlug()]) }}"><i class="icon-pencil"></i> Edit Writing</a>
 
                     @if(! $writing->trashed())
@@ -40,6 +33,8 @@
                 </li>
             @endif
         </ul>
+
+        <h1 id="writing_heading">{{ $writing->title }}</h1>
 
         <div id="writing_body">
             {!! Markdown::convertToHTML($writing->body) !!}

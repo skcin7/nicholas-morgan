@@ -4,6 +4,9 @@
 
 @section('content')
     <div class="container">
+
+        @include('_flash_messages')
+
         <div class="row justify-content-center">
             <div class="col-md-10">
 {{--                <p>I'm a full stack web and API developer with over 10 years of industry experience in crafting highly usable fully scalable interactive web applications.</p>--}}

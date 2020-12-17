@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Writing;
 
-class WritingController extends Controller
+class WritingsController extends Controller
 {
     /**
-     * Show the writings.
+     * Show the writings index.
      *
      * @param Request $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -16,6 +16,23 @@ class WritingController extends Controller
     public function index(Request $request)
     {
         $writingsQuery = Writing::query();
+
+        if($request->user() && $request->user()->isAdmin()) {
+            $writingsQuery->withTrashed();
+        }
+
+        switch(strtoupper($request->input('order_by'))) {
+            case 'NEWEST':
+            default:
+                $writingsQuery->orderBy('created_at', 'desc');
+                break;
+            case 'OLDEST':
+                $writingsQuery->orderBy('created_at', 'asc');
+                break;
+            case 'RANDOM':
+                $writingsQuery->inRandomOrder();
+                break;
+        }
 
         // if the request has a custom per_page value, use it to set the amount to show per page
         if($request->has('per_page')) {
@@ -26,7 +43,7 @@ class WritingController extends Controller
 
         return view('writings')
             ->with('writings', $writings)
-            ->with('title_prefix', 'Writing');
+            ->with('title_prefix', 'My Writings');
     }
 
     /**
@@ -77,7 +94,7 @@ class WritingController extends Controller
         $writing->fill($request->input());
         $writing->save();
 
-        return redirect()->route('writing.writing', ['id' => $writing->getSlug()])
+        return redirect()->route('writings.writing', ['id' => $writing->getSlug()])
             ->with('flash_message', [
                 'message' => $this->getCompletedSuccessfullyMessage('writing', 'created'),
                 'type' => 'success',
@@ -94,6 +111,10 @@ class WritingController extends Controller
     private function getWritingById($id)
     {
         $writingQuery = Writing::query();
+
+        if(request()->user() && request()->user()->isAdmin()) {
+            $writingQuery->withTrashed();
+        }
 
         // We use "RANDOM" as a special id value to denote we want to retrieve a random release.
         // Otherwise, we retrieve the release by the corresponding ID.
@@ -125,39 +146,101 @@ class WritingController extends Controller
     }
 
     /**
-     * Update a writing.
+     * Edit a writing.
      *
      * @param Request $request
      * @param $id
      * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         $writing = $this->getWritingById($id);
 
         return view('writing_edit')
             ->with('writing', $writing)
-            ->with('title_prefix', 'Update ' . $writing->title);
+            ->with('title_prefix', 'Edit ' . $writing->title);
     }
 
     /**
-     * Process updating a writing.
+     * Process editing a writing.
      *
      * @param Request $request
      * @param $id
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function processUpdate(Request $request, $id)
+    public function processEdit(Request $request, $id)
     {
         $request->validate($this->validationRules());
 
         $writing = $this->getWritingById($id);
+
+        if($request->input('cancel')) {
+            return redirect()->route('writings.writing', ['id' => $writing->getSlug()]);
+        }
+
         $writing->fill($request->input());
         $writing->save();
 
-        return redirect()->route('writing.writing', ['id' => $writing->getSlug()])
+        return redirect()->route('writings.writing.edit', ['id' => $writing->getSlug()])
             ->with('flash_message', [
-                'message' => $this->getCompletedSuccessfullyMessage('writing', 'updated'),
+                'message' => $this->getCompletedSuccessfullyMessage('writing', 'saved'),
+                'type' => 'success',
+            ]);
+    }
+
+    /**
+     * Move a writing to the trash.
+     *
+     * @param Request $request
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function trash(Request $request, $id)
+    {
+        $writing = $this->getWritingById($id);
+        $writing->delete();
+
+        return redirect()->route('writings.writing', ['id' => $writing->getSlug()])
+            ->with('flash_message', [
+                'message' => 'The writing has been moved to the trash!',
+                'type' => 'success',
+            ]);
+    }
+
+    /**
+     * Remove a writing from the trash.
+     *
+     * @param Request $request
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function untrash(Request $request, $id)
+    {
+        $writing = $this->getWritingById($id);
+        $writing->restore();
+
+        return redirect()->route('writings.writing', ['id' => $writing->getSlug()])
+            ->with('flash_message', [
+                'message' => 'The writing has been removed from the trash!',
+                'type' => 'success',
+            ]);
+    }
+
+    /**
+     * Permanently delete a writing.
+     *
+     * @param Request $request
+     * @param $id
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function permanentlyDelete(Request $request, $id)
+    {
+        $writing = $this->getWritingById($id);
+        $writing->forceDelete();
+
+        return redirect()->route('writings', ['id' => $writing->getSlug()])
+            ->with('flash_message', [
+                'message' => 'The writing has been permanently deleted!',
                 'type' => 'success',
             ]);
     }

@@ -187,13 +187,13 @@
             // this.nes_load_url("nes_screen", rom_url);
 
 
-            // $(window).on('resize', function(event) {
-            //     // let $pageContentElem = $(this);
-            //     console.log('here');
-            //     let height = $('#page_content').height();
-            //     $('#nes_screen_container').css('height', height + 'px');
-            //     $('#nes_screen').css('height', height + 'px');
-            // });
+            $(window).on('resize', function(event) {
+                // let $pageContentElem = $(this);
+                console.log('here');
+                // let page_content_height = $(document).height() - ($('#header').height() - $('#footer').height());
+                // $('#nes_screen_container').css('height', page_content_height + 'px');
+                // $('#nes_screen').css('height', page_content_height + 'px');
+            });
 
             return page;
         },

@@ -4,9 +4,9 @@
             @if(! (isset(Session::get('flash_message')['dismissable']) && Session::get('flash_message')['dismissable'] === false))
                 <button type="button" class="close" data-dismiss="alert">×</button>
             @endif
-{{--            <div class="my-3">--}}
+            <div class="my-3">
                 {!! isset(Session::get('flash_message')['message']) ? Session::get('flash_message')['message'] : '' !!}
-{{--            </div>--}}
+            </div>
         </div>
     </div>
 @endif

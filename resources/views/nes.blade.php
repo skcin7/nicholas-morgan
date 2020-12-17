@@ -35,7 +35,7 @@
 {{--    </div>--}}
 
     <div id="nes_screen_container">
-        <canvas id="nes_screen" width="256" height="240"></canvas>
+        <canvas id="nes_screen" width="256" height="240" style="height: 480px;"></canvas>
     </div>
 
     <script>

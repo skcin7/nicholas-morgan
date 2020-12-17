@@ -8,6 +8,8 @@
 .icon-floppy:before { content: '\e806'; } /* '' */
 .icon-skull:before { content: '\e807'; } /* '' */
 .icon-off:before { content: '\e808'; } /* '' */
+.icon-pencil:before { content: '\e809'; } /* '' */
+.icon-trash:before { content: '\f1f8'; } /* '' */
 .icon-copyright:before { content: '\f1f9'; } /* '' */
 .icon-at:before { content: '\f1fa'; } /* '' */
 .icon-instagram:before { content: '\f32d'; } /* '' */

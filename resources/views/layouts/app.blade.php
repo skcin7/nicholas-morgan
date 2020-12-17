@@ -34,9 +34,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                             </li>
-                            @if(Route::has('writing'))
+                            @if(Route::has('writings'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('writing') }}">{{ __('Writing') }}</a>
+                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} ({{ \App\Writing::count() }})</a>
                                 </li>
                             @endif
                         </ul>
@@ -79,16 +79,16 @@
                 </div>
             </nav>
 
-            <div id="avatar">
-                <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
-            </div>
-
             <div id="hero" style="display: none;">
                 <h1>{{ isset($title_prefix) ? $title_prefix : 'Nick Morgan' }}</h1>
             </div>
         </header>
 
         <main id="page_content" name="@yield('pageName')">
+            <div id="avatar">
+                <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
+            </div>
+
             @yield('content')
         </main>
 
@@ -117,10 +117,13 @@
                         <i class="icon-copyright"></i>{{ date('Y') }} <a href="{{ route('welcome') }}">Nick Morgan</a>. All Rights Reserved.
                         @guest
                             <a href="{{ route('login') }}"><i class="icon-skull"></i></a>
+                        @else
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();"><i class="icon-off"></i></a>
                         @endguest
                         <br/>
-                        <span class="small">
-                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Nick</a>
+                        <span class="smaller">
+                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Me</a>
+                            | <a class="border-underlined" href="{{ route('pgp') }}">PGP</a>
 {{--                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>--}}
                         </span>
                     </div>

@@ -143,13 +143,13 @@ window.NicksFuckinAwesomeWebsite = {};
             if($(this).scrollTop() > 54) {
                 $('#avatar').css({
                     position: 'fixed',
-                    top: 10
+                    top: '1rem'
                 });
             }
             else {
                 $('#avatar').css({
                     position: 'absolute',
-                    top: 64
+                    top: '1rem'
                 });
             }
         });

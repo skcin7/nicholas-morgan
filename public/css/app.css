@@ -10803,8 +10803,8 @@ a.text-branding:focus {
 
 @font-face {
   font-family: "fontello";
-  src: url(/fonts/fontello.eot?de4e0616568fca4a0e37e8a348afd594);
-  src: url(/fonts/fontello.eot?de4e0616568fca4a0e37e8a348afd594) format("embedded-opentype"), url(/fonts/fontello.woff2?67a71623ccc630b215acceefe730ed20) format("woff2"), url(/fonts/fontello.woff?9747d665e7adb3fb0c21ea045a2bc4c1) format("woff"), url(/fonts/fontello.ttf?9c14522f56bdaee8a0c1a309ce779a2c) format("truetype"), url(/fonts/fontello.svg?319f6bd7b93ee30e31dd67015b7b5842) format("svg");
+  src: url(/fonts/fontello.eot?3ddd45c1ae34a797d47651d63d6a1f83);
+  src: url(/fonts/fontello.eot?3ddd45c1ae34a797d47651d63d6a1f83) format("embedded-opentype"), url(/fonts/fontello.woff2?498a780f8d05046e743779fab76b3fa9) format("woff2"), url(/fonts/fontello.woff?5e7d0a0f54084b71fa3bba4f2b7e479b) format("woff"), url(/fonts/fontello.ttf?e9749406c0d480b8868a7c2bc90c521b) format("truetype"), url(/fonts/fontello.svg?b37454d6c082e65c05a7bf17a00885f9) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -10817,7 +10817,7 @@ a.text-branding:focus {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?82350838#fontello') format('svg');
+    src: url('../font/fontello.svg?43042103#fontello') format('svg');
   }
 }
 */
@@ -10904,6 +10904,18 @@ a.text-branding:focus {
 }
 
 /* '' */
+
+.icon-pencil:before {
+  content: "\E809";
+}
+
+/* '' */
+
+.icon-trash:before {
+  content: "\F1F8";
+}
+
+/* '' */
 
 .icon-copyright:before {
   content: "\F1F9";
@@ -11377,58 +11389,37 @@ main#page_content[name=nes] {
   text-align: center;
 }
 
-main#page_content[name=writings] #action_buttons_container,
-main#page_content[name=writing] #action_buttons_container,
-main#page_content[name=writing_edit] #action_buttons_container {
-  margin: 1rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-main#page_content[name=writings] #writings_list,
-main#page_content[name=writing] #writings_list,
-main#page_content[name=writing_edit] #writings_list {
+main#page_content[name=writing] #writings_list {
   list-style: none;
   margin: 1.5rem 0;
   padding: 0;
 }
 
-main#page_content[name=writings] #writings_list li .writing_date,
-main#page_content[name=writing] #writings_list li .writing_date,
-main#page_content[name=writing_edit] #writings_list li .writing_date {
+main#page_content[name=writing] #writings_list li .writing_date {
   font-size: 16px;
   font-weight: bold;
 }
 
-main#page_content[name=writings] #writings_list li .writing_title,
-main#page_content[name=writing] #writings_list li .writing_title,
-main#page_content[name=writing_edit] #writings_list li .writing_title {
+main#page_content[name=writing] #writings_list li .writing_title {
   border-bottom: 2px solid #FB5607;
   color: #FB5607;
   font-size: 20px;
   text-decoration: none;
 }
 
-main#page_content[name=writings] #writings_list li .writing_title:hover,
-main#page_content[name=writing] #writings_list li .writing_title:hover,
-main#page_content[name=writing_edit] #writings_list li .writing_title:hover {
+main#page_content[name=writing] #writings_list li .writing_title:hover {
   border-bottom-color: #3A86FF;
   color: #3A86FF;
 }
 
-main#page_content[name=writings] #body_headings,
-main#page_content[name=writing] #body_headings,
-main#page_content[name=writing_edit] #body_headings {
+main#page_content[name=writing] #writing_headings {
   height: 50px;
   list-style: none;
   margin: 0 0 2rem 0;
   padding: 0;
 }
 
-main#page_content[name=writings] #body_headings li,
-main#page_content[name=writing] #body_headings li,
-main#page_content[name=writing_edit] #body_headings li {
+main#page_content[name=writing] #writing_headings li {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
@@ -11436,73 +11427,87 @@ main#page_content[name=writing_edit] #body_headings li {
   line-height: 50px;
 }
 
-main#page_content[name=writings] #body_headings li.heading_date,
-main#page_content[name=writing] #body_headings li.heading_date,
-main#page_content[name=writing_edit] #body_headings li.heading_date {
+main#page_content[name=writing] #writing_headings li.heading_date {
   color: #666;
 }
 
-main#page_content[name=writings] #body_headings li.heading_twitter,
-main#page_content[name=writing] #body_headings li.heading_twitter,
-main#page_content[name=writing_edit] #body_headings li.heading_twitter {
+main#page_content[name=writing] #writing_headings li.heading_twitter {
   border-left: 2px solid #bbb;
   color: #3A86FF;
   margin-left: 1rem;
   padding-left: 1rem;
 }
 
-main#page_content[name=writings] #writing_form input[name=title],
-main#page_content[name=writing] #writing_form input[name=title],
-main#page_content[name=writing_edit] #writing_form input[name=title] {
-  border: none;
-  color: #000000;
-  font-style: italic;
+main#page_content[name=writing] #writing_headings li.heading_edit {
+  border-left: 2px solid #bbb;
+  color: #3A86FF;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+main#page_content[name=writing] #writing_body {
+  font-size: 18px;
+  margin-bottom: 2rem;
+}
+
+main#page_content[name=writing] #writing_body table {
+  border: 1px solid #ddd;
+  color: #212529;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+main#page_content[name=writing] #writing_body table thead {
+  border: 1px solid #454d55;
+}
+
+main#page_content[name=writing] #writing_body table thead th {
+  border-bottom: 2px solid #dee2e6;
+  vertical-align: bottom;
+  color: #ffffff;
+  background-color: #343a40;
+  border-color: #454d55;
+}
+
+main#page_content[name=writing] #writing_body table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+}
+
+main#page_content[name=writing] #writing_body table th,
+main#page_content[name=writing] #writing_body table td {
+  border-top: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+main#page_content[name=writings] #writings_list {
+  list-style: none;
+  margin-bottom: 4rem;
+  padding: 0;
+}
+
+main#page_content[name=writings] #writings_list li {
+  margin-bottom: 0.5rem;
+}
+
+main#page_content[name=writings] #writings_list li .writing_date {
+  display: inline-block;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 58px;
-  margin: 2rem 0;
+  width: 180px;
 }
 
-main#page_content[name=writings] #writing_form input[name=title]::-moz-placeholder, main#page_content[name=writing] #writing_form input[name=title]::-moz-placeholder, main#page_content[name=writing_edit] #writing_form input[name=title]::-moz-placeholder {
-  color: #888;
+main#page_content[name=writings] #writings_list li .writing_title {
+  border-bottom: 2px solid #FB5607;
+  color: #FB5607;
+  font-size: 20px;
+  text-decoration: none;
 }
 
-main#page_content[name=writings] #writing_form input[name=title]:-ms-input-placeholder, main#page_content[name=writing] #writing_form input[name=title]:-ms-input-placeholder, main#page_content[name=writing_edit] #writing_form input[name=title]:-ms-input-placeholder {
-  color: #888;
-}
-
-main#page_content[name=writings] #writing_form input[name=title]::-ms-input-placeholder, main#page_content[name=writing] #writing_form input[name=title]::-ms-input-placeholder, main#page_content[name=writing_edit] #writing_form input[name=title]::-ms-input-placeholder {
-  color: #888;
-}
-
-main#page_content[name=writings] #writing_form input[name=title]::placeholder,
-main#page_content[name=writing] #writing_form input[name=title]::placeholder,
-main#page_content[name=writing_edit] #writing_form input[name=title]::placeholder {
-  color: #888;
-}
-
-main#page_content[name=writings] #writing_form textarea[name=body],
-main#page_content[name=writing] #writing_form textarea[name=body],
-main#page_content[name=writing_edit] #writing_form textarea[name=body] {
-  border: none;
-  font-size: 22px;
-}
-
-main#page_content[name=writings] #writing_form textarea[name=body]::-moz-placeholder, main#page_content[name=writing] #writing_form textarea[name=body]::-moz-placeholder, main#page_content[name=writing_edit] #writing_form textarea[name=body]::-moz-placeholder {
-  font-style: italic;
-}
-
-main#page_content[name=writings] #writing_form textarea[name=body]:-ms-input-placeholder, main#page_content[name=writing] #writing_form textarea[name=body]:-ms-input-placeholder, main#page_content[name=writing_edit] #writing_form textarea[name=body]:-ms-input-placeholder {
-  font-style: italic;
-}
-
-main#page_content[name=writings] #writing_form textarea[name=body]::-ms-input-placeholder, main#page_content[name=writing] #writing_form textarea[name=body]::-ms-input-placeholder, main#page_content[name=writing_edit] #writing_form textarea[name=body]::-ms-input-placeholder {
-  font-style: italic;
-}
-
-main#page_content[name=writings] #writing_form textarea[name=body]::placeholder,
-main#page_content[name=writing] #writing_form textarea[name=body]::placeholder,
-main#page_content[name=writing_edit] #writing_form textarea[name=body]::placeholder {
-  font-style: italic;
+main#page_content[name=writings] #writings_list li .writing_title:hover {
+  border-bottom-color: #3A86FF;
+  color: #3A86FF;
 }
 
 ::-moz-selection {
@@ -11549,26 +11554,7 @@ body #app header#header {
 
 body #app header#header #navbar {
   border-top: 4px solid #3490DC;
-  border-bottom: 2px solid gray;
-}
-
-body #app header#header #avatar {
-  opacity: 0.75;
-  position: absolute;
-  left: 8px;
-  top: 68px;
-  transition: opacity 0.4s ease;
-  z-index: 10;
-}
-
-body #app header#header #avatar:hover {
-  opacity: 1;
-}
-
-body #app header#header #avatar img {
-  border-radius: 50% !important;
-  height: 50px;
-  width: 50px;
+  border-bottom: 2px solid #444;
 }
 
 body #app header#header #hero {
@@ -11598,7 +11584,27 @@ body #app main#page_content {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
+  margin-bottom: 2rem;
   position: relative;
+}
+
+body #app main#page_content #avatar {
+  opacity: 0.75;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+}
+
+body #app main#page_content #avatar:hover {
+  opacity: 1;
+}
+
+body #app main#page_content #avatar img {
+  border-radius: 50% !important;
+  height: 50px;
+  width: 50px;
 }
 
 body #app main#page_content .container,
@@ -11622,7 +11628,8 @@ body #app main#page_content .container-xl h1 {
   font-weight: bold;
   font-size: 58px;
   letter-spacing: -4px;
-  margin: 2rem 0;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 body #app footer#footer {

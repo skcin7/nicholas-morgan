@@ -1,11 +1,4 @@
-main#page_content[name=writings], main#page_content[name=writing], main#page_content[name=writing_edit] {
-
-    #action_buttons_container {
-        margin: 1rem;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+main#page_content[name=writing] {
 
     #writings_list {
         list-style: none;
@@ -32,7 +25,7 @@ main#page_content[name=writings], main#page_content[name=writing], main#page_con
         }
     }
 
-    #body_headings {
+    #writing_headings {
         height: 50px;
         list-style: none;
         //margin: 0;
@@ -57,30 +50,51 @@ main#page_content[name=writings], main#page_content[name=writing], main#page_con
                 margin-left: 1rem;
                 padding-left: 1rem;
             }
+
+            &.heading_edit {
+                border-left: 2px solid #bbb;
+                color: #3A86FF;
+                margin-left: 1rem;
+                padding-left: 1rem;
+            }
         }
     }
 
-    #writing_form {
-        input[name=title] {
-            &::placeholder {
-                color: #888;
+    #writing_body {
+        font-size: 18px;
+        margin-bottom: 2rem;
+
+        table {
+            border: 1px solid #ddd;
+            color: #212529;
+            margin-bottom: 1rem;
+            width: 100%;
+
+            thead {
+                border: 1px solid #454d55;
+
+                th {
+                    border-bottom: 2px solid #dee2e6;
+                    vertical-align: bottom;
+
+                    color: #ffffff;
+                    background-color: #343a40;
+                    border-color: #454d55;
+                }
             }
 
-            border: none;
-            color: $black;
-            font-style: italic;
-            font-weight: bold;
-            font-size: 58px;
-            margin: 2rem 0;
-        }
-
-        textarea[name=body] {
-            &::placeholder {
-                font-style: italic;
+            tbody {
+                tr:hover {
+                    background-color: rgba(0, 0, 0, 0.075);
+                    color: #212529;
+                }
             }
 
-            border: none;
-            font-size: 22px;
+            th, td {
+                border-top: 1px solid #dee2e6;
+                padding: 0.75rem;
+                vertical-align: top;
+            }
         }
     }
 

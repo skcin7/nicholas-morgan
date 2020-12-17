@@ -1,0 +1,32 @@
+main#page_content[name=writings] {
+
+    #writings_list {
+        list-style: none;
+        margin-bottom: 4rem;
+        padding: 0;
+
+        li {
+            margin-bottom: 0.5rem;
+
+            .writing_date {
+                display: inline-block;
+                font-size: 16px;
+                font-weight: bold;
+                width: 180px;
+            }
+
+            .writing_title {
+                border-bottom: 2px solid #FB5607;
+                color: #FB5607;
+                font-size: 20px;
+                text-decoration: none;
+
+                &:hover {
+                    border-bottom-color: #3A86FF;
+                    color: #3A86FF;
+                }
+            }
+        }
+    }
+
+}

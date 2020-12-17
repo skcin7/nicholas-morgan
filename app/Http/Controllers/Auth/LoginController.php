@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        redirectPath as laravelRedirectPath;
+    }
 
     /**
      * Where to redirect users after login.
@@ -37,6 +40,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm(Request $request)
+    {
+        if($request->user()) {
+            dd('user is already logged in');
+        }
+
+        return view('auth.login');
     }
 
     /**
@@ -87,5 +104,41 @@ class LoginController extends Controller
             $loginField => $request->input('login'),
             'password' => $request->input('password')
         ], $request->filled('remember'));
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        // Do your logic to flash data to session...
+        session()->flash('flash_message', [
+            'message' => 'You have been logged in!',
+            'type' => 'success',
+        ]);
+
+        // Return the results of the method we are overriding that we aliased.
+        return $this->laravelRedirectPath();
+    }
+
+    /**
+     * The user has logged out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    protected function loggedOut(Request $request)
+    {
+        if($request->expectsJson()) {
+            return new Response('', 204);
+        }
+
+        return redirect()->route('welcome')
+            ->with('flash_message', [
+                'message' => 'You have been logged out!',
+                'type' => 'success',
+            ]);
     }
 }

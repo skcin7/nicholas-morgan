@@ -4,26 +4,26 @@
 
 @section('content')
     <div class="container">
-        <h1>Writing</h1>
-
-        @if(Auth::check() && Auth::user()->isAdmin())
-            <div id="action_buttons_container">
-                <a class="btn btn-primary" href="{{ route('writing.create') }}">Create Writing</a>
-            </div>
-        @endif
+        <h1>Writings</h1>
 
         @if($writings->count())
-
             <ul id="writings_list">
                 @foreach($writings as $writing)
                     <li>
+                        @if($writing->trashed())
+                            <i class="icon-trash" title="This writing is in the trash." data-toggle="tooltip" data-placement="bottom"></i>
+                        @endif
                         <span class="writing_date">{{ $writing->created_at->format('F j') }}</span>
-                        <a class="writing_title" href="{{ route('writing.writing', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>
+                        <a class="writing_title" href="{{ route('writings.writing', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>
                     </li>
                 @endforeach
             </ul>
         @else
-            <p>No writing is here.</p>
+            <p>No writings are here. :-/</p>
+        @endif
+
+        @if(Auth::check() && Auth::user()->isAdmin())
+            <a class="btn btn-primary" href="{{ route('writings.create') }}">Create Writing</a>
         @endif
 
 

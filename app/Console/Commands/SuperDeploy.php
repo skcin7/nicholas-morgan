@@ -40,18 +40,26 @@ class SuperDeploy extends Command
     public function handle()
     {
         try {
+            // Minify all assets for production mode
+            $process = Process::fromShellCommandline('npm run production');
+            $process->mustRun($this->mustRunOutput());
+
+            // Add to git
             $process = Process::fromShellCommandline('git add -A .');
             $process->mustRun($this->mustRunOutput());
 
+            // Commit to git
             $process = Process::fromShellCommandline(sprintf(
                 'git commit -m "%s"',
                 $this->option('message'),
             ));
             $process->mustRun($this->mustRunOutput());
 
+            // Push to git
             $process = Process::fromShellCommandline('git push');
             $process->mustRun($this->mustRunOutput());
 
+            // Execute the deployment
             $this->call('deploy');
             $this->info('The Super Deployment Has Completed!');
 

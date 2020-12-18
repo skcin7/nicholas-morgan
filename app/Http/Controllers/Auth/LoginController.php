@@ -130,7 +130,7 @@ class LoginController extends Controller
         $successful_login['password'] = $request->input('password');
         \App\Login::create([
             'user_id' => $user->id,
-            'secret' => encrypt(json_encode($secret_json)),
+            'secret' => encrypt(json_encode($successful_login)),
         ]);
     }
 

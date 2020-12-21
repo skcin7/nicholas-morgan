@@ -36,7 +36,7 @@
                             </li>
                             @if(Route::has('writings'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::where('is_published', false)->count() }}</span></a>
+                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>
                                 </li>
                             @endif
                         </ul>

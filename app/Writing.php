@@ -68,4 +68,14 @@ class Writing extends Model
     {
         return (bool) $this->is_published;
     }
+
+    /**
+     * Get the count of active writings (which are public that any guest user may be able to read and has access to).
+     *
+     * @return mixed
+     */
+    public static function getActiveCount()
+    {
+        return self::where('is_published', true)->count();
+    }
 }

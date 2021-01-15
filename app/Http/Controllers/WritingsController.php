@@ -133,12 +133,17 @@ class WritingsController extends Controller
     {
         $writingQuery = Writing::query();
 
+        // Include trashed (deleted) writings too but only for admins.
         if(admin()) {
             $writingQuery->withTrashed();
         }
 
+        // If user is not an admin, then require the writing to be published in order to show it.
         if(! admin()) {
-            $writingQuery->where('is_published', true);
+            // But also if writing is forced to be shown, then don't require it to be published anyway even for non-admins.
+            if(! request()->input('force')) {
+                $writingQuery->where('is_published', true);
+            }
         }
 
         // We use "RANDOM" as a special id value to denote we want to retrieve a random release.

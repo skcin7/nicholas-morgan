@@ -245,3 +245,21 @@ body {
         }
     }
 }
+
+// uniform way for all fieldsets to look
+fieldset {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    legend {
+        border-bottom: none;
+        font-size: 15px;
+        margin: 0;
+        margin-bottom: 0px;
+        margin-bottom: 0;
+        padding: 0;
+        width: auto;
+    }
+}

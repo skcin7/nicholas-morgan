@@ -18,6 +18,8 @@ Route::get('/', 'AppController@welcome')->name('welcome');
 Route::get('contact', 'AppController@contact')->name('contact');
 Route::get('about', 'AppController@about')->name('about');
 Route::get('pgp', 'AppController@pgp')->name('pgp');
+Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 
 Auth::routes([
     'register' => false,

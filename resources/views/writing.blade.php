@@ -9,6 +9,10 @@
 
         <p><a href="{{ route('writings') }}">← Back To Writings</a></p>
 
+        @if(! $writing->is_unpublished)
+            <div class="alert alert-warning">NOTE: This writing is currently in unpublished state.</div>
+        @endif
+
         <ul id="writing_subheadings">
             <li class="subheading_date">
                 {{ $writing->created_at->format('F j, Y') }}

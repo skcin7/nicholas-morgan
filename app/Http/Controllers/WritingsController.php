@@ -141,7 +141,7 @@ class WritingsController extends Controller
         // If user is not an admin, then require the writing to be published in order to show it.
         if(! admin()) {
             // But also if writing is forced to be shown, then don't require it to be published anyway even for non-admins.
-            if(! request()->input('force')) {
+            if(! request()->input('show_unpublished')) {
                 $writingQuery->where('is_published', true);
             }
         }

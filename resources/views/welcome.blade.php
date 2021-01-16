@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <p>WELCOME TO MY AWESOME WEB SITE!!!!!</p>
-                <p>I will be using this site as my central hub for publishing and saying stuff that I do, and will put a lot more awesome wonderful stuff on it very shortly (I just made it recently in 2021, give me a rest geeze).</p>
+{{--                <p>I will be using this site as my central hub for publishing and saying stuff that I do, and will put a lot more awesome wonderful stuff on it very shortly (I just made it recently in 2021, give me a rest geeze).</p>--}}
 {{--                <p>I'm a full stack web and API developer with over 10 years of industry experience in crafting highly usable fully scalable interactive web applications.</p>--}}
 
 {{--                <p>I am based in Los Angeles, CA. I work in <a href="https://laravel.com/" target="_blank">Laravel - The PHP Framework for Web Artisans</a> because I like things that are good, and use a test-driven (TDD) development approach to make sure things don't break and ALWAYS run smoothly (as smoothly as possible).</p>--}}

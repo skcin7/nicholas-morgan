@@ -16,6 +16,10 @@
         <ul id="writing_subheadings">
             <li class="subheading_date">
                 {{ $writing->created_at->format('F j, Y') }}
+
+                @if($writing->created_at->format('F j, Y') !== $writing->updated_at->format('F j, Y'))
+                    (Updated {{ $writing->updated_at->format('F j, Y') }})
+                @endif
             </li>
             <li class="subheading_twitter">
                 @nick

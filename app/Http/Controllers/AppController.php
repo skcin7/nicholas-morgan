@@ -31,6 +31,17 @@ class AppController extends Controller
     }
 
     /**
+     * Download my contact card.
+     *
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function downloadContactCard(Request $request)
+    {
+        return Storage::disk('local')->download('Nick Morgan.vcf');
+    }
+
+    /**
      * Show the about page.
      *
      * @param Request $request

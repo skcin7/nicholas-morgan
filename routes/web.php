@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Basic application routes:
 Route::get('/', 'AppController@welcome')->name('welcome');
 Route::get('contact', 'AppController@contact')->name('contact');
+Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
 Route::get('about', 'AppController@about')->name('about');
 Route::get('pgp', 'AppController@pgp')->name('pgp');
 Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');

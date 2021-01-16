@@ -15,6 +15,9 @@ class AppController extends Controller
      */
     public function welcome(Request $request)
     {
+        // For now just redirect to the about page (until I get actual content on the Welcome page).
+        return redirect()->route('about');
+
         return view('welcome');
     }
 

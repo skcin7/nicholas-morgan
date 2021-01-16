@@ -6,7 +6,7 @@
     <div class="container">
         <h1>Writings</h1>
 
-        <p>Basically sometimes I have some streams of consciousness about certain topics and for whatever reason I decide to record said streams of consciousness in writing/words, and sometimes I publish some of them here. It's mostly just me incoherently babbling/rambling on my part, with very little actual of this so-called "content" we've been hearing about, though I've heard there is actually _some_ content here too buried underneath all the fluff, but you're gonna have to look really hard to find it. I can't say I would recommend reading ANY of this, so you should probably <a href="https://www.oprah.com">leave now</a> before it's too late, for your own good! 😀 Okay, don't say I didn't warn you...</p>
+        <p>Basically sometimes I have some streams of consciousness about certain topics and for whatever reason I decide to record said streams of consciousness in writing/words, and sometimes I publish some of them here. It's mostly just me incoherently babbling/rambling on my part, with very little actual of this so-called "content" we've been hearing about, though I've heard there is actually _some_ content here too buried underneath all the fluff, but you're gonna have to look really hard to find it. I can't say I would recommend reading ANY of this, so you should probably <a href="https://www.oprah.com">leave now</a> before it's too late. <a href="https://www.eltonjohn.com/">Leave now</a>, for your own good! 😀 Okay, don't say I didn't warn you...</p>
 
         <div id="writings_container">
             @if($writings->count())

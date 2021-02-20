@@ -9,7 +9,7 @@
 
         <p><a href="{{ route('writings') }}">← Back To Writings</a></p>
 
-        @if(! $writing->is_unpublished)
+        @if(! $writing->is_published)
             <div class="alert alert-warning">NOTE: This writing is currently in unpublished state.</div>
         @endif
 

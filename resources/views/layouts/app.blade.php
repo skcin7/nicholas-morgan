@@ -32,7 +32,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                                <a class="nav-link" href="{{ route('about') }}">{{ __('About Nick') }}</a>
                             </li>
                             @if(Route::has('writings'))
                                 <li class="nav-item">
@@ -79,13 +79,13 @@
                 </div>
             </nav>
 
-            <div id="hero" style="display: none;">
+            <div id="hollyweird_banner">
                 <h1>{{ isset($title_prefix) ? $title_prefix : 'Nick Morgan' }}</h1>
             </div>
         </header>
 
         <main id="page_content" name="@yield('pageName')">
-            <div id="avatar">
+            <div id="avatar" style="display: none;">
                 <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
             </div>
 
@@ -128,7 +128,7 @@
                         @endguest
                         <br/>
                         <span class="smaller">
-                            <a class="border-underlined" href="{{ route('contact') }}">Ways To Contact Me</a>
+                            <a class="border-underlined" href="{{ route('contact') }}">How To Contact Nick</a>
                             | <a class="border-underlined" href="{{ route('pgp') }}">PGP</a>
 {{--                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>--}}
                         </span>

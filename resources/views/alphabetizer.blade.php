@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col-md">
                 <fieldset>
                     <legend>Input</legend>
 
@@ -18,9 +18,9 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="col-auto">
+            <div class="col-md-auto">
                 <div class="mb-3">
-                    <button class="btn btn-primary" type="button" data-action="process_alphabetization">→ Alphabetize →</button>
+                    <button class="btn btn-primary w-100" type="button" data-action="process_alphabetization">→ Alphabetize →</button>
                 </div>
 
                 <strong><u>Options</u></strong>
@@ -51,7 +51,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <fieldset>
                     <legend>Output</legend>
 

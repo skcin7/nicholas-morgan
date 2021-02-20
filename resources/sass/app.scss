@@ -19,6 +19,7 @@
 @import "components/rotate";
 
 // pages:
+@import "pages/about";
 @import "pages/alphabetizer";
 @import "pages/nes";
 @import "pages/writing";
@@ -81,7 +82,7 @@ body {
 
             $navbar_height: 54px;
 
-            #hero {
+            #hollyweird_banner {
                 background-color: #2c3429;
                 background-image: url('./images/hollyweird.jpg');
                 background-position: center center;
@@ -110,6 +111,7 @@ body {
             flex-shrink: 1;
             flex-basis: auto;
             position: relative;
+            text-shadow: 1px 1px #fff;
 
             #avatar {
                 opacity: .75;
@@ -280,4 +282,30 @@ fieldset {
 
 .bigger {
     font-size: 115%;
+}
+
+// Add an external link icon for links that are external
+.external_link_arrow {
+    //border-bottom: 1px dotted theme-color('primary');
+    //text-decoration: none;
+    //font-variant: small-caps;
+    //font-weight: bold;
+
+    &::after {
+        content: "";
+        width: 1em;
+        height: 1em;
+        //margin: 0 0.05em 0 0.25em;
+        margin: 0 2px 0 2px;
+        background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOSAyTDkgMyAxMi4zIDMgNiA5LjMgNi43IDEwIDEzIDMuNyAxMyA3IDE0IDcgMTQgMlpNNCA0QzIuOSA0IDIgNC45IDIgNkwyIDEyQzIgMTMuMSAyLjkgMTQgNCAxNEwxMCAxNEMxMS4xIDE0IDEyIDEzLjEgMTIgMTJMMTIgNyAxMSA4IDExIDEyQzExIDEyLjYgMTAuNiAxMyAxMCAxM0w0IDEzQzMuNCAxMyAzIDEyLjYgMyAxMkwzIDZDMyA1LjQgMy40IDUgNCA1TDggNSA5IDRaIi8+PC9zdmc+) no-repeat;
+        background-size: contain;
+        display: inline-block;
+        position: relative;
+        top: -1px;
+        vertical-align: text-bottom;
+    }
+
+    //&:hover {
+    //    border-bottom: 1px solid theme-color('primary');
+    //}
 }

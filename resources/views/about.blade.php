@@ -3,11 +3,17 @@
 @section('pageName', 'about')
 
 @section('content')
-    <div class="container">
+{{--    <div id="dr_nick_background"></div>--}}
 
-        <h1>About Nick</h1>
+    <div id="about_container" class="container">
 
-        <p><strong>I am a Software Engineer, Business Owner, and Video Game Collector/Preservationist</strong> currently living in California, USA (and originally from New Jersey, USA). I'll write more cool stuff here later to help better say a basic introduction/summary of who I am. //TODO write more cool stuff here later</p>
+        <h1>About Dr. Nick</h1>
+
+        <p>Nick is a <strong>Business Owner, Video Game Collector/Preservationist, and Software Engineer</strong> from California, USA, and originally from New Jersey, USA.</p>
+
+        <p>If you ever need someone to help you with your medical needs, Dr. Nick is who to call.</p>
 
     </div>
+
+    <img id="dr_nick_image" src="{{ asset('images/dr_nick.png') }}" width="220"/>
 @endsection

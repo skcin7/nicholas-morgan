@@ -1,0 +1,23 @@
+main#page_content[name=about] {
+
+    #about_container {
+        //min-height: 400px; // make enough room for Dr. Nick image
+    }
+
+    #dr_nick_background {
+        background-image: url("../images/dr_nick.png");
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        background-size: 220px;
+        bottom: 0;
+        height: 330px;
+        position: absolute;
+        right: 0;
+        width: 220px;
+    }
+
+    #dr_nick_image {
+        float: right;
+    }
+
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlphabetizerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ Route::get('about', 'AppController@about')->name('about');
 Route::get('pgp', 'AppController@pgp')->name('pgp');
 Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+
+Route::group(['prefix' => 'alphabetizer'], function() {
+    Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer.index');
+
+    //Route::get('/', 'AlphabetizerController@index')->name('alphabetizer.index');
+});
 
 Auth::routes([
     'register' => false,

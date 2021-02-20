@@ -19,6 +19,7 @@
 @import "components/rotate";
 
 // pages:
+@import "pages/alphabetizer";
 @import "pages/nes";
 @import "pages/writing";
 @import "pages/writing_edit";
@@ -262,4 +263,21 @@ fieldset {
         padding: 0;
         width: auto;
     }
+}
+
+.small {
+    font-size: 80%;
+}
+
+.smaller {
+    font-size: 90%;
+}
+
+.big {
+    font-size: 130%;
+    letter-spacing: -0.5px;
+}
+
+.bigger {
+    font-size: 115%;
 }

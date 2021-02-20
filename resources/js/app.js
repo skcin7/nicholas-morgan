@@ -40,6 +40,7 @@ window.NicksFuckinAwesomeWebsite = {};
      * @type {*[]}
      */
     app.appPagesToLoad = [
+        'alphabetizer',
         //'nes',
         'welcome',
     ];

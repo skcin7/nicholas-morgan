@@ -111,6 +111,12 @@
                             <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>
                         </ul>
                     </div>
+                    <div class="col footer_column">
+                        <h6 class="mb-2">Stuff</h6>
+                        <ul class="list-unstyled mb-3">
+                            <li><a class="hover-up" href="{{ route('alphabetizer.index') }}">Alphabetizer</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="row my-3">
                     <div class="col footer_copyright_column">

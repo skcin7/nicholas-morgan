@@ -34,7 +34,7 @@
                     <li>
                         <div class="form-check abc-checkbox abc-checkbox-primary">
                             <input class="form-check-input" id="remove_magic_quotes_option_checkbox" name="options_checkboxes[remove_magic_quotes]" type="checkbox" value="yes">
-                            <label class="form-check-label" for="remove_magic_quotes_option_checkbox">Replace Magic Quotes With Regular Quotes</label>
+                            <label class="form-check-label" for="remove_magic_quotes_option_checkbox">Replace Magic Quotes<br/>With Regular Quotes</label>
                         </div>
                     </li>
                     <li>

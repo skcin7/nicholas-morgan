@@ -47,6 +47,18 @@ Route::group(['prefix' => 'writings'], function() {
     Route::post('{id}/permanently_delete', 'WritingsController@permanentlyDelete')->name('writings.writing.permanently_delete');
 });
 
+Route::group(['prefix' => 'albums'], function() {
+    Route::get('/', 'AlbumsController@index')->name('albums');
+//    Route::get('create', 'AlbumsController@create')->name('albums.create');
+//    Route::post('create', 'AlbumsController@processCreate')->name('albums.create');
+//    Route::get('{id}', 'AlbumsController@writing')->name('albums.writing');
+//    Route::get('{id}/edit', 'AlbumsController@edit')->name('albums.writing.edit');
+//    Route::post('{id}/edit', 'AlbumsController@processEdit')->name('albums.writing.process_edit');
+//    Route::post('{id}/trash', 'AlbumsController@trash')->name('albums.writing.trash');
+//    Route::post('{id}/untrash', 'AlbumsController@untrash')->name('albums.writing.untrash');
+//    Route::post('{id}/permanently_delete', 'AlbumsController@permanentlyDelete')->name('albums.writing.permanently_delete');
+});
+
 // Routes related to the JNES emulator/Contra:
 Route::group(['prefix' => 'nes'], function() {
     Route::get('{rom?}', 'NesEmulatorController@play')->name('nes');

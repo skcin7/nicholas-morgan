@@ -2,7 +2,7 @@
 require('./bootstrap');
 
 // Create the namespace for the application:
-window.NicksFuckinAwesomeWebsite = {};
+window.NicksFuckinAwesomeWebApp = {};
 
 // Fire the self-executing function to load the application:
 ;(function(app, $, mousetrap, undefined) {
@@ -20,6 +20,7 @@ window.NicksFuckinAwesomeWebsite = {};
      * @type {*[]}
      */
     app.appComponentsToLoad = [
+        'album_modal',
         'barrel_roll',
         'mirror',
         'play_nes',
@@ -226,4 +227,4 @@ window.NicksFuckinAwesomeWebsite = {};
         fnToExecute.call(this);
     };
 
-})(window.NicksFuckinAwesomeWebsite, window.jQuery, window.Mousetrap);
+})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Mousetrap);

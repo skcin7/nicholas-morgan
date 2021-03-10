@@ -52,4 +52,4 @@
             window.location = app.url('nes');
         },
     });
-})(window.NicksFuckinAwesomeWebsite, window.jQuery, window.Mousetrap);
+})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Mousetrap);

@@ -34,9 +34,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about') }}">{{ __('About Nick') }}</a>
                             </li>
+
                             @if(Route::has('writings'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>
+                                </li>
+                            @endif
+
+                            @if(Route::has('albums'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('albums') }}">{{ __('Albums I Endorse') }} <span class="badge badge-dark">{{ \App\Album::getCount() }}</span></a>
                                 </li>
                             @endif
                         </ul>
@@ -108,7 +115,7 @@
                             <li><a class="hover-up" href="#" data-action="mirror">Mirror</a></li>
                             <li><a class="hover-up" href="#" data-action="rotate">Rotate</a></li>
                             <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a> | <a class="hover-up" href="#" data-action="barrel_roll_reverse">Reverse</a></li>
-                            <li><a class="hover-up" href="#" data-action="play_nes">Play NES</a></li>
+                            <li><a class="hover-up" href="{{ route('nes') }}" data-action="play_nes">Play NES</a></li>
                         </ul>
                     </div>
                     <div class="col footer_column">
@@ -149,7 +156,7 @@
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript">
-    window.NicksFuckinAwesomeWebsite.setConfig({
+    window.NicksFuckinAwesomeWebApp.setConfig({
         "baseUrl": '{{ config('app.url') }}',
         @if(auth()->check())
         "authenticatedUser": true,

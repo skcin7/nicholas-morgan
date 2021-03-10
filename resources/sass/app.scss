@@ -14,12 +14,14 @@
 
 // components:
 @import "components/abc_checkbox";
+@import "components/alerts";
 @import "components/barrel_roll";
 @import "components/mirror";
 @import "components/rotate";
 
 // pages:
 @import "pages/about";
+@import "pages/albums";
 @import "pages/alphabetizer";
 @import "pages/nes";
 @import "pages/writing";
@@ -307,5 +309,43 @@ fieldset {
 
     //&:hover {
     //    border-bottom: 1px solid theme-color('primary');
+    //}
+}
+
+// the button container for when choosing a file (for file inputs)
+.btn_file_container {
+    cursor: pointer;
+    overflow: hidden;
+    //padding: 8px 10px;
+    position: relative;
+    vertical-align: top;
+
+    > input[type=file] {
+        bottom: 0;
+        filter: alpha(opacity=0);
+        font-size: 20px;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+// Modals styling
+.modal-dialog {
+    margin-top: 0px;
+
+    .modal-content {
+        border: 2px solid theme-color("branding") !important;
+        //border-radius: 0 !important;
+    }
+
+    //@media(min-width: 768px) {
+    //    &.modal-xl {
+    //        width: 90%;
+    //        max-width: 1200px;
+    //    }
     //}
 }

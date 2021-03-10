@@ -74,4 +74,4 @@
             return component;
         },
     });
-})(window.NicksFuckinAwesomeWebsite, window.jQuery, window.Mousetrap);
+})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Mousetrap);

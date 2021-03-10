@@ -212,4 +212,4 @@
         },
 
     });
-})(window.NicksFuckinAwesomeWebsite, window.jQuery, window.Jsnes);
+})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Jsnes);

@@ -16,7 +16,7 @@ try {
     // require('./lib/jquery.appear');
     require('./lib/jquery.autosize');
     // require('./lib/jquery.colorbox');
-    // require('./lib/jquery.notify');
+    require('./lib/jquery.notify');
     // require('./lib/jquery.scrollup');
 } catch (e) {}
 

@@ -46,7 +46,7 @@
                     <li>
                         <div class="form-check abc-checkbox abc-checkbox-primary">
                             <input class="form-check-input" id="uppercase_all_words_option_checkbox" name="options_checkboxes[uppercase_all_words]" type="checkbox" value="yes">
-                            <label class="form-check-label" for="uppercase_all_words_option_checkbox">Uppercase All Words</label>
+                            <label class="form-check-label" for="uppercase_all_words_option_checkbox">Uppercase First Letter<br/>Of Each Word</label>
                         </div>
                     </li>
                 </ul>

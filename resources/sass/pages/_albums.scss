@@ -1,0 +1,30 @@
+main#page_content[name=albums] {
+
+    ul#albums_list {
+        list-style: none;
+        padding: 0;
+        padding-bottom: 3rem !important;
+
+        li.album {
+            border-bottom: 2px solid theme-color("branding");
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+
+            img.album_cover {
+                border: 2px solid #ddd;
+                width: 250px;
+            }
+
+            .album_title {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .album_subtitle {
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+    }
+
+}

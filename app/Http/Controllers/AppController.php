@@ -18,7 +18,8 @@ class AppController extends Controller
         // For now just redirect to the about page (until I get actual content on the Welcome page).
 //        return redirect()->route('about');
 
-        return view('welcome');
+        return view('welcome')
+            ->with('title_prefix', 'Nick Morgan');
     }
 
     /**
@@ -53,7 +54,7 @@ class AppController extends Controller
     public function about(Request $request)
     {
         return view('about')
-            ->with('title_prefix', 'About Nick');
+            ->with('title_prefix', 'About');
     }
 
     /**

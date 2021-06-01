@@ -31,7 +31,7 @@
             <div class="alert alert-warning">No albums that I endorse are here... :-/</div>
         @endif
 
-        <p>That's It! (More to come soon)</p>
+        <p>That's It! (more to come soon)</p>
 
         @if(admin())
             <button class="btn btn-primary" type="button" data-action="add_album">Add An Album</button>

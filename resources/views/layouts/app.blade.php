@@ -32,7 +32,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About Nick') }}</a>
+                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                             </li>
 
                             @if(Route::has('writings'))

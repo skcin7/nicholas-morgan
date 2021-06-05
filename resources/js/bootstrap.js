@@ -18,6 +18,7 @@ try {
     // require('./lib/jquery.colorbox');
     require('./lib/jquery.notify');
     // require('./lib/jquery.scrollup');
+    require('./lib/jquery.rainbowify');
 } catch (e) {}
 
 /**

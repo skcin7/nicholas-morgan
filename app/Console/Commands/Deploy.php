@@ -13,7 +13,7 @@ class Deploy extends Command
      *
      * @var string
      */
-    protected $signature = 'deploy {--trigger_url=}';
+    protected $signature = 'deploy-old {--trigger_url=}';
 
     /**
      * The console command description.

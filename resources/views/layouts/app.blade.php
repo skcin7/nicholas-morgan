@@ -41,10 +41,20 @@
                                 </li>
                             @endif
 
-                            @if(Route::has('albums'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('albums') }}">{{ __('Albums I Endorse') }} <span class="badge badge-dark">{{ \App\Album::getCount() }}</span></a>
+                            @if(admin())
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Stuff I Endorse
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('albums') }}">Albums</a>
+                                    </div>
                                 </li>
+
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="{{ route('albums') }}">{{ __('Albums I Endorse') }} <span class="badge badge-dark">{{ \App\Album::getCount() }}</span></a>--}}
+{{--                                </li>--}}
                             @endif
                         </ul>
 
@@ -86,7 +96,7 @@
                 </div>
             </nav>
 
-            <div id="hollyweird_banner">
+            <div id="header_banner">
                 <h1>{{ isset($title_prefix) ? $title_prefix : 'Nick Morgan' }}</h1>
             </div>
         </header>
@@ -115,11 +125,13 @@
                             <li><a class="hover-up" href="#" data-action="mirror">Mirror</a></li>
                             <li><a class="hover-up" href="#" data-action="rotate">Rotate</a></li>
                             <li><a class="hover-up" href="#" data-action="barrel_roll">Do A Barrel Roll</a> | <a class="hover-up" href="#" data-action="barrel_roll_reverse">Reverse</a></li>
-                            <li><a class="hover-up" href="{{ route('nes') }}" data-action="play_nes">Play NES</a></li>
+                            @if(admin())
+                                <li><a class="hover-up" href="{{ route('nes') }}" data-action="play_nes">Play NES</a></li>
+                            @endif
                         </ul>
                     </div>
                     <div class="col footer_column">
-                        <h6 class="mb-2">Stuff</h6>
+                        <h6 class="mb-2">Tools</h6>
                         <ul class="list-unstyled mb-3">
                             <li><a class="hover-up" href="{{ route('alphabetizer.index') }}">Alphabetizer</a></li>
                         </ul>

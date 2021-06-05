@@ -206,7 +206,8 @@
         init: function(config) {
             let page = this;
 
-            //
+            // Hide the annoying fucking banner from the site
+            $('#header_banner').hide();
 
             return page;
         },

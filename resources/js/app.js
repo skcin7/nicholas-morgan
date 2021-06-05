@@ -135,6 +135,8 @@ window.NicksFuckinAwesomeWebApp = {};
      */
     app.init = function(config) {
 
+        //$('body').rainbowify();
+
         // Initialize all Bootstrap tooltip elements.
         $('body').tooltip({
             selector: '[data-toggle="tooltip"]',

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlphabetizerController;
+use App\Http\Controllers\AppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,8 @@ use App\Http\Controllers\AlphabetizerController;
 Route::get('/', 'AppController@welcome')->name('welcome');
 Route::get('contact', 'AppController@contact')->name('contact');
 Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
-Route::get('about', 'AppController@about')->name('about');
-Route::get('pgp', 'AppController@pgp')->name('pgp');
+Route::get('about', [AppController::class, 'about'])->name('about');
+Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
 Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 

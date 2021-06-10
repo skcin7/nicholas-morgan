@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 14.2//EN
+N:Morgan;Nick;;;
+FN:Nick Morgan
+ORG:VGDB: The Video Game Database;
+EMAIL;type=INTERNET;type=HOME;type=pref:nick@nicholas-morgan.com
+item1.URL;type=pref:https://nicholas-morgan.com
+item1.X-ABLabel:_$!<HomePage>!$_
+END:VCARD

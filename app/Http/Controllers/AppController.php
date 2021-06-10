@@ -42,7 +42,7 @@ class AppController extends Controller
      */
     public function downloadContactCard(Request $request)
     {
-        return Storage::disk('local')->download('Nick Morgan.vcf');
+        return \Storage::disk('local')->download('ContactCard.vcf');
     }
 
     /**
@@ -65,13 +65,18 @@ class AppController extends Controller
      */
     public function pgp(Request $request)
     {
-        $public_key = Storage::disk('local')->get('public.gpg');
-        $fingerprint = "26F6 9EDA 6E47 65BA A077  C2E8 EC71 B630 B7F7 377D";
+        try {
+            $public_key = \Storage::disk('local')->get('public_key.gpg');
+            $fingerprint = "26F6 9EDA 6E47 65BA A077  C2E8 EC71 B630 B7F7 377D";
 
-        return view('pgp')
-            ->with('public_key', $public_key)
-            ->with('fingerprint', $fingerprint)
-            ->with('title_prefix', 'PGP');
+            return view('pgp')
+                ->with('public_key', $public_key)
+                ->with('fingerprint', $fingerprint)
+                ->with('title_prefix', 'PGP');
+        }
+        catch(\Exception $ex) {
+            abort(422, "There was an error retrieving the public PGP key.");
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,14 @@ Route::group(['prefix' => 'albums'], function() {
     Route::post('{id?}', 'AlbumsController@create');
     Route::put('{id}', 'AlbumsController@update');
     Route::delete('{id}', 'AlbumsController@delete');
+});
+
+// Quotes routes:
+Route::group(['prefix' => 'quotes'], function() {
+    Route::get('/', [QuotesController::class, 'index']);
+    Route::get('random', [QuotesController::class, 'random']);
+    Route::get('{id}', [QuotesController::class, 'get']);
+    Route::post('{id?}', [QuotesController::class, 'create']);
+    Route::put('{id}', [QuotesController::class, 'update']);
+    Route::delete('{id}', [QuotesController::class, 'delete']);
 });

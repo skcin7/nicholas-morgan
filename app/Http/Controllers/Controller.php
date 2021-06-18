@@ -93,4 +93,44 @@ class Controller extends BaseController
     {
         return 'The ' . $entity . ' has been ' . $actionVerb . ' successfully!';
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getRetrievedSuccessfullyMessage($entity = 'entity')
+    {
+        return 'The ' . $entity . ' has been retrieved successfully!';
+    }
+
+    public function getCreatedSuccessfullyMessage($entity = 'entity')
+    {
+        return 'The ' . $entity . ' has been created successfully!';
+    }
+
+    public function getUpdatedSuccessfullyMessage($entity = 'entity')
+    {
+        return 'The ' . $entity . ' has been updated successfully!';
+    }
+
+    public function getDeletedSuccessfullyMessage($entity = 'entity')
+    {
+        return 'The ' . $entity . ' has been deleted successfully!';
+    }
+
+    public function getSuccessfulContributionMessage($contribution_action = null)
+    {
+        return 'Thanks! The ' . (! is_null($contribution_action) ? $contribution_action . ' ' : '') . 'contribution has been successfully received! Allow up to 48 hours for the contribution to be processed.';
+    }
 }

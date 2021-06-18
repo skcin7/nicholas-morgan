@@ -349,3 +349,12 @@ fieldset {
     //    }
     //}
 }
+
+// Put a border around the entire table, different from .table-bordered that puts borders around every cell
+.table-border {
+    border: 1px solid #ddd;
+
+    .thead-dark {
+        border: 1px solid #454d55;
+    }
+}

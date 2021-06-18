@@ -41,6 +41,7 @@ window.NicksFuckinAwesomeWebApp = {};
      * @type {*[]}
      */
     app.appPagesToLoad = [
+        'admin_quotes',
         'alphabetizer',
         //'nes',
         'welcome',

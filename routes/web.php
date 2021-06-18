@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\QuotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,13 @@ use App\Http\Controllers\AppController;
 |
 */
 
+// Define what authenticated-related routes should be enabled
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false
+]);
+
 // Basic application routes:
 Route::get('/', 'AppController@welcome')->name('welcome');
 Route::get('contact', 'AppController@contact')->name('contact');
@@ -24,17 +33,23 @@ Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
 Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 
+// Admin routes:
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('phpinfo', [AdminController::class, 'phpinfo'])->name('admin.phpinfo');
+    Route::get('adminer', [AdminController::class, 'adminer'])->name('admin.adminer');
+
+    // Admin quotes routes:
+    Route::group(['prefix' => 'quotes'], function() {
+        Route::get('/', [QuotesController::class, 'manage'])->name('admin.quotes');
+    });
+});
+
 Route::group(['prefix' => 'alphabetizer'], function() {
     Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer.index');
 
     //Route::get('/', 'AlphabetizerController@index')->name('alphabetizer.index');
 });
-
-Auth::routes([
-    'register' => false,
-    'reset' => false,
-    'verify' => false
-]);
 
 Route::group(['prefix' => 'writings'], function() {
     Route::get('/', 'WritingsController@index')->name('writings');
@@ -70,12 +85,6 @@ Route::group(['prefix' => 'nes'], function() {
 Route::get('home', 'HomeController@index')->name('home');
 
 
-// Admin routes:
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
-    Route::get('/', 'AdminController@index')->name('admin');
-    Route::get('phpinfo', "AdminController@showPhpinfo")->name('admin.phpinfo');
-    Route::get('adminer', "AdminController@showAdminer")->name('admin.adminer');
-});
 
 // Users routes:
 Route::group(['prefix' => 'users'], function() {

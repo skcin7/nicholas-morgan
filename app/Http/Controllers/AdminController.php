@@ -23,7 +23,7 @@ class AdminController extends Controller
      *
      * @return bool
      */
-    public function showPhpinfo()
+    public function phpinfo()
     {
         return phpinfo();
     }
@@ -33,7 +33,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function showAdminer()
+    public function adminer()
     {
         return redirect()->to(url('adminer/4.7.8/adminer-4.7.8-en.php'));
     }

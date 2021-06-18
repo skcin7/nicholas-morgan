@@ -84,9 +84,7 @@
                                         @if(admin())
                                             <div class="dropdown-divider"></div>
                                             <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>
-                                            <a class="dropdown-item" href="{{ route('admin') }}">
-                                                Home
-                                            </a>
+                                            <a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a>
                                         @endif
                                     </div>
                                 </li>
@@ -147,7 +145,7 @@
                         @endguest
                         <br/>
                         <span class="smaller">
-                            <a class="border-underlined" href="{{ route('contact') }}">How To Contact Nick</a>
+                            <a class="border-underlined" href="{{ route('contact') }}">How To Contact Me</a>
                             | <a class="border-underlined" href="{{ route('pgp') }}">PGP</a>
 {{--                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>--}}
                         </span>

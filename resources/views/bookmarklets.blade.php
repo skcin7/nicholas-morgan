@@ -18,6 +18,7 @@
 {{--                    </thead>--}}
                     <tbody>
                     @foreach($bookmarklets as $bookmarklet)
+                        @if(admin() && $bookmarklet->status === "ENABLED_ONLY_FOR_ADMINS")
                         <tr data-bookmarklet_id="{{ $bookmarklet->id }}">
                             <td>
                                 {{ $bookmarklet->name }}
@@ -29,6 +30,7 @@
                                 <a href="javascript:{!! $bookmarklet->getJavascriptCode() !!}" class="btn btn-primary">{{ $bookmarklet->name }}</a>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>

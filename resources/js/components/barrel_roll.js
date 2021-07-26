@@ -100,4 +100,4 @@
             return component;
         },
     });
-})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Mousetrap);
+})(window.NickMorgabWebApp, window.jQuery, window.Mousetrap);

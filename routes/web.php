@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\QuotesController;
 
 /*
@@ -46,9 +47,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 });
 
 Route::group(['prefix' => 'alphabetizer'], function() {
-    Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer.index');
+    Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer');
+});
 
-    //Route::get('/', 'AlphabetizerController@index')->name('alphabetizer.index');
+Route::group(['prefix' => 'bookmarklets'], function() {
+    Route::get('/', [BookmarkletsController::class, 'index'])->name('bookmarklets');
 });
 
 Route::group(['prefix' => 'writings'], function() {

@@ -10,7 +10,14 @@ try {
     // window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
     window.Mousetrap = require('./lib/mousetrap');
-    window.Jsnes = require('./lib/jsnes');
+    //window.Jsnes = require('./lib/jsnes');
+    // window.axios = require('axios');
+    //
+    // let token = document.head.querySelector('meta[name=csrf-token]');
+    // window.axios.defaults.headers.common = {
+    //     'X-CSRF-TOKEN': token.content,
+    //     'X-Requested-With': 'XMLHttpRequest'
+    // };
 
     require('bootstrap');
     // require('./lib/jquery.appear');

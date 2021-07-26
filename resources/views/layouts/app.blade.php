@@ -133,7 +133,8 @@
                     <div class="col footer_column">
                         <h6 class="mb-2">Tools</h6>
                         <ul class="list-unstyled mb-3">
-                            <li><a class="hover-up" href="{{ route('alphabetizer.index') }}">Alphabetizer</a></li>
+                            <li><a class="hover-up" href="{{ route('alphabetizer') }}">Alphabetizer</a></li>
+                            <li><a class="hover-up" href="{{ route('bookmarklets') }}">Bookmarklets</a></li>
                         </ul>
                     </div>
                 </div>
@@ -168,11 +169,8 @@
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript">
-    window.NicksFuckinAwesomeWebApp.setConfig({
-        "baseUrl": '{{ config('app.url') }}',
-        @if(auth()->check())
-        "authenticatedUser": true,
-        @endif
+    window.NickMorgabWebApp.setConfig({
+        "base_url": '{{ config('app.url') }}',
     }).init();
 </script>
 </html>

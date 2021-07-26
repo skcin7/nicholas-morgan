@@ -18,7 +18,7 @@
 {{--                    </thead>--}}
                     <tbody>
                     @foreach($bookmarklets as $bookmarklet)
-                        @if(admin() && $bookmarklet->status === "ENABLED_ONLY_FOR_ADMINS")
+                        @if((admin() && $bookmarklet->status === "ENABLED_ONLY_FOR_ADMINS") || $bookmarklet->status === "ENABLED")
                         <tr data-bookmarklet_id="{{ $bookmarklet->id }}">
                             <td>
                                 {{ $bookmarklet->name }}

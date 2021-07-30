@@ -70,7 +70,7 @@ class Deploy extends Command
                 $branch = $this->choice(
                     'What branch to push to?',
                     ['develop', 'master'],
-                    0
+                    1
                 );
             }
         }

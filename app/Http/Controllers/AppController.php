@@ -87,6 +87,7 @@ class AppController extends Controller
      */
     public function followersDifference(Request $request)
     {
+        // If we are POSTing, then process it.
         if($request->isMethod('post')) {
             $list_before_usernames = [];
             $list_before_contents = $request->file('list_before')->get();
@@ -120,5 +121,16 @@ class AppController extends Controller
             ->with('followers_lost', isset($followers_lost) ? $followers_lost : null)
             ->with('followers_gained', isset($followers_gained) ? $followers_gained : null)
             ->with('title_prefix', 'Followers Difference');
+    }
+
+    /**
+     * Redirect to gmail so that I can check my own email.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectToGmail(Request $request)
+    {
+        return redirect()->to('https://gmail.com');
     }
 }

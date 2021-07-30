@@ -26,13 +26,21 @@ Auth::routes([
 ]);
 
 // Basic application routes:
-Route::get('/', 'AppController@welcome')->name('welcome');
-Route::get('contact', 'AppController@contact')->name('contact');
-Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
+Route::get('/', [AppController::class, 'welcome'])->name('welcome');
+Route::get('contact', [AppController::class, 'contact'])->name('contact');
+Route::get('contact_card', [AppController::class, 'downloadContactCard'])->name('contact_card');
 Route::get('about', [AppController::class, 'about'])->name('about');
 Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
-Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
-Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+Route::get('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
+Route::post('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
+Route::get('mail', [AppController::class, 'redirectToGmail'])->name('mail');
+Route::get('gmail', [AppController::class, 'redirectToGmail'])->name('gmail');
+
+//Route::get('/', 'AppController@welcome')->name('welcome');
+//Route::get('contact', 'AppController@contact')->name('contact');
+//Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
+//Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+//Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 
 // Admin routes:
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

@@ -9,7 +9,7 @@
 
         <ul class="list-unstyled">
             <li><strong>Email:</strong> <a href="mailto:nick@nicholas-morgan.com">nick@nicholas-morgan.com</a></li>
-            <li><strong>Instagram:</strong> <a class="external_link_arrow" href="https://www.instagram.com/skcin7" target="_blank">@skcin7</a></li>
+            <li><strong>Instagram:</strong> <a class="external_link_arrow" href="https://www.instagram.com/skcin7" target="_blank">@skcin7</a> (Slide into them DMs)</li>
         </ul>
 
         <p><a href="{{ route('contact_card') }}">My Contact Card</a> (Import into your mobile device)</p>

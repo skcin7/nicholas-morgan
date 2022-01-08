@@ -270,20 +270,27 @@ fieldset {
 }
 
 .small {
-    font-size: 80%;
-}
-
-.smaller {
     font-size: 90%;
 }
 
+.smaller {
+    font-size: 80%;
+}
+
+.smallest {
+    font-size: 70%;
+}
+
 .big {
-    font-size: 130%;
-    letter-spacing: -0.5px;
+    font-size: 110%;
 }
 
 .bigger {
-    font-size: 115%;
+    font-size: 120%;
+}
+
+.biggest {
+    font-size: 130%;
 }
 
 // Add an external link icon for links that are external

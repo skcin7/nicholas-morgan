@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -232,6 +233,8 @@ return [
         // Not shipped with Laravel. Added from packages:
         'Image' => Intervention\Image\Facades\Image::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 
 ];

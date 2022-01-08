@@ -31,15 +31,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>--}}
+{{--                            </li>--}}
 
-                            @if(Route::has('writings'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>
-                                </li>
-                            @endif
+{{--                            @if(Route::has('writings'))--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
 
                             @if(admin())
                                 <li class="nav-item dropdown">
@@ -145,7 +145,7 @@
                         @endguest
                         <br/>
                         <span class="smaller">
-                            <a class="border-underlined" href="{{ route('contact') }}">How To Contact Me</a>
+                            <a class="border-underlined" href="{{ route('contact') }}">Contact</a>
                             | <a class="border-underlined" href="{{ route('pgp') }}">PGP</a>
 {{--                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>--}}
                         </span>

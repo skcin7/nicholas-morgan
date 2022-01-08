@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\QuotesController;
+use App\Http\Controllers\ResumeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::get('about', [AppController::class, 'about'])->name('about');
 Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
 Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+
+// Resume related routes go in here:
+Route::group(['prefix' => 'resume'], function() {
+    Route::get('/', [ResumeController::class, 'resume'])->name('resume');
+    Route::get('game_collecting', [ResumeController::class, 'getGameCollectingResume'])->name('resume.game_collecting');
+});
 
 // Admin routes:
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

@@ -31,7 +31,7 @@ class AppController extends Controller
     public function contact(Request $request)
     {
         return view('contact')
-            ->with('title_prefix', 'Contact Info');
+            ->with('title_prefix', 'Contact');
     }
 
     /**

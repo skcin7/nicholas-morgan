@@ -8,45 +8,50 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\RetrievesSingleEntity;
+use App\Traits\RetrievesManyEntities;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**
-     * Number of results to show per paginated collection response.
-     *
-     * @var int
-     */
-    private $perPage = 100;
+    use RetrievesSingleEntity;
+    use RetrievesManyEntities;
 
-    /**
-     * Set the per page amount to a new amount.
-     *
-     * @param $newPerPageAmount
-     */
-    public function setPerPageAmount($newPerPageAmount)
-    {
-        // Only let the per page amount be one of the valid amounts:
-        switch($newPerPageAmount) {
-            case 250:
-            case 100:
-            case 50:
-            case 25:
-            case 10:
-                $this->perPage = $newPerPageAmount;
-        }
-    }
-
-    /**
-     * Get the per page amount for each paginated collection response.
-     *
-     * @return int
-     */
-    public function getPerPageAmount()
-    {
-        return $this->perPage;
-    }
+//    /**
+//     * Number of results to show per paginated collection response.
+//     *
+//     * @var int
+//     */
+//    private $perPage = 100;
+//
+//    /**
+//     * Set the per page amount to a new amount.
+//     *
+//     * @param $newPerPageAmount
+//     */
+//    public function setPerPageAmount($newPerPageAmount)
+//    {
+//        // Only let the per page amount be one of the valid amounts:
+//        switch($newPerPageAmount) {
+//            case 250:
+//            case 100:
+//            case 50:
+//            case 25:
+//            case 10:
+//                $this->perPage = $newPerPageAmount;
+//        }
+//    }
+//
+//    /**
+//     * Get the per page amount for each paginated collection response.
+//     *
+//     * @return int
+//     */
+//    public function getPerPageAmount()
+//    {
+//        return $this->perPage;
+//    }
 
     /**
      * Respond to a request with JSON. Provides a unified way to respond using JSON format throughout the API.
@@ -82,32 +87,27 @@ class Controller extends BaseController
         return response()->json($data, $statusCode);
     }
 
-    /**
-     * Get the message for when an action completes successfully.
-     *
-     * @param string $entity
-     * @param string $actionVerb
-     * @return string
-     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getCompletedSuccessfullyMessage($entity = 'entity', $actionVerb = 'completed')
     {
         return 'The ' . $entity . ' has been ' . $actionVerb . ' successfully!';
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function getRetrievedSuccessfullyMessage($entity = 'entity')
     {

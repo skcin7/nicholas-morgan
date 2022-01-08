@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "strictNullChecks": false,
+        "target": "es6"
+    },
+    "files": [
+        "core.ts",
+        "sys.ts",
+        "types.ts",
+        "scanner.ts",
+        "parser.ts",
+        "utilities.ts",
+        "binder.ts",
+        "checker.ts",
+        "emitter.ts",
+        "program.ts",
+        "commandLineParser.ts",
+        "tsc.ts",
+        "diagnosticInformationMap.generated.ts"
+    ],
+    "include": [
+        "src/**/*",
+        "__tests__/**/*"
+    ],
+}

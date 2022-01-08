@@ -30,4 +30,4 @@
         },
 
     });
-})(window.NicksFuckinAwesomeWebApp, window.jQuery);
+})(window.NickMorgabWebApp, window.jQuery);

@@ -239,4 +239,4 @@
         }
 
     });
-})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.axios);
+})(window.NickMorgabWebApp, window.jQuery, window.axios);

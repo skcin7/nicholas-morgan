@@ -2,7 +2,7 @@
 require('./bootstrap');
 
 // Create the namespace for the application:
-window.NicksFuckinAwesomeWebApp = {};
+window.NickMorgabWebApp = {};
 
 // Fire the self-executing function to load the application:
 ;(function(app, $, mousetrap, undefined) {
@@ -25,6 +25,7 @@ window.NicksFuckinAwesomeWebApp = {};
         'mirror',
         'play_nes',
         'rotate',
+        'textarea_code',
         //'somecomponent',
     ];
 
@@ -43,23 +44,31 @@ window.NicksFuckinAwesomeWebApp = {};
     app.appPagesToLoad = [
         'admin_quotes',
         'alphabetizer',
+        'bookmarklets',
         //'nes',
         'welcome',
     ];
 
-    /**
-     * Info about the user that is currently authenticated.
-     *
-     * @type {null|{}}
-     */
-    app.authenticatedUser = null;
+    // /**
+    //  * Info about the user that is currently authenticated.
+    //  *
+    //  * @type {null|{}}
+    //  */
+    // app.authenticatedUser = null;
 
     /**
      * Base URL used for the application is stored here.
      *
      * @type {String}
      */
-    app.baseUrl = '';
+    app.base_url = '';
+
+    /**
+     * The current page that is being viewed in the viewport.
+     *
+     * @type {String}
+     */
+    app.current_page = '';
 
     /**
      * Set the environment configuration/data.
@@ -70,10 +79,8 @@ window.NicksFuckinAwesomeWebApp = {};
     app.setConfig = function(config) {
         console.log("Configuring the application ...");
 
-        app.authenticatedUser = config.authenticatedUser || false;
-
         // Set the app's base URL:
-        app.baseUrl = config.baseUrl || '';
+        app.base_url = config.base_url || '';
 
         // Load the app's JS components:
         if(app.appComponentsToLoad) {
@@ -111,19 +118,79 @@ window.NicksFuckinAwesomeWebApp = {};
                 require('./pages/' + pageName);
 
                 let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
-                // // Only load page if the page is current page loaded in the application.
-                // if($('main#page_content[name=' + pageName + ']').length === 1) {
-                //     app.getPage(pageName).setConfig(pageConfig).init();
-                //     pageMessage += '.. and initialized!';
-                // }
+                // Only load page if the page is current page loaded in the application.
+                if($('main#page_content[name=' + pageName + ']').length === 1) {
+                    app.getPage(pageName).setConfig(pageConfig).init();
+                    pageMessage += '.. and initialized!';
+                }
                 console.log(pageMessage);
             });
         }
 
-        // Initialize all pages:
-        app.appPages.forEach(function(thisAppPage, index) {
-            thisAppPage.setConfig().init();
-            console.log('Page: \'' + thisAppPage.pageName + '\' initialized.')
+        // // Initialize all pages:
+        // app.appPages.forEach(function(thisAppPage, index) {
+        //     thisAppPage.setConfig().init();
+        //     console.log('Page: \'' + thisAppPage.pageName + '\' initialized.')
+        // });
+
+
+
+        // // Load the app's JS pages:
+        // if(app.appPagesToLoad) {
+        //     app.appPagesToLoad.forEach(function(page, index) {
+        //         let pageName, pageConfig;
+        //         if(typeof page === "string") {
+        //             pageName = page;
+        //             pageConfig = {};
+        //         }
+        //         else {
+        //             pageName = page.name;
+        //             pageConfig = page.config;
+        //         }
+        //
+        //         require('./pages/' + pageName);
+        //
+        //         let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
+        //         // Only load page if the page is current page loaded in the application.
+        //         if($('main#page_content[name=' + pageName + ']').length === 1) {
+        //             app.getPage(pageName).setConfig(pageConfig).init();
+        //             pageMessage += '..and initialized!';
+        //         }
+        //         console.log(pageMessage);
+        //     });
+        // }
+
+        // // Load the app's JS components:
+        // if(app.appComponentsToLoad) {
+        //     app.appComponentsToLoad.forEach(function(component, index) {
+        //         let componentName, componentConfig;
+        //         if(typeof component === "string") {
+        //             componentName = component;
+        //             componentConfig = {};
+        //         }
+        //         else {
+        //             componentName = component.name;
+        //             componentConfig = component.config;
+        //         }
+        //
+        //         require('./components/' + componentName);
+        //
+        //         app.getComponent(componentName).setConfig(componentConfig).init();
+        //         console.log('Component: \'' + componentName + '\' has been loaded...and initialized!');
+        //     });
+        // }
+
+        // NotifyJS Default Configurations:
+        $.notify.defaults({
+            "autoHide": true,
+            "autoHideDelay": 5000,
+            "position": 'left bottom',
+            "elementPosition": 'right bottom',
+            "globalPosition": 'right bottom',
+            "showDuration": 200,
+            "style": 'bootstrap',
+            "className": 'success',
+            "clickToHide": true
         });
 
         return app;
@@ -205,7 +272,7 @@ window.NicksFuckinAwesomeWebApp = {};
      * @returns {string}
      */
     app.url = function(uri = '') {
-        let url = app.baseUrl + '/' + uri;
+        let url = app.base_url + '/' + uri;
         return url.replace(/\/$/, ""); // Remove trailing slash, if there is one.
     };
 
@@ -230,4 +297,4 @@ window.NicksFuckinAwesomeWebApp = {};
         fnToExecute.call(this);
     };
 
-})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Mousetrap);
+})(window.NickMorgabWebApp, window.jQuery, window.Mousetrap);

@@ -31,10 +31,6 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>--}}
-{{--                            </li>--}}
-
 {{--                            @if(Route::has('writings'))--}}
 {{--                                <li class="nav-item">--}}
 {{--                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>--}}
@@ -131,7 +127,8 @@
                     <div class="col footer_column">
                         <h6 class="mb-2">Tools</h6>
                         <ul class="list-unstyled mb-3">
-                            <li><a class="hover-up" href="{{ route('alphabetizer.index') }}">Alphabetizer</a></li>
+                            <li><a class="hover-up" href="{{ route('alphabetizer') }}">Alphabetizer</a></li>
+                            <li><a class="hover-up" href="{{ route('bookmarklets') }}">Bookmarklets</a></li>
                         </ul>
                     </div>
                 </div>
@@ -166,11 +163,8 @@
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript">
-    window.NicksFuckinAwesomeWebApp.setConfig({
-        "baseUrl": '{{ config('app.url') }}',
-        @if(auth()->check())
-        "authenticatedUser": true,
-        @endif
+    window.NickMorgabWebApp.setConfig({
+        "base_url": '{{ config('app.url') }}',
     }).init();
 </script>
 </html>

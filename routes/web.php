@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ResumeController;
 
@@ -26,13 +27,21 @@ Auth::routes([
 ]);
 
 // Basic application routes:
-Route::get('/', 'AppController@welcome')->name('welcome');
-Route::get('contact', 'AppController@contact')->name('contact');
-Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
+Route::get('/', [AppController::class, 'welcome'])->name('welcome');
+Route::get('contact', [AppController::class, 'contact'])->name('contact');
+Route::get('contact_card', [AppController::class, 'downloadContactCard'])->name('contact_card');
 Route::get('about', [AppController::class, 'about'])->name('about');
 Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
-Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
-Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+Route::get('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
+Route::post('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
+Route::get('mail', [AppController::class, 'redirectToGmail'])->name('mail');
+Route::get('gmail', [AppController::class, 'redirectToGmail'])->name('gmail');
+
+//Route::get('/', 'AppController@welcome')->name('welcome');
+//Route::get('contact', 'AppController@contact')->name('contact');
+//Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
+//Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+//Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
 
 // Resume related routes go in here:
 Route::group(['prefix' => 'resume'], function() {
@@ -53,9 +62,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 });
 
 Route::group(['prefix' => 'alphabetizer'], function() {
-    Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer.index');
+    Route::get('/', [AlphabetizerController::class, 'index'])->name('alphabetizer');
+});
 
-    //Route::get('/', 'AlphabetizerController@index')->name('alphabetizer.index');
+Route::group(['prefix' => 'bookmarklets'], function() {
+    Route::get('/', [BookmarkletsController::class, 'index'])->name('bookmarklets');
 });
 
 Route::group(['prefix' => 'writings'], function() {

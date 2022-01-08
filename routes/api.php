@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\QuotesController;
 
 /*
@@ -41,4 +42,13 @@ Route::group(['prefix' => 'quotes'], function() {
     Route::post('{id?}', [QuotesController::class, 'create']);
     Route::put('{id}', [QuotesController::class, 'update']);
     Route::delete('{id}', [QuotesController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'bookmarklets'], function() {
+    Route::get('/', [BookmarkletsController::class, 'index']);
+    Route::get('random', [BookmarkletsController::class, 'random']);
+    Route::get('{id}', [BookmarkletsController::class, 'get']);
+    Route::post('{id?}', [BookmarkletsController::class, 'create']);
+    Route::put('{id}', [BookmarkletsController::class, 'update']);
+    Route::delete('{id}', [BookmarkletsController::class, 'delete']);
 });

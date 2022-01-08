@@ -29,4 +29,4 @@
             return component;
         },
     });
-})(window.NicksFuckinAwesomeWebApp);
+})(window.NickMorgabWebApp);

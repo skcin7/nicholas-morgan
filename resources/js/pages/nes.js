@@ -213,4 +213,4 @@
         },
 
     });
-})(window.NicksFuckinAwesomeWebApp, window.jQuery, window.Jsnes);
+})(window.NickMorgabWebApp, window.jQuery, window.Jsnes);

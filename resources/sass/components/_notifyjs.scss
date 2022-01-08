@@ -1,0 +1,60 @@
+.notifyjs-bootstrap-base {
+    background-color: #fcf8e3;
+    border-width: 2px;
+    border-style: solid;
+    font-weight: bold;
+    padding: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+
+    [data-notify-text], [data-notify-html] {
+        vertical-align: middle;
+    }
+
+    &:before {
+        display: inline-block;
+        font-family: Fontello;
+        font-size: 22px;
+        vertical-align: middle;
+    }
+
+    &.notifyjs-bootstrap-success {
+        background-color: #DFF0D8;
+        border-color: #468847;
+        color: #468847;
+
+        &:before {
+            content: "\E811";
+        }
+    }
+
+    &.notifyjs-bootstrap-danger {
+        background-color: #F2DEDE;
+        border-color: #B94A48;
+        color: #B94A48;
+
+        &:before {
+            content: "\E830";
+        }
+    }
+
+    &.notifyjs-bootstrap-warning {
+        background-color: #FCF8E3;
+        border-color: #FBEED5;
+        color: #C09853;
+
+        &:before {
+            content: "\E80B";
+        }
+    }
+
+    &.notifyjs-bootstrap-info {
+        background-color: #D9EDF7;
+        border-color: #BCE8F1;
+        color: #3A87AD;
+
+        &:before {
+            content: "\F129";
+        }
+    }
+}

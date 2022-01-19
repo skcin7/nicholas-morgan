@@ -191,7 +191,9 @@ class Writing extends Model
      */
     public static function getActiveWritingsCount()
     {
-        return self::where('is_published', true)->count();
+        return self::where('is_published', true)
+            ->where('is_hidden', false)
+            ->count();
     }
 
     /**

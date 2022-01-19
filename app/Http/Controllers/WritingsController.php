@@ -20,10 +20,10 @@ class WritingsController extends Controller
         // Ordering behavior for the matched records
         switch(strtoupper($request->input('order'))) {
             case 'NEWEST':
+            default:
                 $writingsQuery->orderBy('id', 'DESC');
                 break;
             case 'OLDEST':
-            default:
                 $writingsQuery->orderBy('id', 'ASC');
                 break;
             case 'RANDOM':

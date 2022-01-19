@@ -45,13 +45,20 @@
 {{--                                </li>--}}
 {{--                            @endif--}}
 
+{{--                            @if(\App\Writing::getActiveWritingsCount() > 0)--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
+
+
                             @if(admin())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        Stuff I Endorse
+                                        The Best Of All Time
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

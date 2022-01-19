@@ -28,6 +28,8 @@
                                         <div>
                                             @if($writing->isPublished())
                                                 <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @else
+                                                <i class="icon-danger text-danger" title="Not Published" data-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                             @if($writing->isHidden())
                                                 <i class="icon-eye-off" title="Hidden" data-toggle="tooltip" data-placement="bottom"></i>

@@ -145,7 +145,6 @@ class Album extends Model
             return Storage::disk('public')->url($path);
         }
 
-
         // Failsafe
         return asset('images/no_image.png');
     }

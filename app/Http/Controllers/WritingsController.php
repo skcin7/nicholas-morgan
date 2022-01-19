@@ -75,32 +75,18 @@ class WritingsController extends Controller
      */
     public function index(Request $request)
     {
-        $writingsQuery = Writing::query();
+        $writingsQuery = $this->getWritingsQuery($request);
 
+        // When not admin, only show the writings that should be shown.
+        if(! admin()) {
+            $writingsQuery->where('is_published', true)
+                ->where('is_hidden', false)
+                ->where('is_unlisted', false);
+        }
+
+        // Include trashed writings for admins.
         if(admin()) {
             $writingsQuery->withTrashed();
-        }
-
-        if(! admin()) {
-            $writingsQuery->where('is_published', true);
-        }
-
-        switch(strtoupper($request->input('order_by'))) {
-            case 'NEWEST':
-            default:
-                $writingsQuery->orderBy('created_at', 'desc');
-                break;
-            case 'OLDEST':
-                $writingsQuery->orderBy('created_at', 'asc');
-                break;
-            case 'RANDOM':
-                $writingsQuery->inRandomOrder();
-                break;
-        }
-
-        // if the request has a custom per_page value, use it to set the amount to show per page
-        if($request->has('per_page')) {
-            $this->setPerPageAmount($request->input('per_page'));
         }
 
         $writings = $writingsQuery->paginate($this->getPerPageAmount());
@@ -207,6 +193,13 @@ class WritingsController extends Controller
     public function show(Request $request, $id)
     {
         $writing = $this->getWritingById($id);
+
+        // If not published or hidden, show a 404 error if user is not an admin.
+        if(! admin()) {
+            if(! $writing->isPublished() || $writing->isHidden()) {
+                abort(404, 'Writing could not be found.');
+            }
+        }
 
         return view('writing')
             ->with('writing', $writing)

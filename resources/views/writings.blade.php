@@ -36,7 +36,7 @@
                                                 <i class="icon-warning" title="Unlisted" data-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                             @if($writing->trashed())
-                                                <i class="icon-trash" title="Writing is in the Trash" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-trash" title="Trashed" data-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                         </div>
                                     </div>

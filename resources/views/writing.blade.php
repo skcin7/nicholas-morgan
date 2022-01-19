@@ -42,21 +42,34 @@
             <li class="py-3" id="writing_details_author">
                 @nick
             </li>
-            @if(admin())
-                <li class="py-3" id="writing_details_admin_options">
-                    <div class="btn-group dropdown">
-                        <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
-                            Options
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
-                                                        <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>
-                            <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button" data-action="EDIT_WRITING"><i class="icon-pencil"></i> Edit</a>
-                            <button class="dropdown-item" type="button" data-action="TRASH_WRITING"><i class="icon-trash"></i> Trash</button>
-                        </div>
-                    </div>
-                </li>
-            @endif
+{{--            @if(admin())--}}
+{{--                <li class="py-3" id="writing_details_admin_options">--}}
+{{--                    <div class="btn-group dropdown">--}}
+{{--                        <button id="writing{{ $writing->id }}Dropdown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">--}}
+{{--                            Options--}}
+{{--                        </button>--}}
+{{--                        <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">--}}
+{{--                                                        <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>--}}
+{{--                            <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button" data-action="EDIT_WRITING"><i class="icon-pencil"></i> Edit</a>--}}
+{{--                            <button class="dropdown-item" type="button" data-action="TRASH_WRITING"><i class="icon-trash"></i> Trash</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
+{{--            @endif--}}
         </ul>
+
+        <div class="mb-3">
+            <div class="btn-group dropdown">
+                <button id="writing{{ $writing->id }}Dropdown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                    Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
+                    <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>
+                    <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button" data-action="EDIT_WRITING"><i class="icon-pencil"></i> Edit</a>
+                    <button class="dropdown-item" type="button" data-action="TRASH_WRITING"><i class="icon-trash"></i> Trash</button>
+                </div>
+            </div>
+        </div>
 
         <div id="writing_body">
 {{--            {!! Markdown::convertToHTML($writing->body) !!}--}}

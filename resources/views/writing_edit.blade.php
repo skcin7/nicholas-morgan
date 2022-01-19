@@ -67,12 +67,12 @@
                     <div class="tab-content">
                         <div class="tab-pane show active" id="body_html">
                             <div class="input-group">
-                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" name="body_html" placeholder="Body HTML" rows="20" spellcheck="false">{{ $writing->body_html }}</textarea>
+                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" id="body_html_textarea" name="body_html" placeholder="Body HTML" rows="20" spellcheck="false">{{ $writing->body_html }}</textarea>
                             </div>
                         </div>
                         <div class="tab-pane" id="css">
                             <div class="input-group">
-                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" name="css" placeholder="CSS" rows="20" spellcheck="false">{{ $writing->css }}</textarea>
+                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" id="css_textarea" name="css" placeholder="CSS" rows="20" spellcheck="false">{{ $writing->css }}</textarea>
                             </div>
                         </div>
                     </div>

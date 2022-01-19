@@ -70,7 +70,7 @@
                                                     <span>{{ $category->name }}</span>
                                                 @endforeach
                                             @else
-                                                <span>No Categories</span>
+                                                <span class="font-italic text-secondary">No Categories</span>
                                             @endif
                                         </li>
                                     </ul>

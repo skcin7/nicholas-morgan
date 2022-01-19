@@ -95,7 +95,7 @@ window.NickMorgabWebApp = {};
                     componentConfig = component.config;
                 }
 
-                require('./components/' + componentName);
+                require('./components_old/' + componentName);
 
                 app.getComponent(componentName).setConfig(componentConfig).init();
                 console.log('Component: \'' + componentName + '\' has been loaded... and initialized!');
@@ -115,7 +115,7 @@ window.NickMorgabWebApp = {};
                     pageConfig = page.config;
                 }
 
-                require('./pages/' + pageName);
+                require('./pages_old/' + pageName);
 
                 let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
                 // Only load page if the page is current page loaded in the application.

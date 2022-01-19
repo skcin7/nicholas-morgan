@@ -31,7 +31,7 @@ class AppController extends Controller
     public function contact(Request $request)
     {
         return view('contact')
-            ->with('title_prefix', 'Contact');
+            ->with('title_prefix', 'Contact Me');
     }
 
     /**
@@ -42,7 +42,7 @@ class AppController extends Controller
      */
     public function downloadContactCard(Request $request)
     {
-        return \Storage::disk('local')->download('ContactCard.vcf');
+        return \Storage::disk('local')->download('Nick Morgan Contact Card.vcf');
     }
 
     /**
@@ -66,12 +66,16 @@ class AppController extends Controller
     public function pgp(Request $request)
     {
         try {
-            $public_key = \Storage::disk('local')->get('public_key.gpg');
-            $fingerprint = "26F6 9EDA 6E47 65BA A077  C2E8 EC71 B630 B7F7 377D";
+            $pgpkey = [
+                'publickey' => '',
+                'fingerprint' => '',
+            ];
+
+            $pgpkey['publickey'] = \Storage::disk('local')->get('public_key.gpg');
+            $pgpkey['fingerprint'] = "26F6 9EDA 6E47 65BA A077  C2E8 EC71 B630 B7F7 377D";
 
             return view('pgp')
-                ->with('public_key', $public_key)
-                ->with('fingerprint', $fingerprint)
+                ->with('pgpkey', $pgpkey)
                 ->with('title_prefix', 'PGP');
         }
         catch(\Exception $ex) {

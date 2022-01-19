@@ -1,5 +1,3 @@
-window._ = require('lodash');
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -9,7 +7,7 @@ window._ = require('lodash');
 try {
     // window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-    window.Mousetrap = require('./lib/mousetrap');
+    // window.Mousetrap = require('./lib/mousetrap');
     //window.Jsnes = require('./lib/jsnes');
     // window.axios = require('axios');
     //
@@ -23,10 +21,26 @@ try {
     // require('./lib/jquery.appear');
     require('./lib/jquery.autosize');
     // require('./lib/jquery.colorbox');
-    require('./lib/jquery.notify');
+    // require('./lib/jquery.notify');
     // require('./lib/jquery.scrollup');
-    require('./lib/jquery.rainbowify');
-} catch (e) {}
+
+    // // Require all the Components
+    // require('./Components/BaseComponent');
+    // require('./Components/Console');
+    // require('./Components/Mirror');
+    //
+    // // Require all the Errors
+    // require('./Errors/BaseError');
+    // require('./Errors/InvalidValueError');
+    //
+    // // Require all the Pages
+    // require('./Pages/BasePage');
+    // require('./Pages/Welcome');
+    // require('./Pages/Alphabetizer');
+}
+catch(ex) {
+    //
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

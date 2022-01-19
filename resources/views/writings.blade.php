@@ -3,8 +3,12 @@
 @section('pageName', 'writings')
 
 @section('content')
-    <div class="container">
-        <h1>Writings</h1>
+    <div class="container-fluid">
+
+        @include('_flash_messages')
+
+        <h1 class="text-center my-0">Writings</h1>
+        <p>This is a collection of random things I've wrote.</p>
 
 {{--        <p>Basically sometimes I have some streams of consciousness about certain topics and for whatever reason I decide to record said streams of consciousness in writing/words, and sometimes I publish some of them here. It's mostly just me incoherently babbling/rambling on my part, with very little actual of this so-called "content" we've been hearing about, though I've heard there is actually _some_ content here too buried underneath all the fluff, but you're gonna have to look really hard to find it. I can't say I would recommend reading ANY of this, so you should probably <a href="https://www.oprah.com">leave now</a> before it's too late! <a href="https://www.eltonjohn.com/">Leave now</a>, for your own good! 😀 Okay, don't say I didn't warn you...</p>--}}
 
@@ -12,22 +16,62 @@
             @if($writings->count())
 
                 @foreach($writings_by_years as $year => $writings_by_year)
-                    <h3 class="writings_year">{{ $year }}</h3>
+                    <div class="mb-5">
+                        <h3 class="writings_year">{{ $year }}</h3>
 
-                    <ul class="writings_by_year_list">
-                        @foreach($writings_by_year as $writing)
-                            <li>
-                                @if($writing->trashed())
-                                    <i class="icon-trash" title="The writing is in the trash." data-toggle="tooltip" data-placement="bottom"></i>
-                                @endif
-                                @if(! $writing->published())
-                                    <i class="icon-eye-off" title="The writing is not published." data-toggle="tooltip" data-placement="bottom"></i>
-                                @endif
-                                <span class="writing_date">{{ $writing->created_at->format('F j') }}</span>
-                                <a class="writing_title" href="{{ route('writings.writing', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
+                        <ul class="writings_by_year_list">
+                            @foreach($writings_by_year as $writing)
+                                <li class="d-flex">
+                                    <div class="py-1">
+                                        <span class="writing_date">{{ $writing->created_at->format('F j') }}</span>
+
+                                        <div>
+                                            @if($writing->isPublished())
+                                                <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                            @if($writing->isHidden())
+                                                <i class="icon-eye-off" title="Hidden" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                            @if($writing->isUnlisted())
+                                                <i class="icon-warning" title="Unlisted" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                            @if($writing->trashed())
+                                                <i class="icon-trash" title="Writing is in the Trash" data-toggle="tooltip" data-placement="bottom"></i>
+                                            @endif
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <ul class="list-unstyled mb-0 writing_details">
+                                        <li class="mb-0">
+                                            <a class="writing_title" href="{{ route('writing.show', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>
+
+                                            <div class="btn-group dropdown">
+                                                <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                                                    Options
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
+                                                    <a class="dropdown-item" href="{{ route('writing.show', ['id' => $writing->getSlug()]) }}" type="button">View Writing</a>
+                                                    <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button"><i class="icon-pencil"></i> Edit</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="mb-0">
+                                            @if($writing->categories->count())
+                                                @foreach($writing->categories as $category)
+                                                    <span>{{ $category->name }}</span>
+                                                @endforeach
+                                            @else
+                                                <span>No Categories</span>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endforeach
 
             @else
@@ -35,9 +79,9 @@
             @endif
         </div>
 
-        @if(Auth::check() && Auth::user()->isAdmin())
-            <a class="btn btn-primary" href="{{ route('writings.create') }}">Create Writing</a>
-        @endif
+{{--        @if(Auth::check() && Auth::user()->isAdmin())--}}
+{{--            <a class="btn btn-primary" href="{{ route('writings.create') }}">Create Writing</a>--}}
+{{--        @endif--}}
 
 
     </div>

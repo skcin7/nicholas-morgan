@@ -8,6 +8,66 @@ use App\Writing;
 class WritingsController extends Controller
 {
     /**
+     * Generate the eloquent query for retrieving records from the database
+     *
+     * @param $request
+     * @return mixed
+     */
+    private function getWritingsQuery($request)
+    {
+        $writingsQuery = Writing::query();
+
+        // Ordering behavior for the matched records
+        switch(strtoupper($request->input('order'))) {
+            case 'NEWEST':
+                $writingsQuery->orderBy('id', 'DESC');
+                break;
+            case 'OLDEST':
+            default:
+                $writingsQuery->orderBy('id', 'ASC');
+                break;
+            case 'RANDOM':
+                $writingsQuery->inRandomOrder();
+                break;
+        }
+
+        // If additional relationships are specified to be included with the response, define them here
+        if($request->input('include') && strlen($request->input('include')) > 0) {
+            foreach(array_intersect(explode(",", $request->input('include')), Writing::getAvailableIncludes()) as $thisInclude) {
+                $writingsQuery->with($thisInclude);
+            }
+        }
+
+        // Change the number of results to show per page of search results
+        if($request->input('per_page') && strlen($request->input('per_page')) > 0) {
+            $this->setPerPageAmount($request->input('per_page'));
+        }
+
+        return $writingsQuery;
+    }
+
+    /**
+     * Show the writings administration page.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function admin(Request $request)
+    {
+        $writingsQuery = $this->getWritingsQuery($request);
+
+        // Get the matched records into paginated results
+        $writings = $writingsQuery->paginate($this->getPerPageAmount());
+
+        return view('admin.writings')
+            ->with('title_prefix', 'Admin - Manage Writings')
+            ->with('writings', $writings);
+    }
+
+
+
+
+    /**
      * Show the writings index.
      *
      * @param Request $request
@@ -60,29 +120,7 @@ class WritingsController extends Controller
         return view('writings')
             ->with('writings', $writings)
             ->with('writings_by_years', $writings_by_years)
-            ->with('title_prefix', 'My Writings');
-    }
-
-    /**
-     * Retrieve the validation rules which all writing must pass.
-     *
-     * @return array
-     */
-    private function validationRules()
-    {
-        return [
-            'title' => [
-                'required',
-                'string',
-            ],
-            'body' => [
-                'required',
-                'string',
-            ],
-            'is_published' => [
-                'nullable',
-            ],
-        ];
+            ->with('title_prefix', 'Writings');
     }
 
     /**
@@ -108,7 +146,7 @@ class WritingsController extends Controller
      */
     public function processCreate(Request $request)
     {
-        $request->validate($this->validationRules());
+        $request->validate(Writing::getValidationRules());
 
         $writing = new Writing();
         $writing->fill($request->input());
@@ -166,7 +204,7 @@ class WritingsController extends Controller
      * @param $id
      * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function writing(Request $request, $id)
+    public function show(Request $request, $id)
     {
         $writing = $this->getWritingById($id);
 
@@ -176,20 +214,36 @@ class WritingsController extends Controller
     }
 
     /**
-     * Edit a writing.
+     * Show a writing to be edited.
      *
      * @param Request $request
      * @param $id
      * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function edit(Request $request, $id)
+    public function showEdit(Request $request, $id)
     {
         $writing = $this->getWritingById($id);
 
         return view('writing_edit')
             ->with('writing', $writing)
-            ->with('title_prefix', 'Edit ' . $writing->title);
+            ->with('title_prefix', 'Editing ' . $writing->title);
     }
+
+//    /**
+//     * Edit a writing.
+//     *
+//     * @param Request $request
+//     * @param $id
+//     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+//     */
+//    public function edit(Request $request, $id)
+//    {
+//        $writing = $this->getWritingById($id);
+//
+//        return view('writing_edit')
+//            ->with('writing', $writing)
+//            ->with('title_prefix', 'Edit ' . $writing->title);
+//    }
 
     /**
      * Process editing a writing.
@@ -198,25 +252,36 @@ class WritingsController extends Controller
      * @param $id
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function processEdit(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validate($this->validationRules());
+        $request->validate(Writing::getValidationRules());
 
         $writing = $this->getWritingById($id);
 
-        if($request->input('cancel')) {
-            return redirect()->route('writings.writing', ['id' => $writing->getSlug()]);
-        }
+//        if($request->input('cancel')) {
+//            return redirect()->route('writings.writing', ['id' => $writing->getSlug()]);
+//        }
 
         //dd($request->input('is_published'));
 
-        $writing->fill($request->input());
-        $writing->is_published = filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL);
+        $writing->fill([
+            'title' => $request->input('title'),
+            'is_published' => $request->input('is_published'),
+            'is_hidden' => $request->input('is_hidden'),
+            'is_unlisted' => $request->input('is_unlisted'),
+//            'is_trashed' => filter_var($request->input('is_trashed'), FILTER_VALIDATE_BOOL),
+            'body_html' => $request->input('body_html'),
+            'css' => $request->input('css'),
+        ]);
         $writing->save();
 
-        return redirect()->route('writings.writing.edit', ['id' => $writing->getSlug()])
+        if($request->input('trashed')) {
+            $writing->delete();
+        }
+
+        return redirect()->route('writing.showEdit', ['id' => $writing->getSlug()])
             ->with('flash_message', [
-                'message' => $this->getCompletedSuccessfullyMessage('writing', 'updated'),
+                'message' => 'The writing has been updated successfully.',
                 'type' => 'success',
             ]);
     }
@@ -271,9 +336,9 @@ class WritingsController extends Controller
         $writing = $this->getWritingById($id);
         $writing->forceDelete();
 
-        return redirect()->route('writings', ['id' => $writing->getSlug()])
+        return redirect()->route('writings')
             ->with('flash_message', [
-                'message' => 'The writing has been permanently deleted!',
+                'message' => 'The writing has been permanently deleted.',
                 'type' => 'success',
             ]);
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\WritingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,18 @@ use App\Http\Controllers\ResumeController;
 |
 */
 
-// Define what authenticated-related routes should be enabled
+// Define Authentication Routes
 Auth::routes([
     'register' => false,
     'reset' => false,
-    'verify' => false
+    'verify' => false,
 ]);
 
-// Basic application routes:
+// Basic App Routes:
+
 Route::get('/', [AppController::class, 'welcome'])->name('welcome');
+Route::get('welcome', [AppController::class, 'welcome'])->name('welcome');
+
 Route::get('contact', [AppController::class, 'contact'])->name('contact');
 Route::get('contact_card', [AppController::class, 'downloadContactCard'])->name('contact_card');
 Route::get('about', [AppController::class, 'about'])->name('about');
@@ -49,11 +53,16 @@ Route::group(['prefix' => 'resume'], function() {
     Route::get('game_collecting', [ResumeController::class, 'getGameCollectingResume'])->name('resume.game_collecting');
 });
 
-// Admin routes:
+// Admin Routes
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('phpinfo', [AdminController::class, 'phpinfo'])->name('admin.phpinfo');
     Route::get('adminer', [AdminController::class, 'adminer'])->name('admin.adminer');
+
+    // Writings
+    Route::group(['prefix' => 'writings'], function() {
+        Route::get('/', [WritingsController::class, 'admin'])->name('admin.writings');
+    });
 
     // Admin quotes routes:
     Route::group(['prefix' => 'quotes'], function() {
@@ -69,17 +78,28 @@ Route::group(['prefix' => 'bookmarklets'], function() {
     Route::get('/', [BookmarkletsController::class, 'index'])->name('bookmarklets');
 });
 
-Route::group(['prefix' => 'writings'], function() {
-    Route::get('/', 'WritingsController@index')->name('writings');
-    Route::get('create', 'WritingsController@create')->name('writings.create');
-    Route::post('create', 'WritingsController@processCreate')->name('writings.create');
-    Route::get('{id}', 'WritingsController@writing')->name('writings.writing');
-    Route::get('{id}/edit', 'WritingsController@edit')->name('writings.writing.edit');
-    Route::post('{id}/edit', 'WritingsController@processEdit')->name('writings.writing.process_edit');
-    Route::post('{id}/trash', 'WritingsController@trash')->name('writings.writing.trash');
-    Route::post('{id}/untrash', 'WritingsController@untrash')->name('writings.writing.untrash');
-    Route::post('{id}/permanently_delete', 'WritingsController@permanentlyDelete')->name('writings.writing.permanently_delete');
-});
+Route::get('writings', [WritingsController::class, 'index'])->name('writings');
+Route::get('writing/{id}', [WritingsController::class, 'show'])->name('writing.show');
+Route::get('writing/{id}/edit', [WritingsController::class, 'showEdit'])->name('writing.showEdit');
+Route::post('writing', [WritingsController::class, 'create'])->name('writing.create');
+Route::post('writing/{id}', [WritingsController::class, 'update'])->name('writing.update');
+
+Route::post('writing/{id}/trash', [WritingsController::class, 'trash'])->name('writing.trash');
+Route::post('writing/{id}/untrash', [WritingsController::class, 'untrash'])->name('writing.untrash');
+Route::post('writing/{id}/permanently_delete', [WritingsController::class, 'permanentlyDelete'])->name('writing.permanently_delete');
+
+
+//Route::group(['prefix' => 'writings'], function() {
+//    Route::get('/', 'WritingsController@index')->name('writings');
+//    Route::get('create', 'WritingsController@create')->name('writings.create');
+//    Route::post('create', 'WritingsController@processCreate')->name('writings.create');
+//    Route::get('{id}', 'WritingsController@writing')->name('writings.writing');
+//    Route::get('{id}/edit', 'WritingsController@edit')->name('writings.writing.edit');
+//    Route::post('{id}/edit', 'WritingsController@processEdit')->name('writings.writing.process_edit');
+//    Route::post('{id}/trash', 'WritingsController@trash')->name('writings.writing.trash');
+//    Route::post('{id}/untrash', 'WritingsController@untrash')->name('writings.writing.untrash');
+//    Route::post('{id}/permanently_delete', 'WritingsController@permanentlyDelete')->name('writings.writing.permanently_delete');
+//});
 
 Route::group(['prefix' => 'albums'], function() {
     Route::get('/', 'AlbumsController@index')->name('albums');

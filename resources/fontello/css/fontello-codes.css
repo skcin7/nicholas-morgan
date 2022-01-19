@@ -8,6 +8,8 @@
 .icon-cog:before { content: '\e800'; } /* '' */
 .icon-cog-alt:before { content: '\e801'; } /* '' */
 .icon-off:before { content: '\e802'; } /* '' */
+.icon-copy:before { content: '\e803'; } /* '' */
+.icon-skull:before { content: '\e804'; } /* '' */
 .icon-pencil:before { content: '\e809'; } /* '' */
 .icon-warning:before { content: '\e80b'; } /* '' */
 .icon-check:before { content: '\e80c'; } /* '' */
@@ -19,8 +21,8 @@
 .icon-binary:before { content: '\e81a'; } /* '' */
 .icon-asterisk:before { content: '\e821'; } /* '' */
 .icon-danger:before { content: '\e830'; } /* '' */
+.icon-trash:before { content: '\e83d'; } /* '' */
 .icon-spinner:before { content: '\f110'; } /* '' */
 .icon-info:before { content: '\f129'; } /* '' */
-.icon-trash:before { content: '\f1f8'; } /* '' */
 .icon-copyright:before { content: '\f1f9'; } /* '' */
 .icon-at:before { content: '\f1fa'; } /* '' */

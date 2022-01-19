@@ -1,0 +1,41 @@
+main#page_content[name=alphabetizer] {
+
+    #avatar {
+        display: none !important;
+    }
+
+    #alphabetization_options {
+        max-width: 380px;
+    }
+
+    #input_fieldset, #output_fieldset {
+        border-color: theme-color('branding') !important;
+        padding: 0.5rem;
+        padding-top: 0;
+
+        legend {
+            background-color: #fff;
+            font-weight: bold;
+            padding: 0 2px;
+            text-align: center;
+        }
+
+        #alphabetizer_input, #alphabetizer_output {
+            border: 0;
+            font-size: 14px;
+            outline: 0;
+            padding: 0;
+        }
+    }
+
+    .make_magic_happen_button {
+        .make_magic_happen {
+            white-space: nowrap;
+        }
+    }
+
+    //textarea[name=alphabetizer_input] {
+    //    font-size: 14px;
+    //}
+
+}

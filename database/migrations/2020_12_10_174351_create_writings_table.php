@@ -16,8 +16,11 @@ class CreateWritingsTable extends Migration
         Schema::create('writings', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);
-            $table->text('body');
+            $table->text('body_html');
+            $table->text('css');
             $table->boolean('is_published');
+            $table->boolean('is_hidden');
+            $table->boolean('is_unlisted');
             $table->timestamps();
         });
     }

@@ -3,49 +3,64 @@
 @section('pageName', 'writing')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
 
         @include('_flash_messages')
 
-        <p><a href="{{ route('writings') }}">← Back To Writings</a></p>
+{{--        <p class="ml-3"><a class="ml-5" href="{{ route('writings') }}">← Back To Writings</a></p>--}}
 
-        @if(! $writing->is_published)
-            <div class="alert alert-warning">NOTE: This writing is currently in unpublished state.</div>
-        @endif
+        <h1 class="mt-0 mb-2" id="writing_title">{{ $writing->title }}</h1>
 
-        <ul id="writing_subheadings">
-            <li class="subheading_date">
-                {{ $writing->created_at->format('F j, Y') }}
-
+        <ul class="list-unstyled d-flex" id="writing_details">
+            <li id="writing_details_dates">
+                Published {{ $writing->created_at->format('F j, Y') }}
                 @if($writing->created_at->format('F j, Y') !== $writing->updated_at->format('F j, Y'))
-                    (Updated {{ $writing->updated_at->format('F j, Y') }})
+                    <br/>Edited {{ $writing->updated_at->format('F j, Y') }}
+                @endif
+
+                @if(admin())
+                    @if($writing->isPublished())
+                        <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                    @endif
+                    @if($writing->isHidden())
+                        <i class="icon-eye-off" title="Hidden" data-toggle="tooltip" data-placement="bottom"></i>
+                    @endif
+                    @if($writing->isUnlisted())
+                        <i class="icon-warning" title="Unlisted" data-toggle="tooltip" data-placement="bottom"></i>
+                    @endif
+                    @if($writing->trashed())
+                        <i class="icon-trash" title="Trashed" data-toggle="tooltip" data-placement="bottom"></i>
+                    @endif
                 @endif
             </li>
-            <li class="subheading_twitter">
+            <li id="writing_details_author">
                 @nick
             </li>
-            @if(Auth::check() && Auth::user()->isAdmin())
-                <li class="subheading_edit">
-                    <a class="btn btn-primary" href="{{ route('writings.writing.edit', ['id' => $writing->getSlug()]) }}"><i class="icon-pencil"></i> Edit Writing</a>
-
-                    @if(! $writing->trashed())
-                        <a class="btn btn-danger" href="{{ route('writings.writing.trash', ['id' => $writing->getSlug()]) }}" onclick="event.preventDefault(); if(confirm('Really move this writing to the trash?')){ document.getElementById('trash_form').submit(); }"><i class="icon-trash"></i> Move To Trash</a>
-                        <form action="{{ route('writings.writing.trash', ['id' => $writing->getSlug()]) }}" class="d-none" id="trash_form" method="post">@csrf</form>
-                    @else
-                        <a class="btn btn-danger" href="{{ route('writings.writing.untrash', ['id' => $writing->getSlug()]) }}" onclick="event.preventDefault(); if(confirm('Really remove this writing from the trash?')){ document.getElementById('untrash_form').submit(); }"><i class="icon-trash"></i> Remove From Trash</a>
-                        <form action="{{ route('writings.writing.untrash', ['id' => $writing->getSlug()]) }}" class="d-none" id="untrash_form" method="post">@csrf</form>
-
-                        <a class="btn btn-danger" href="{{ route('writings.writing.permanently_delete', ['id' => $writing->getSlug()]) }}" onclick="event.preventDefault(); if(confirm('Really permanently delete this writing? This can NOT be undone!')){ document.getElementById('permanently_delete_form').submit(); }">Permanently Delete</a>
-                        <form action="{{ route('writings.writing.permanently_delete', ['id' => $writing->getSlug()]) }}" class="d-none" id="permanently_delete_form" method="post">@csrf</form>
-                    @endif
+            @if(admin())
+                <li id="writing_details_admin_options">
+                    <div class="btn-group dropdown">
+                        <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                            Options
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
+{{--                            <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>--}}
+                            <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button" data-action="EDIT_WRITING"><i class="icon-pencil"></i> Edit</a>
+                            <button class="dropdown-item" type="button" data-action="TRASH_WRITING"><i class="icon-trash"></i> Trash</button>
+                        </div>
+                    </div>
                 </li>
             @endif
         </ul>
 
-        <h1 id="writing_heading">{{ $writing->title }}</h1>
-
         <div id="writing_body">
-            {!! Markdown::convertToHTML($writing->body) !!}
+{{--            {!! Markdown::convertToHTML($writing->body) !!}--}}
+            {!! $writing->body_html !!}
         </div>
     </div>
 @endsection
+
+@push('css')
+{{--    <style>--}}
+{{--        {!! $writing->css !!}--}}
+{{--    </style>--}}
+@endpush

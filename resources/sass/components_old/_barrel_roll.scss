@@ -1,5 +1,5 @@
 body {
-
+    // Keyframes for the forward barrel roll
     @-webkit-keyframes barrel_roll {
         from {
             -webkit-transform: rotate(0deg)
@@ -8,7 +8,6 @@ body {
             -webkit-transform: rotate(360deg)
         }
     }
-
     @-moz-keyframes barrel_roll {
         from {
             -moz-transform: rotate(0deg)
@@ -17,7 +16,6 @@ body {
             -moz-transform: rotate(360deg)
         }
     }
-
     @keyframes barrel_roll {
         from {
             transform: rotate(0deg)
@@ -26,8 +24,7 @@ body {
             transform: rotate(360deg)
         }
     }
-
-    &.brb_doing_a_barrel_roll_lol {
+    &.doing_a_barrel_roll_brb_lol {
         -moz-animation-name: barrel_roll;
         -moz-animation-duration: 3s;
         -moz-animation-iteration-count: 1;
@@ -39,11 +36,7 @@ body {
 
 
 
-
-
-
-
-
+    // Define keyframes for the reverse barrel roll
     @-webkit-keyframes barrel_roll_reverse {
         from {
             -webkit-transform: rotate(360deg)
@@ -52,7 +45,6 @@ body {
             -webkit-transform: rotate(0deg)
         }
     }
-
     @-moz-keyframes barrel_roll_reverse {
         from {
             -moz-transform: rotate(360deg)
@@ -61,7 +53,6 @@ body {
             -moz-transform: rotate(0deg)
         }
     }
-
     @keyframes barrel_roll_reverse {
         from {
             transform: rotate(360deg)
@@ -70,8 +61,7 @@ body {
             transform: rotate(0deg)
         }
     }
-
-    &.watch_out_everyone_im_doing_a_barrel_roll_in_reverse_now {
+    &.watch_out_everyone_doing_a_barrel_roll_in_reverse_now {
         -moz-animation-name: barrel_roll_reverse;
         -moz-animation-duration: 3s;
         -moz-animation-iteration-count: 1;

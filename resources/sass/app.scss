@@ -1,37 +1,52 @@
 // Fonts
-//@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-// variables:
+// Variables:
 @import 'variables';
 
-// bootstrap:
+// Bootstrap:
 @import '~bootstrap/scss/bootstrap';
 
-// fontello:
+// Fontello:
 @import "../fontello/css/fontello";
 @import "../fontello/css/animation";
 
-// components:
-@import "components/abc_checkbox";
-@import "components/alerts";
-@import "components/barrel_roll";
-@import "components/mirror";
-@import "components/notifyjs";
-@import "components/rotate";
-@import "components/textarea_code";
+// Components:
+@import "./Components/barrelroll";
+@import "./Components/mirror";
+@import "./Components/rotate";
 
-// pages:
-@import "pages/about";
-@import "pages/albums";
-@import "pages/alphabetizer";
-@import "pages/nes";
-@import "pages/writing";
-@import "pages/writing_edit";
-@import "pages/writings";
+//// Components (Old):
+//@import "./Components/abc_checkbox";
+//@import "./Components/alerts";
+//@import "./Components/notifyjs";
+//@import "./Components/textarea_code";
 
+// Pages:
+@import "./Pages/alphabetizer";
+@import "./Pages/pgp";
+@import "./Pages/welcome";
+@import "./Pages/writing";
+@import "./Pages/writings";
+
+//// Pages (Old):
+//@import "./pages/about";
+//@import "./pages/albums";
+//@import "./pages/alphabetizer";
+//@import "./pages/nes";
+//@import "./pages/writing";
+//@import "./pages/writing_edit";
+//@import "./pages/writings";
+
+
+// Styling to be used for input placeholders.
 ::placeholder {
+    color: #888 !important;
     font-style: italic;
+}
+:focus::placeholder {
+    font-style: normal !important;
 }
 
 ::selection {
@@ -73,6 +88,37 @@ html > body {
 }
 
 body {
+    // Avatar
+    #avatar {
+        opacity: .75;
+        position: absolute;
+        left: 1rem;
+        //top: 1rem;
+        top: 76px;
+        transition: opacity 0.5s ease;
+        z-index: 10;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        // Makes the avatar shown.
+        &.shown {
+            display: block;
+        }
+
+        // Makes the avatar hidden.
+        &.hidden {
+            display: none;
+        }
+
+        img {
+            border-radius: 50% !important;
+            height: 50px;
+            width: 50px;
+        }
+    }
+
     #app {
         display: flex;
         flex-flow: column;
@@ -86,11 +132,17 @@ body {
             #navbar {
                 border-top: 4px solid theme-color("branding");
                 border-bottom: 2px solid #444;
+
+                .dropdown-menu {
+                    border-color: #888;border-color: #888;
+                    border-width: 2px !important;
+                    box-shadow: 4px 4px 0 lighten(#888, 25%);
+                }
             }
 
             $navbar_height: 54px;
 
-            #header_banner {
+            #hero_banner {
                 background-color: #2c3429;
                 background-image: url('./images/hollyweird.jpg');
                 background-position: center center;
@@ -121,37 +173,30 @@ body {
             position: relative;
             //text-shadow: 1px 1px #fff;
 
-            #avatar {
-                opacity: .75;
-                position: absolute;
-                left: 1rem;
-                top: 1rem;
-                transition: opacity 0.5s ease;
-                z-index: 10;
-
-                &:hover {
-                    opacity: 1;
-                }
-
-                img {
-                    border-radius: 50% !important;
-                    height: 50px;
-                    width: 50px;
-                }
-            }
-
             .container, .container-fluid {
                 padding-bottom: 1rem !important;
                 padding-top: 1rem !important;
                 margin-bottom: 1rem !important;
 
-                h1 {
+                h1, h2, h3 {
                     font-style: italic;
                     font-weight: bold;
-                    font-size: 58px;
+                    font-size: 44px;
                     letter-spacing: -4px;
                     margin-top: 1rem;
                     margin-bottom: 2rem;
+                }
+
+                h1 {
+                    font-size: 44px;
+                }
+
+                h2 {
+                    font-size: 30px;
+                }
+
+                h3 {
+                    font-size: 24px;
                 }
             }
         }

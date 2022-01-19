@@ -170,7 +170,7 @@ class Writing extends Model
      */
     public function isUnlisted()
     {
-        return (bool) $this->is_hidden;
+        return (bool) $this->is_unlisted;
     }
 
     /**

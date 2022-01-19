@@ -75,7 +75,7 @@
                 @endforeach
 
             @else
-                <p>No writings are here. :-/</p>
+{{--                <p>No writings are here</p>--}}
             @endif
         </div>
 

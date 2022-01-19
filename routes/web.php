@@ -79,6 +79,7 @@ Route::group(['prefix' => 'bookmarklets'], function() {
 });
 
 Route::get('writings', [WritingsController::class, 'index'])->name('writings');
+Route::get('writing/create', [WritingsController::class, 'showCreate'])->name('writing.showCreate');
 Route::get('writing/{id}', [WritingsController::class, 'show'])->name('writing.show');
 Route::get('writing/{id}/edit', [WritingsController::class, 'showEdit'])->name('writing.showEdit');
 Route::post('writing', [WritingsController::class, 'create'])->name('writing.create');

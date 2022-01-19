@@ -110,38 +110,30 @@ class WritingsController extends Controller
     }
 
     /**
-     * Create a writing.
+     * Process creating a writing.
      *
      * @param Request $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(Request $request)
     {
-        $writing = new Writing();
-
-        return view('writing_edit')
-            ->with('writing', $writing)
-            ->with('title_prefix', 'Create Writing');
-    }
-
-    /**
-     * Process creating a writing.
-     *
-     * @param Request $request
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function processCreate(Request $request)
-    {
         $request->validate(Writing::getValidationRules());
 
         $writing = new Writing();
-        $writing->fill($request->input());
-        $writing->is_published = filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL);
+        $writing->fill([
+            'title' => $request->input('title'),
+            'is_published' => filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL),
+            'is_hidden' => filter_var($request->input('is_hidden'), FILTER_VALIDATE_BOOL),
+            'is_unlisted' => filter_var($request->input('is_unlisted'), FILTER_VALIDATE_BOOL),
+            'body_html' => $request->input('body_html'),
+            'css' => $request->input('css') ?? '',
+        ]);
+//        $writing->is_published = filter_var($request->input('is_published'), FILTER_VALIDATE_BOOL);
         $writing->save();
 
-        return redirect()->route('writings.writing', ['id' => $writing->getSlug()])
+        return redirect()->route('writing.showEdit', ['id' => $writing->getSlug()])
             ->with('flash_message', [
-                'message' => $this->getCompletedSuccessfullyMessage('writing', 'created'),
+                'message' => 'The writing has been created successfully.',
                 'type' => 'success',
             ]);
     }
@@ -204,6 +196,21 @@ class WritingsController extends Controller
         return view('writing')
             ->with('writing', $writing)
             ->with('title_prefix', $writing->title);
+    }
+
+    /**
+     * Show a writing to be created.
+     *
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function showCreate(Request $request)
+    {
+        $writing = new Writing();
+
+        return view('writing_edit')
+            ->with('writing', $writing)
+            ->with('title_prefix', 'Create Writing');
     }
 
     /**
@@ -270,6 +277,9 @@ class WritingsController extends Controller
 
         if($request->input('trashed')) {
             $writing->delete();
+        }
+        else {
+            $writing->restore();
         }
 
         return redirect()->route('writing.showEdit', ['id' => $writing->getSlug()])

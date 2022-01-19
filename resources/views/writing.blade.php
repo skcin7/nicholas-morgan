@@ -11,8 +11,14 @@
 
         <h1 class="mt-0 mb-2" id="writing_title">{{ $writing->title }}</h1>
 
-        <ul class="list-unstyled d-flex" id="writing_details">
-            <li id="writing_details_dates">
+{{--        <div class="row">--}}
+{{--            <div class="col">--}}
+{{--                --}}
+{{--            </div>--}}
+{{--        </div>--}}
+
+        <ul class="list-unstyled d-flex align-items-center" id="writing_details">
+            <li class="py-3" id="writing_details_dates">
                 Published {{ $writing->created_at->format('F j, Y') }}
                 @if($writing->created_at->format('F j, Y') !== $writing->updated_at->format('F j, Y'))
                     <br/>Edited {{ $writing->updated_at->format('F j, Y') }}
@@ -33,17 +39,17 @@
                     @endif
                 @endif
             </li>
-            <li id="writing_details_author">
+            <li class="py-3" id="writing_details_author">
                 @nick
             </li>
             @if(admin())
-                <li id="writing_details_admin_options">
+                <li class="py-3" id="writing_details_admin_options">
                     <div class="btn-group dropdown">
                         <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                             Options
                         </button>
                         <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
-{{--                            <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>--}}
+                                                        <h6 class="dropdown-header font-weight-bold">ADMIN OPTIONS</h6>
                             <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button" data-action="EDIT_WRITING"><i class="icon-pencil"></i> Edit</a>
                             <button class="dropdown-item" type="button" data-action="TRASH_WRITING"><i class="icon-trash"></i> Trash</button>
                         </div>

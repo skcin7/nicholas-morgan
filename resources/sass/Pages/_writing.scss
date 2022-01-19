@@ -12,16 +12,25 @@ main#page_content[name=writing] {
 
     #writing_details {
 
-        border-bottom: 2px solid theme-color('branding');
+        border: 2px solid theme-color('branding');
+        box-shadow: 4px 4px 0 lighten(theme-color('branding'), 25%);
+        //height: 60px;
+        list-style: none;
         margin-bottom: 1.0rem;
-        padding-bottom: 0.5rem;
+        //min-height: 60px;
+        padding-bottom: 0rem;
 
 
         li {
-            border-right: 2px solid #666;
-            list-style: none;
+            border-right: 2px solid theme-color('branding');
             //margin-right: 0.5rem;
+            min-height: 68px;
+            //line-height: 60px;
             padding: 1.0rem;
+
+            &:last-child {
+                border-right-width: 0;
+            }
         }
 
         #writing_details_dates {

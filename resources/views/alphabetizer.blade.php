@@ -123,7 +123,7 @@
                     </ul>
                 </fieldset>
             </div>
-            <div class="col-6 text-right align-self-">
+            <div class="col-6 text-right">
                 <button class="btn btn-link" data-action="RESET_ALPHABETIZER">Reset Alphabetizer</button>
             </div>
         </div>

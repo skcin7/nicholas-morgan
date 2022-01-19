@@ -22,7 +22,7 @@ class Writing extends Model
      * @var array
      */
     protected $attributes = [
-        'title' => 'New Writing',
+        'title' => '',
         'body_html' => '',
         'css' => '',
         'is_published' => false,

@@ -7,6 +7,7 @@
 
         <ul class="list-unstyled">
             <li><a href="{{ route('admin.writings') }}">Writings</a> <span class="badge badge-dark">{{ \App\Writing::count() }}</span></li>
+            <li><a href="{{ route('admin.writing_categories') }}">Writing Categories</a> <span class="badge badge-dark">{{ \App\WritingCategory::count() }}</span></li>
         </ul>
 
         <ul class="list-unstyled">

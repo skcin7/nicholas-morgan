@@ -224,6 +224,8 @@ class WritingsController extends Controller
     {
         $writing = $this->getWritingById($id);
 
+//        dd($writing->categories->pluck('name')->toArray());
+
         return view('writing_edit')
             ->with('writing', $writing)
             ->with('title_prefix', 'Editing ' . $writing->title);
@@ -258,10 +260,6 @@ class WritingsController extends Controller
 
         $writing = $this->getWritingById($id);
 
-//        if($request->input('cancel')) {
-//            return redirect()->route('writings.writing', ['id' => $writing->getSlug()]);
-//        }
-
         //dd($request->input('is_published'));
 
         $writing->fill([
@@ -280,6 +278,45 @@ class WritingsController extends Controller
         }
         else {
             $writing->restore();
+        }
+
+//        dd($writing->categories);
+
+        $selectedWritingCategories = \App\WritingCategory::whereIn('name', $request->input('writingCategories'))->get();
+        $previousWritingCategories = $writing->categories()->get();
+        foreach($selectedWritingCategories as $selectedWritingCategory) {
+            $writingAlreadyHasThisCategory = false;
+
+            foreach($previousWritingCategories as $previousWritingCategory) {
+                if($selectedWritingCategory->name == $previousWritingCategory->name) {
+                    // The writing already has the selected category, so set the flag to true so we know not to attach it again.
+                    $writingAlreadyHasThisCategory = true;
+                }
+            }
+
+            // If the writing doesn't already have the category attached, and it's not previously attached, then attach it now.
+            if(! $writingAlreadyHasThisCategory) {
+                $writing->categories()->attach($selectedWritingCategory);
+            }
+        }
+
+        // Now loop through all the previously selected writing categories.
+        // If any of them are not still selected from the input, then detach them.
+        foreach($previousWritingCategories as $previousWritingCategory) {
+            $previousWritingCategoryStillSelected = false;
+
+            foreach($selectedWritingCategories as $selectedWritingCategory) {
+
+                // If the name is still found, then we know that the previous writing category is still selected.
+                if($previousWritingCategory->name == $selectedWritingCategory->name) {
+                    $previousWritingCategoryStillSelected = true;
+                }
+            }
+
+            // Detach it if it's no longer still selected.
+            if(! $previousWritingCategoryStillSelected) {
+                $writing->categories()->detach($previousWritingCategory);
+            }
         }
 
         return redirect()->route('writing.showEdit', ['id' => $writing->getSlug()])

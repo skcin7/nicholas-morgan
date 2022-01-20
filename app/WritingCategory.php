@@ -102,13 +102,26 @@ class WritingCategory extends Model
         return self::$availableIncludes;
     }
 
-//    /**
-//     * A writing category has many writings that are filed under the category.
-//     *
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-//     */
-//    public function writings()
-//    {
-//        return $this->belongsToMany('App\Writing', 'writings_writings_categories');
-//    }
+    /**
+     * A writing category has many writings that are filed under the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function writings()
+    {
+        return $this->belongsToMany('App\Writing', 'writings_writings_categories');
+    }
+
+    /**
+     * Delete a writing category.
+     *
+     * @return bool|void|null
+     */
+    public function delete()
+    {
+        // Detach all attached writings to prepare it to be deleted.
+        $this->writings()->detach();
+
+        parent::delete();
+    }
 }

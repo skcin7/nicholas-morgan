@@ -8,6 +8,7 @@ use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\WritingsController;
+use App\Http\Controllers\WritingCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,14 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     // Writings
     Route::group(['prefix' => 'writings'], function() {
         Route::get('/', [WritingsController::class, 'admin'])->name('admin.writings');
+    });
+
+    // Writing Categories
+    Route::group(['prefix' => 'writing_categories'], function() {
+        Route::get('/', [WritingCategoriesController::class, 'admin'])->name('admin.writing_categories');
+        Route::post('create', [WritingCategoriesController::class, 'create'])->name('admin.writing_categories.create');
+        Route::post('{name}/update', [WritingCategoriesController::class, 'update'])->name('admin.writing_categories.update');
+        Route::post('{name}/delete', [WritingCategoriesController::class, 'delete'])->name('admin.writing_categories.delete');
     });
 
     // Admin quotes routes:

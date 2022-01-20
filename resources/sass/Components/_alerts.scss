@@ -23,7 +23,7 @@
     &.alert-info {
         border-color: darken(theme-color('info'), 25%) !important;
         box-shadow: 4px 4px 0 lighten(theme-color('info'), 15%);
-        color: darken(theme-color('info'), 15%);
+        color: darken(theme-color('info'), 25%);
     }
 
     &.alert-success {
@@ -35,6 +35,6 @@
     &.alert-warning {
         border-color: darken(theme-color('warning'), 35%) !important;
         box-shadow: 4px 4px 0 lighten(theme-color('warning'), 15%);
-        color: darken(theme-color('warning'), 15%);
+        color: darken(theme-color('warning'), 35%);
     }
 }

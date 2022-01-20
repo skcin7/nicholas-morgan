@@ -62,6 +62,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#css" data-toggle="tab" role="tab" aria-controls="css" aria-selected="false">CSS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#categories" data-toggle="tab" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+                        </li>
                     </ul>
 
                     <div class="tab-content">
@@ -74,6 +77,24 @@
                             <div class="input-group">
                                 <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" id="css_textarea" name="css" placeholder="CSS" rows="20" spellcheck="false">{{ $writing->css }}</textarea>
                             </div>
+                        </div>
+                        <div class="tab-pane" id="categories">
+                            @if(\App\WritingCategory::count())
+                                <ul class="list-unstyled mb-0">
+                                    @foreach(\App\WritingCategory::orderBy('name')->get() as $writingCategory)
+                                        <li>
+                                            <div class="form-check abc-checkbox abc-checkbox-primary">
+                                                <input class="form-check-input" id="category_checkbox_{{ $writingCategory->name }}" name="writingCategories[]" type="checkbox" value="{{ $writingCategory->name }}" {{ in_array($writingCategory->name, $writing->categories->pluck('name')->toArray()) ? 'checked' : '' }}/>
+                                                <label class="form-check-label" for="category_checkbox_{{ $writingCategory->name }}">
+                                                    {{ $writingCategory->name }}
+                                                </label>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <span class="font-italic text-secondary">No Categories</span>
+                            @endif
                         </div>
                     </div>
 

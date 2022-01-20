@@ -205,4 +205,14 @@ class Writing extends Model
     {
         return $this->belongsToMany('App\WritingCategory', 'writings_writings_categories');
     }
+
+//    public function attachCategory($category)
+//    {
+//        $this->categories()->attach($category);
+//    }
+//
+//    public function detachCategory($category)
+//    {
+//        $this->categories()->detach($category);
+//    }
 }

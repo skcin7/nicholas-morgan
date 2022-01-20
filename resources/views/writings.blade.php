@@ -59,18 +59,22 @@
                                                     Options
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
-                                                    <a class="dropdown-item" href="{{ route('writing.show', ['id' => $writing->getSlug()]) }}" type="button">View Writing</a>
+{{--                                                    <a class="dropdown-item" href="{{ route('writing.show', ['id' => $writing->getSlug()]) }}" type="button">View Writing</a>--}}
                                                     <a class="dropdown-item" href="{{ route('writing.showEdit', ['id' => $writing->getSlug()]) }}" type="button"><i class="icon-pencil"></i> Edit</a>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="mb-0">
                                             @if($writing->categories->count())
-                                                @foreach($writing->categories as $category)
-                                                    <span>{{ $category->name }}</span>
+                                                <strong>Categories:</strong>
+                                                @foreach($writing->categories()->orderBy('name')->get() as $category)
+                                                    <a class="big" href="{{ route('writings', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                                                    @if(! $loop->last)
+                                                        <span>,</span>
+                                                    @endif
                                                 @endforeach
                                             @else
-                                                <span class="font-italic text-secondary">No Categories</span>
+                                                <span class="font-italic text-muted">No Categories</span>
                                             @endif
                                         </li>
                                     </ul>

@@ -16,7 +16,7 @@ const mix = require('laravel-mix');
 
 // JavaScript:
 mix.js([
-    "resources/js/App.js"
+    "resources/js/app_spa.js"
 ], "public/js/app.js")
     .sourceMaps()
     .version();

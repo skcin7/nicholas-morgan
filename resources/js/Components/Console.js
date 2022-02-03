@@ -1,180 +1,99 @@
 import {BaseComponent} from './BaseComponent';
 import {InvalidValueError} from '../Errors/InvalidValueError';
 
-class Console extends BaseComponent {
+class Console {
     /**
-     * The log level being used for writing messages to the log.
+     * Log a message to the console.
      *
-     * @type {string}
+     * @param message
+     * @param logLevel
      */
-    static loggingLevel = 'DEBUG';
+    static log(message, logLevel) {
+        logLevel = (typeof logLevel !== 'undefined') ? logLevel : '';
 
-    /**
-     * An array containing all the valid logging level names.
-     * Not currently being used, but kept here anyway for posterity.
-     *
-     * @type {string[]}
-     */
-    //allLoggingLevelsArray = ['DEBUG', 'INFO', 'NOTICE', 'WARNING', 'ERROR', 'CRITICAL', 'ALERT', 'EMERGENCY'];
-
-    /**
-     * Specify all the valid logging levels here.
-     * The logger provides the eight logging levels, which are defined in the RFC 5424 specification: https://datatracker.ietf.org/doc/html/rfc5424
-     * DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, and EMERGENCY
-     *
-     * @type {object[]}
-     */
-    static allLoggingLevels = [{
-        'name': 'DEBUG',
-        'levelValue': 1,
-        'css': 'background: #222; color: #3a91cf;',
-    }, {
-        'name': 'INFO',
-        'levelValue': 2,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'NOTICE',
-        'levelValue': 3,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'WARNING',
-        'levelValue': 4,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'ERROR',
-        'levelValue': 5,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'CRITICAL',
-        'levelValue': 6,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'ALERT',
-        'levelValue': 7,
-        'css': 'background: #222; color: #bada55;',
-    }, {
-        'name': 'EMERGENCY',
-        'levelValue': 8,
-        'css': 'background: #222; color: #bada55;',
-    }];
-
-    /**
-     * Create a new Console object.
-     */
-    constructor(loggingLevel) {
-        super('Console');
-        // super(self.componentName);
-
-        // Set the logging level. If none was specified, revert to the 'DEBUG' default.
-        // loggingLevel = (typeof loggingLevel !== 'undefined') ? loggingLevel : 'DEBUG';
-        // this.loggingLevel = loggingLevel;
-
-        // console.log('Logging level set to ' + loggingLevel);
-
-        // this.init();
-    }
-
-    // /**
-    //  * Initialize the Console.
-    //  */
-    // load() {
-    //     super.loadBeginMessage();
-    //
-    //     this.setLoggingLevel('DEBUG');
-    //
-    //     super.loadEndMessage();
-    // }
-
-    // /**
-    //  * Set the logging level.
-    //  *
-    //  * @param newLoggingLevel
-    //  */
-    // setLoggingLevel(newLoggingLevel) {
-    //     // First check to ensure the verbosity level being set is one of the valid verbosity level values.
-    //     // If it's invalid, then output a message to the log explaining this, and exit.
-    //     // if(! this.allLoggingLevels.includes(newLoggingLevel)) {
-    //     //     console.error('The logging level ' + newLoggingLevel + ' is not valid.');
-    //     //     return;
-    //     // }
-    //
-    //     let newLoggingLevelIsValid = false;
-    //     for(let i = 0; i < this.allLoggingLevels.length; i++) {
-    //         if(this.allLoggingLevels[i].name === newLoggingLevel) {
-    //             newLoggingLevelIsValid = true;
-    //         }
-    //     }
-    //
-    //     if(! newLoggingLevelIsValid) {
-    //         console.error('The logging level ' + newLoggingLevel + ' is not valid.');
-    //         return;
-    //     }
-    //
-    //     this.loggingLevel = newLoggingLevel;
-    // }
-
-    /**
-     * Get the details for the current logging level.
-     *
-     * @returns {Object}
-     */
-    static getLoggingLevelDetails(loggingLevel) {
-        // Determine the logging level to get details for.
-        // Use the function input parameter, but if none was specified, then use the current one set.
-        loggingLevel = (typeof loggingLevel !== 'undefined') ? loggingLevel : Console.loggingLevel;
-
-        // Loop through all the logging levels.
-        // When one is found that matches the current logging level name, return the entire logging level object.
-        for(let i = 0; i < Console.allLoggingLevels.length; i++) {
-            if(Console.allLoggingLevels[i].name === Console.loggingLevel) {
-                return Console.allLoggingLevels[i];
-            }
-        }
-
-        //throw 'Could not get logging level details for ' + this.loggingLevel + ' logging level.';
-        throw new InvalidValueError('Could not get logging level details for ' + this.loggingLevel + ' logging level.');
-    }
-
-    /**
-     * Send a message to the log.
-     *
-     * @param logMessage
-     * @param loggingLevel
-     */
-    static log(logMessage, loggingLevel) {
-        // Determine the logging level to be used for output.
-        // If no logging level is specified, revert to the current logging level of this object.
-        //loggingLevel = (typeof loggingLevel !== 'undefined') ? loggingLevel : this.loggingLevel;
-
-        // console.log(logMessage);
-        // return;
-
-        try {
-            let loggingLevelDetails = Console.getLoggingLevelDetails(loggingLevel);
-
-            console.log('%c' + logMessage, loggingLevelDetails.css);
-        }
-        catch(ex) {
-            console.error(ex);
+        switch(logLevel) {
+            case 'debug':
+                Console.debug(message);
+                break;
+            case 'info':
+                Console.info(message);
+                break;
+            case 'warn':
+                Console.warn(message);
+                break;
+            case 'error':
+                Console.error(message);
+                break;
+            case '':
+            default:
+                //console.log(message)
+                console.log('%c' + message, 'color: #626262; font-weight: bold; font-size: 14px;');
+                break;
         }
     }
 
     /**
-     * Send an error message to the log using the default 'console.log()' behavior.
+     * Log a debug message to the console.
      *
      * @param message
      */
-    out(message) {
-        console.log(message);
+    static debug(message) {
+        console.debug('%c' + message, 'color: #626262; font-weight: bold; font-size: 14px; background-color: #c8c8c8; padding: 2px 6px;');
     }
 
     /**
-     * Send an error message to the log using the default 'console.error()' behavior.
+     * Log an info message to the console.
      *
-     * @param errorText
+     * @param message
      */
-    error(errorText) {
-        console.error(errorText);
+    static info(message) {
+        console.info('%c' + message, 'color: #1a74be; font-weight: bold; font-size: 14px; background-color: #dcedfa; padding: 2px 6px;');
+    }
+
+    /**
+     * Log a warning message to the console.
+     *
+     * @param message
+     */
+    static warn(message) {
+        console.warn('%c' + message, 'color: #978800; font-weight: bold; font-size: 14px; background-color: #f5f0bd; padding: 2px 6px;');
+    }
+
+    /**
+     * Log an error message to the console.
+     *
+     * @param message
+     */
+    static error(message) {
+        console.error('%c' + message, 'color: #ae1c17; font-weight: bold; font-size: 14px; background-color: #f5b8b6; padding: 2px 6px;');
+    }
+
+    /**
+     * Log a huge message to the console.
+     *
+     * @param message
+     */
+    static huge(message) {
+        console.log('%c' + message, `
+            background: white;
+            border: 3px solid #0066cc;
+            color: #0066cc;
+            font-size: 32px;
+            padding: 5px 10px;
+        `);
+    }
+
+    /**
+     * Log a custom styled message to the console.
+     *
+     * @param message
+     */
+    static custom(message) {
+        let spacing = '5px';
+        let styles =
+            `padding: ${spacing}; background-color: darkblue; color: white; font-style:
+         italic; border: ${spacing} solid crimson; font-size: 2em;`;
+        console.log('%c' + message, styles);
     }
 }
 

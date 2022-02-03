@@ -49,7 +49,7 @@ class Alphabetizer extends BasePage {
      * Load the Alphabetizer.
      */
     load() {
-        super.loadPageBeginMessage('Loading ' + super.pageName + ' page...');
+        super.loadPageBeginMessage('Loading ' + super.pageName + ' page....');
 
         // Auto-resize the alphabetizer input with more rows vertically.
         $('#alphabetizer_input').autosize();
@@ -89,11 +89,11 @@ class Alphabetizer extends BasePage {
             let checkboxValue = $(this).val();
             if($(this).is(":checked")) {
                 // this.alphabetizingOptions[checkboxValue] = false;
-                component.setAlphabetizingOption(checkboxValue, false);
+                component.setAlphabetizingOption(checkboxValue, true);
             }
             else {
                 // this.alphabetizingOptions[checkboxValue] = true;
-                component.setAlphabetizingOption(checkboxValue, true);
+                component.setAlphabetizingOption(checkboxValue, false);
             }
         });
 

@@ -34,7 +34,7 @@ class App {
      * Initialize the Console.
      */
     init() {
-        Console.log('Initializing ' + this.appName + ' app...\n');
+        Console.custom('Initializing ' + this.appName + ' app...');
 
 
 

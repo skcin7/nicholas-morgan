@@ -14,7 +14,7 @@ class BasePage {
     }
 
     loadPageBeginMessage() {
-        Console.log('Loading ' + this.pageName + ' page...');
+        Console.log('Loading ' + this.pageName + ' page......');
     }
 
     loadPageEndMessage() {

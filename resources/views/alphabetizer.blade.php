@@ -19,6 +19,8 @@
 {{--            @yield('process_alphabetization_button')--}}
 {{--        </div>--}}
 
+        <h1 class="text-center my-0">Alphabetizer</h1>
+
         <div class="row mb-3">
             <div class="col-md">
                 <fieldset class="mb-0" id="input_fieldset">

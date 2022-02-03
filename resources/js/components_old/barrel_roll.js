@@ -37,11 +37,11 @@
                 component.doABarrelRoll("REVERSE");
             });
 
-            // Bind the Mousetrap command to do a barrel roll as well:
-            mousetrap.bind('b a r r e l r o l l', function(event) {
-                event.preventDefault();
-                component.doABarrelRoll();
-            });
+            // // Bind the Mousetrap command to do a barrel roll as well:
+            // mousetrap.bind('b a r r e l r o l l', function(event) {
+            //     event.preventDefault();
+            //     component.doABarrelRoll();
+            // });
 
             // Detect the completion of a barrel roll, and remove the class when the animation is done:
             // $('body').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {

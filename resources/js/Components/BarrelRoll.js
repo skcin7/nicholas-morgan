@@ -48,6 +48,7 @@ class BarrelRoll extends BaseComponent {
      * Perform the barrel roll.
      */
     performBarrelRoll(direction) {
+        let barrelRollComponent = this;
 
         // Make sure direction is valid, or revert to a forward barrel roll if not.
         direction = (direction == 'FORWARD' || direction == 'REVERSE') ? direction : 'FORWARD';
@@ -58,7 +59,7 @@ class BarrelRoll extends BaseComponent {
                 $('body').addClass(this.barrelRollClassName);
 
                 $('body').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
-                    $('body').removeClass(this.barrelRollClassName);
+                    $('body').removeClass(barrelRollComponent.barrelRollClassName);
                 });
             }
             return;
@@ -70,7 +71,7 @@ class BarrelRoll extends BaseComponent {
                 $('body').addClass(this.reverseBarrelRollClassName);
 
                 $('body').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
-                    $('body').removeClass(this.reverseBarrelRollClassName);
+                    $('body').removeClass(barrelRollComponent.reverseBarrelRollClassName);
                 });
             }
             return;

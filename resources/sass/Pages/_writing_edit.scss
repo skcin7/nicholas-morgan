@@ -1,11 +1,12 @@
 main#page_content[name=writing_edit] {
 
-    #body_html_textarea, #css_textarea {
-        border-color: #888;
-        border-width: 2px;
-        box-shadow: 4px 4px 0 lighten(#888, 25%);
+    .textarea_code {
+        //border-color: #888;
+        //border-width: 1px;
+        //box-shadow: 4px 4px 0 lighten(#888, 25%);
+
         font-family: $font-family-monospace;
-        font-size: 14px;
+        tab-size: 4;
     }
 
 }

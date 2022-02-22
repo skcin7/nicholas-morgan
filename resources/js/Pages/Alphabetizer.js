@@ -1,5 +1,5 @@
 import {BasePage} from './BasePage';
-import {Console} from '../Components/Console';
+import {Console} from '../Components/ConsoleComponent';
 
 class Alphabetizer extends BasePage {
     /**

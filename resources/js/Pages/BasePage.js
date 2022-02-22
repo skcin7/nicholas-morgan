@@ -1,10 +1,18 @@
-import {Console} from '../Components/Console';
+import {Console} from '../Components/ConsoleComponent';
 
 class BasePage {
     pageName = '';
 
     constructor(pageName) {
         this.pageName = pageName;
+    }
+
+    setPageName(pageName) {
+        this.pageName = pageName;
+    }
+
+    getPageName() {
+        return this.pageName;
     }
 
     load() {
@@ -14,11 +22,11 @@ class BasePage {
     }
 
     loadPageBeginMessage() {
-        Console.log('Loading ' + this.pageName + ' page......');
+        Console.log('Loading Page: ' + this.pageName);
     }
 
     loadPageEndMessage() {
-        Console.log('Loaded ' + this.pageName + ' page.');
+        Console.log('Loaded Page: ' + this.pageName);
     }
 }
 

@@ -11,7 +11,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
     <!-- Styles -->
@@ -21,7 +20,7 @@
 <body>
     <div id="app">
         <header id="header">
-            @if(! (Route::is('writing.show')))
+            @if(isset($show_avatar) && $show_avatar)
                 <div id="avatar">
                     <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
                 </div>
@@ -29,38 +28,36 @@
 
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="navbar">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Nick Morgan
-                    </a>
+                    <a class="navbar-brand" href="{{ route('welcome') }}">Nick Morgan</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-{{--                            @if(Route::has('writings'))--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ route('writings') }}">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveCount() }}</span></a>--}}
-{{--                                </li>--}}
-{{--                            @endif--}}
-
-{{--                            @if(\App\Writing::getActiveWritingsCount() > 0)--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>--}}
-{{--                                </li>--}}
-{{--                            @endif--}}
-
-
+                        <ul class="navbar-nav me-auto">
                             @if(admin())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge badge-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>
+                                    <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge bg-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>
                                 </li>
+{{--                                <li class="nav-item dropdown">--}}
+{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbarUserAccountMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                        {{ '@' . Auth::user()->name }} <span class="caret"></span>--}}
+{{--                                    </a>--}}
+{{--                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserAccountMenuLink">--}}
+{{--                                        @if(admin())--}}
+{{--                                            <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>--}}
+{{--                                            <li><a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a></li>--}}
+{{--                                            <div class="dropdown-divider"></div>--}}
+{{--                                        @endif--}}
+{{--                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>--}}
+{{--                                        <form action="{{ route('logout') }}" class="d-none" id="logout_form" method="post">@csrf</form>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         The Best Of All Time
                                     </a>
-
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('albums') }}">Albums</a>
                                     </div>
@@ -73,7 +70,7 @@
                         </ul>
 
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav">
                             <!-- Authentication Links -->
                             @guest
 {{--                                <li class="nav-item">--}}
@@ -86,21 +83,18 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarUserAccountMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {{ '@' . Auth::user()->name }} <span class="caret"></span>
                                     </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserAccountMenuLink">
                                         @if(admin())
                                             <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>
-                                            <a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a>
+                                            <li><a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a></li>
                                             <div class="dropdown-divider"></div>
                                         @endif
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;">
-                                            <i class="icon-off"></i> {{ __('Logout') }}
-                                        </a>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>
                                         <form action="{{ route('logout') }}" class="d-none" id="logout_form" method="post">@csrf</form>
-                                    </div>
+                                    </ul>
                                 </li>
                             @endguest
                         </ul>
@@ -108,9 +102,9 @@
                 </div>
             </nav>
 
-            @if(! (Route::is('writings') || Route::is('writing.show')))
+            @if((isset($show_hero) && $show_hero))
                 <div id="hero_banner">
-                    <h1>{{ isset($title_prefix) ? $title_prefix : 'Nick Morgan' }}</h1>
+                    <h1>{{ isset($hero_message) ? $hero_message : 'Nick Morgan' }}</h1>
                 </div>
             @endif
         </header>
@@ -154,7 +148,7 @@
                         @guest
                             <a href="{{ route('login') }}"><i class="icon-skull"></i></a>
                         @else
-                            <a href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i></a>
+                            <a href="{{ route('logout') }}" title="Logout" data-bs-toggle="tooltip" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i></a>
                         @endguest
                         <br/>
                         <span class="smaller">

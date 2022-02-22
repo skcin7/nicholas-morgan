@@ -60,7 +60,7 @@ class WritingsController extends Controller
         $writings = $writingsQuery->paginate($this->getPerPageAmount());
 
         return view('admin.writings')
-            ->with('title_prefix', 'Admin - Manage Writings')
+            ->with('title_prefix', 'Admin - Writings')
             ->with('writings', $writings);
     }
 
@@ -103,10 +103,16 @@ class WritingsController extends Controller
             }
         }
 
-        return view('writings')
-            ->with('writings', $writings)
-            ->with('writings_by_years', $writings_by_years)
-            ->with('title_prefix', 'Writings');
+        return $this->respondWithBlade('writings', [
+            'writings' => $writings,
+            'writings_by_years' => $writings_by_years,
+            'title_prefix' => 'Writings',
+        ], false, false);
+
+//        return view('writings')
+//            ->with('writings', $writings)
+//            ->with('writings_by_years', $writings_by_years)
+//            ->with('title_prefix', 'Writings');
     }
 
     /**
@@ -193,9 +199,14 @@ class WritingsController extends Controller
             }
         }
 
-        return view('writing')
-            ->with('writing', $writing)
-            ->with('title_prefix', $writing->title);
+        return $this->respondWithBlade('writing', [
+            'writing' => $writing,
+            'title_prefix' => $writing->title,
+        ], false, false);
+
+//        return view('writing')
+//            ->with('writing', $writing)
+//            ->with('title_prefix', $writing->title);
     }
 
     /**

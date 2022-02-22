@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
+use App\Http\Controllers\AvatarsController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\BookmarkletsController;
+use App\Http\Controllers\ExamplesController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\WritingsController;
@@ -73,6 +75,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
         Route::post('{name}/delete', [WritingCategoriesController::class, 'delete'])->name('admin.writing_categories.delete');
     });
 
+    // Avatars
+    Route::group(['prefix' => 'avatars'], function() {
+        Route::get('/', [AvatarsController::class, 'admin'])->name('admin.avatars');
+        Route::post('/', [AvatarsController::class, 'create'])->name('admin.avatars.create');
+    });
+
     // Admin quotes routes:
     Route::group(['prefix' => 'quotes'], function() {
         Route::get('/', [QuotesController::class, 'manage'])->name('admin.quotes');
@@ -88,15 +96,20 @@ Route::group(['prefix' => 'bookmarklets'], function() {
 });
 
 Route::get('writings', [WritingsController::class, 'index'])->name('writings');
-Route::get('writing/create', [WritingsController::class, 'showCreate'])->name('writing.showCreate');
+Route::get('writings/create', [WritingsController::class, 'showCreate'])->name('writing.showCreate');
+Route::post('writings/create', [WritingsController::class, 'create'])->name('writings.create');
 Route::get('writing/{id}', [WritingsController::class, 'show'])->name('writing.show');
 Route::get('writing/{id}/edit', [WritingsController::class, 'showEdit'])->name('writing.showEdit');
-Route::post('writing', [WritingsController::class, 'create'])->name('writing.create');
 Route::post('writing/{id}', [WritingsController::class, 'update'])->name('writing.update');
 
 Route::post('writing/{id}/trash', [WritingsController::class, 'trash'])->name('writing.trash');
 Route::post('writing/{id}/untrash', [WritingsController::class, 'untrash'])->name('writing.untrash');
 Route::post('writing/{id}/permanently_delete', [WritingsController::class, 'permanentlyDelete'])->name('writing.permanently_delete');
+
+Route::group(['prefix' => 'examples'], function() {
+    Route::get('/', [ExamplesController::class, 'index'])->name('examples');
+    Route::get('menubar', [ExamplesController::class, 'menubar'])->name('examples.menubar');
+});
 
 
 //Route::group(['prefix' => 'writings'], function() {

@@ -3,8 +3,8 @@ main#page_content[name=writings] {
     #writings_container {
 
         .writings_year {
-            color: darken(theme-color("branding"), 15%);
-            //color: theme-color('branding');
+            color: darken($branding-color, 15%);
+            //color: $branding-color;
             font-size: 36px;
             font-style: normal;
             font-weight: bold;

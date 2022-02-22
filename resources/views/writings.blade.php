@@ -8,7 +8,7 @@
         @include('_flash_messages')
 
         <h1 class="text-center my-0">Writings</h1>
-        <p>This is a collection of random things I've wrote.</p>
+        <p>This is a collection of random writings which I have wrote.</p>
 
         @if(admin())
             <a class="btn btn-primary" href="{{ route('writing.showCreate') }}">Create Writing</a>
@@ -31,18 +31,18 @@
 
                                         <div>
                                             @if($writing->isPublished())
-                                                <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-bs-toggle="tooltip" data-placement="bottom"></i>
                                             @else
-                                                <i class="icon-danger text-danger" title="Not Published" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-danger text-danger" title="Not Published" data-bs-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                             @if($writing->isHidden())
-                                                <i class="icon-eye-off" title="Hidden" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-eye-off" title="Hidden" data-bs-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                             @if($writing->isUnlisted())
-                                                <i class="icon-warning" title="Unlisted" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-warning" title="Unlisted" data-bs-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                             @if($writing->trashed())
-                                                <i class="icon-trash" title="Trashed" data-toggle="tooltip" data-placement="bottom"></i>
+                                                <i class="icon-trash" title="Trashed" data-bs-toggle="tooltip" data-placement="bottom"></i>
                                             @endif
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                             <a class="writing_title" href="{{ route('writing.show', ['id' => $writing->getSlug()]) }}">{{ $writing->title }}</a>
 
                                             <div class="btn-group dropdown">
-                                                <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                                                <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                                                     Options
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="writing{{ $writing->id }}Dropdown">
@@ -85,7 +85,7 @@
                 @endforeach
 
             @else
-{{--                <p>No writings are here</p>--}}
+                <p class="fst-italic text-muted">No Writings!</p>
             @endif
         </div>
 

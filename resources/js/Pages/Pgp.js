@@ -1,5 +1,5 @@
 import {BasePage} from './BasePage';
-import {Console} from '../Components/Console';
+import {Console} from '../Components/ConsoleComponent';
 
 class Pgp extends BasePage {
     /**
@@ -13,7 +13,7 @@ class Pgp extends BasePage {
      * Load the Alphabetizer.
      */
     load() {
-        super.loadPageBeginMessage('Loading ' + super.pageName + ' page...');
+        super.loadPageBeginMessage();
 
         $('body').on('click', '[data-action=COPY_PGP_KEY]', function(event) {
             event.preventDefault();
@@ -41,7 +41,7 @@ class Pgp extends BasePage {
             }
         });
 
-        super.loadPageEndMessage('Loaded ' + super.pageName + ' page.');
+        super.loadPageEndMessage();
     }
 }
 

@@ -3,11 +3,115 @@
 @section('pageName', 'writing_edit')
 
 @section('content')
-    <div class="container-fluid">
+
+    <nav class="navbar navbar-expand navbar-light bg-light mb-3 p-0 border-bottom" style="flex-basis: auto;
+flex-grow: 0;
+flex-shrink: 1;">
+        <div class="container-fluid">
+            {{--            <a class="navbar-brand" href="#">Writing</a>--}}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Format
+                        </a>
+                        <ul class="dropdown-menu mt-0" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#"><i class="icon-check"></i> TXT</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="icon-check-empty"></i> MD</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="icon-check-empty"></i> HTML</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cursor-pointer" title="Move to Trash" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="icon-trash"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cursor-pointer"><i class="icon-info"></i></a>
+                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link">Saving...</a>--}}
+{{--                    </li>--}}
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link">hi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid pb-3" style="flex-grow: 1;
+flex-shrink: 1;
+flex-basis: auto; display: flex;
+flex-flow: column;">
+    <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control p-2 textarea_code" id="writingBody" name="writingBody" placeholder="" spellcheck="false" style="flex-grow: 1;
+flex-shrink: 1;
+flex-basis: auto;"></textarea>
+    </div>
+
+
+
+        <div style="flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1; display: none;">
+            yo
+        </div>
+        <div style="flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto; display: none;">
+            hi
+        </div>
+
+    <nav class="navbar navbar-expand navbar-light bg-light mb-3 p-0 border-bottom d-none">
+        <div class="container-fluid">
+{{--            <a class="navbar-brand" href="#">Writing</a>--}}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Format
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#"><i class="icon-check"></i> TXT</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="icon-check-empty"></i> MD</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="icon-check-empty"></i> HTML</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"><i class="icon-trash"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"><i class="icon-info"></i></a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link">hi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mb-3 d-none">
+        <div class="input-group">
+            <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control p-2" id="writingBody" name="writingBody" placeholder="" spellcheck="false"></textarea>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-3 border-top pt-3 d-none">
 
         @include('_flash_messages')
 
-        <form action="{{ $writing->exists ? route('writing.update', ['id' => $writing->getSlug()]) : route('writing.create') }}" method="post">
+        <form action="/" method="post">
             @csrf
 
             <div class="row mb-3">
@@ -42,43 +146,62 @@
                                 <label class="form-check-label" for="is_unlisted_checkbox">Unlisted</label>
                             </div>
                         </li>
-                        <li>
-                            <div class="form-check abc-checkbox abc-checkbox-primary">
-                                <input class="form-check-input" id="trashed_checkbox" name="trashed" type="checkbox" value="1" {{ $writing->trashed() ? 'checked' : '' }}/>
-                                <label class="form-check-label" for="trashed_checkbox">Trashed</label>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
 
+
+
             <div class="row mb-3">
                 <div class="col">
 
+                    <ul class="nav nav-tabs mb-0" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            home
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            profile
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            contact
+                        </div>
+                    </div>
+
                     <ul class="nav nav-tabs mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#body_html" data-toggle="tab" role="tab" aria-controls="body_html" aria-selected="false">Body HTML</a>
+                            <a class="nav-link active" href="#body_html" data-bs-toggle="tab" role="tab" aria-controls="body_html" aria-selected="false">Body HTML</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#css" data-toggle="tab" role="tab" aria-controls="css" aria-selected="false">CSS</a>
+                            <a class="nav-link" href="#css" data-bs-toggle="tab" role="tab" aria-controls="css" aria-selected="false">CSS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#categories" data-toggle="tab" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+                            <a class="nav-link" href="#categories" data-bs-toggle="tab" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        <div class="tab-pane show active" id="body_html">
+                        <div class="tab-pane fade show active" id="body_html">
                             <div class="input-group">
                                 <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" id="body_html_textarea" name="body_html" placeholder="Body HTML" rows="20" spellcheck="false">{{ $writing->body_html }}</textarea>
                             </div>
                         </div>
-                        <div class="tab-pane" id="css">
+                        <div class="tab-pane fade" id="css">
                             <div class="input-group">
                                 <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize" id="css_textarea" name="css" placeholder="CSS" rows="20" spellcheck="false">{{ $writing->css }}</textarea>
                             </div>
                         </div>
-                        <div class="tab-pane" id="categories">
+                        <div class="tab-pane fade" id="categories">
                             @if(\App\WritingCategory::count())
                                 <ul class="list-unstyled mb-0">
                                     @foreach(\App\WritingCategory::orderBy('name')->get() as $writingCategory)

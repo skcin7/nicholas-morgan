@@ -26,16 +26,16 @@
 
                 @if(admin())
                     @if($writing->isPublished())
-                        <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                        <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-bs-toggle="tooltip" data-placement="bottom"></i>
                     @endif
                     @if($writing->isHidden())
-                        <i class="icon-eye-off" title="Hidden" data-toggle="tooltip" data-placement="bottom"></i>
+                        <i class="icon-eye-off" title="Hidden" data-bs-toggle="tooltip" data-placement="bottom"></i>
                     @endif
                     @if($writing->isUnlisted())
-                        <i class="icon-warning" title="Unlisted" data-toggle="tooltip" data-placement="bottom"></i>
+                        <i class="icon-warning" title="Unlisted" data-bs-toggle="tooltip" data-placement="bottom"></i>
                     @endif
                     @if($writing->trashed())
-                        <i class="icon-trash" title="Trashed" data-toggle="tooltip" data-placement="bottom"></i>
+                        <i class="icon-trash" title="Trashed" data-bs-toggle="tooltip" data-placement="bottom"></i>
                     @endif
                 @endif
             </li>

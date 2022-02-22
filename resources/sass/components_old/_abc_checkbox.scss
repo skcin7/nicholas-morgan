@@ -132,18 +132,18 @@ $check-icon: $fa-var-check !default;
     }
 }
 
-@include checkbox-variant('.abc-checkbox-primary', theme-color(primary));
-@include checkbox-variant('.abc-checkbox-danger', theme-color(danger));
-@include checkbox-variant('.abc-checkbox-info', theme-color(info));
-@include checkbox-variant('.abc-checkbox-warning', theme-color(warning));
-@include checkbox-variant('.abc-checkbox-success', theme-color(success));
+@include checkbox-variant('.abc-checkbox-primary', $primary);
+@include checkbox-variant('.abc-checkbox-danger', $danger);
+@include checkbox-variant('.abc-checkbox-info', $info);
+@include checkbox-variant('.abc-checkbox-warning', $warning);
+@include checkbox-variant('.abc-checkbox-success', $success);
 
 
-@include checkbox-variant-indeterminate('.abc-checkbox-primary', theme-color(primary));
-@include checkbox-variant-indeterminate('.abc-checkbox-danger', theme-color(danger));
-@include checkbox-variant-indeterminate('.abc-checkbox-info', theme-color(info));
-@include checkbox-variant-indeterminate('.abc-checkbox-warning', theme-color(warning));
-@include checkbox-variant-indeterminate('.abc-checkbox-success', theme-color(success));
+@include checkbox-variant-indeterminate('.abc-checkbox-primary', $primary);
+@include checkbox-variant-indeterminate('.abc-checkbox-danger', $danger);
+@include checkbox-variant-indeterminate('.abc-checkbox-info', $info);
+@include checkbox-variant-indeterminate('.abc-checkbox-warning', $warning);
+@include checkbox-variant-indeterminate('.abc-checkbox-success', $success);
 
 //
 // Radios
@@ -249,11 +249,11 @@ $check-icon: $fa-var-check !default;
     }
 }
 
-@include radio-variant('.abc-radio-primary', theme-color(primary));
-@include radio-variant('.abc-radio-danger', theme-color(danger));
-@include radio-variant('.abc-radio-info', theme-color(info));
-@include radio-variant('.abc-radio-warning', theme-color(warning));
-@include radio-variant('.abc-radio-success', theme-color(success));
+@include radio-variant('.abc-radio-primary', $primary);
+@include radio-variant('.abc-radio-danger', $danger);
+@include radio-variant('.abc-radio-info', $info);
+@include radio-variant('.abc-radio-warning', $warning);
+@include radio-variant('.abc-radio-success', $success);
 
 
 // Validation states

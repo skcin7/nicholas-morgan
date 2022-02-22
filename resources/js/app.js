@@ -1,300 +1,173 @@
+// import {Console} from './Components/Console';
+// import {BarrelRoll} from './Components/BarrelRoll';
+// import {KeyboardComponent} from './Components/KeyboardComponent';
+// import {Layout} from './Components/Layout';
+// import {Mirror} from './Components/Mirror';
+// import {Rotate} from './Components/Rotate';
+// import {Url} from './Components/Url';
+//
+// // import {Alphabetizer, Welcome} from './Pages/*';
+// import {Alphabetizer} from './Pages/Alphabetizer';
+// import {ExamplePage} from './Pages/ExamplePage';
+// import {Pgp} from './Pages/Pgp';
+// import {Welcome} from './Pages/Welcome';
+// import {WritingPage} from './Pages/WritingPage';
+//
+// class App {
+//     appName = '';
+//
+//     appComponents = [];
+//
+//     appPages = [];
+//
+//     currentPage = '';
+//
+//     showAvatarIcon = true;
+//
+//     showBanner = true;
+//
+//     constructor(appName) {
+//         this.appName = appName;
+//     }
+//
+//     /**
+//      * Initialize the Console.
+//      */
+//     init() {
+//         Console.custom('Initializing ' + this.appName + ' app...');
+//
+//
+//
+//         // // Initialize all Bootstrap tooltip elements.
+//         // $('body').tooltip({
+//         //     selector: '[data-bs-toggle="tooltip"]',0
+//         // });
+//
+//
+//         let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle=tooltip]'))
+//         let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//             return new bootstrap.Tooltip(tooltipTriggerEl)
+//         });
+//
+//
+//         let alphabetizerPage = new Alphabetizer();
+//         alphabetizerPage.load();
+//         this.appPages.push(alphabetizerPage);
+//
+//         let examplePage = new ExamplePage();
+//         examplePage.load();
+//         this.appPages.push(examplePage);
+//
+//         let pgpPage = new Pgp();
+//         pgpPage.load();
+//         this.appPages.push(pgpPage);
+//
+//         let welcomePage = new Welcome();
+//         welcomePage.load();
+//         this.appPages.push(welcomePage);
+//
+//         let writingPage = new WritingPage();
+//         writingPage.load();
+//         this.appPages.push(writingPage);
+//
+//         // let url = location.href;
+//         // document.body.addEventListener('click', ()=>{
+//         //     requestAnimationFrame(()=>{
+//         //         url!==location.href&&console.log('url changed');
+//         //         url = location.href;
+//         //     });
+//         // }, true);
+//
+//
+//         // // Create the event listener to mirror the page.
+//         // $('body').on('click', '[data-action=MIRROR]', function(event) {
+//         //     if($('body').hasClass('mirror')) {
+//         //         $('body').removeClass('mirror');
+//         //     }
+//         //     else {
+//         //         $('body').addClass('mirror');
+//         //     }
+//         // });
+//
+//         let barrelRollComponent = new BarrelRoll();
+//         barrelRollComponent.load();
+//         this.appComponents.push(barrelRollComponent);
+//
+//         let keyboardComponent = new KeyboardComponent();
+//         keyboardComponent.load();
+//         this.appComponents.push(keyboardComponent);
+//
+//         let layoutComponent = new Layout();
+//         layoutComponent.load();
+//         this.appComponents.push(layoutComponent);
+//
+//         let mirrorComponent = new Mirror();
+//         mirrorComponent.load();
+//         this.appComponents.push(mirrorComponent);
+//
+//         let rotateComponent = new Rotate();
+//         rotateComponent.load();
+//         this.appComponents.push(rotateComponent);
+//
+//         let urlComponent = new Url();
+//         urlComponent.load();
+//         this.appComponents.push(urlComponent);
+//
+//         Console.log('\n...' + this.appName + ' app initialized!');
+//     }
+//
+//     // loadComponent(componentName) {
+//     //     // ;(function(app, $, undefined) {
+//     //     //     app.appComponents.push({});
+//     //     // });
+//     //     // require('./Components/BaseComponent');
+//     //     // require('./Components/Console');
+//     //     // require('./Components/Mirror');
+//     //
+//     //     // this.appComponents.push(new Mirror());
+//     //
+//     //     let myclass = window[componentName];
+//     //     // now you have a reference to the object, the new keyword will work:
+//     //     let inst = new myclass();
+//     // }
+// }
+//
+// export {App};
+
+// let NickMorganApp = new App('Nick Morgan Web App');
+
+// NickMorganApp.appComponents.forEach(function(componentName, index) {
+//
+//     require('./Components/' + componentName);
+//
+//     app.getComponent(componentName).setConfig(componentConfig).init();
+//     console.log('Component: \'' + componentName + '\' has been loaded... and initialized!');
+// });
+
+// NickMorganApp.init();
+
+
 // Bootstrap the application's JavaScript dependencies:
 require('./bootstrap');
 
+// Import Components
+import {Application} from './Application';
+
+
+
 // Create the namespace for the application:
-window.NickMorgabWebApp = {};
-
-// Fire the self-executing function to load the application:
-;(function(app, $, mousetrap, undefined) {
-
-    /**
-     * Components loaded into the application.
-     *
-     * @type {Array}
-     */
-    app.appComponents = [];
-
-    /**
-     * List of all the app components to be loaded!
-     *
-     * @type {*[]}
-     */
-    app.appComponentsToLoad = [
-        'album_modal',
-        'barrel_roll',
-        'mirror',
-        'play_nes',
-        'rotate',
-        'textarea_code',
-        //'somecomponent',
-    ];
-
-    /**
-     * Pages loaded into the application.
-     *
-     * @type {Array}
-     */
-    app.appPages = [];
-
-    /**
-     * List of all the app pages to be loaded!
-     *
-     * @type {*[]}
-     */
-    app.appPagesToLoad = [
-        'admin_quotes',
-        'alphabetizer',
-        'bookmarklets',
-        //'nes',
-        'welcome',
-    ];
-
-    // /**
-    //  * Info about the user that is currently authenticated.
-    //  *
-    //  * @type {null|{}}
-    //  */
-    // app.authenticatedUser = null;
-
-    /**
-     * Base URL used for the application is stored here.
-     *
-     * @type {String}
-     */
-    app.base_url = '';
-
-    /**
-     * The current page that is being viewed in the viewport.
-     *
-     * @type {String}
-     */
-    app.current_page = '';
-
-    /**
-     * Set the environment configuration/data.
-     *
-     * @param config
-     * @returns {{}|*}
-     */
-    app.setConfig = function(config) {
-        console.log("Configuring the application ...");
-
-        // Set the app's base URL:
-        app.base_url = config.base_url || '';
-
-        // Load the app's JS components:
-        if(app.appComponentsToLoad) {
-            app.appComponentsToLoad.forEach(function(component, index) {
-                let componentName, componentConfig;
-                if(typeof component === "string") {
-                    componentName = component;
-                    componentConfig = {};
-                }
-                else {
-                    componentName = component.name;
-                    componentConfig = component.config;
-                }
-
-                require('./components_old/' + componentName);
-
-                app.getComponent(componentName).setConfig(componentConfig).init();
-                console.log('Component: \'' + componentName + '\' has been loaded... and initialized!');
-            });
-        }
-
-        // Load the app's JS pages:
-        if(app.appPagesToLoad) {
-            app.appPagesToLoad.forEach(function(page, index) {
-                let pageName, pageConfig;
-                if(typeof page === "string") {
-                    pageName = page;
-                    pageConfig = {};
-                }
-                else {
-                    pageName = page.name;
-                    pageConfig = page.config;
-                }
-
-                require('./pages_old/' + pageName);
-
-                let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
-                // Only load page if the page is current page loaded in the application.
-                if($('main#page_content[name=' + pageName + ']').length === 1) {
-                    app.getPage(pageName).setConfig(pageConfig).init();
-                    pageMessage += '.. and initialized!';
-                }
-                console.log(pageMessage);
-            });
-        }
-
-        // // Initialize all pages:
-        // app.appPages.forEach(function(thisAppPage, index) {
-        //     thisAppPage.setConfig().init();
-        //     console.log('Page: \'' + thisAppPage.pageName + '\' initialized.')
-        // });
+let application = new Application({
+    'isSinglePageApp': false,
+    'logLevel': 'debug',
+});
+application.init();
 
 
+window.NickMorgabWebApp = application;
 
-        // // Load the app's JS pages:
-        // if(app.appPagesToLoad) {
-        //     app.appPagesToLoad.forEach(function(page, index) {
-        //         let pageName, pageConfig;
-        //         if(typeof page === "string") {
-        //             pageName = page;
-        //             pageConfig = {};
-        //         }
-        //         else {
-        //             pageName = page.name;
-        //             pageConfig = page.config;
-        //         }
-        //
-        //         require('./pages/' + pageName);
-        //
-        //         let pageMessage = 'Page: \'' + pageName + '\' has been loaded.';
-        //         // Only load page if the page is current page loaded in the application.
-        //         if($('main#page_content[name=' + pageName + ']').length === 1) {
-        //             app.getPage(pageName).setConfig(pageConfig).init();
-        //             pageMessage += '..and initialized!';
-        //         }
-        //         console.log(pageMessage);
-        //     });
-        // }
-
-        // // Load the app's JS components:
-        // if(app.appComponentsToLoad) {
-        //     app.appComponentsToLoad.forEach(function(component, index) {
-        //         let componentName, componentConfig;
-        //         if(typeof component === "string") {
-        //             componentName = component;
-        //             componentConfig = {};
-        //         }
-        //         else {
-        //             componentName = component.name;
-        //             componentConfig = component.config;
-        //         }
-        //
-        //         require('./components/' + componentName);
-        //
-        //         app.getComponent(componentName).setConfig(componentConfig).init();
-        //         console.log('Component: \'' + componentName + '\' has been loaded...and initialized!');
-        //     });
-        // }
-
-        // NotifyJS Default Configurations:
-        $.notify.defaults({
-            "autoHide": true,
-            "autoHideDelay": 5000,
-            "position": 'left bottom',
-            "elementPosition": 'right bottom',
-            "globalPosition": 'right bottom',
-            "showDuration": 200,
-            "style": 'bootstrap',
-            "className": 'success',
-            "clickToHide": true
-        });
-
-        return app;
-    };
-
-    /**
-     * Initialize App.
-     *
-     * @param config
-     */
-    app.init = function(config) {
-
-        //$('body').rainbowify();
-
-        // Initialize all Bootstrap tooltip elements.
-        $('body').tooltip({
-            selector: '[data-toggle="tooltip"]',
-        });
-
-        // Alter the scrolling behavior for the avatar to keep it at the top of the page, but underneath the header at all times.
-        $(document).scroll(function() {
-            if($(this).scrollTop() > 54) {
-                $('#avatar').css({
-                    position: 'fixed',
-                    top: '1rem'
-                });
-            }
-            else {
-                $('#avatar').css({
-                    position: 'absolute',
-                    top: '1rem'
-                });
-            }
-        });
-
-        // Mousetrap event to go to the login page:
-        mousetrap.bind('l o g i n', function() {
-            window.location = app.url('login');
-        });
-
-        // Vertically expand all <textarea> elements as additional text is added into them.
-        $('.autosize').autosize();
-    };
-
-    /**
-     * Get a page by its name.
-     *
-     * @param pageName
-     * @returns {*}
-     */
-    app.getPage = function(pageName) {
-        for(let i = 0; i < app.appPages.length; i++) {
-            if(pageName == app.appPages[i].pageName) {
-                return app.appPages[i];
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Get a component by its name.
-     *
-     * @param componentName
-     * @returns {*}
-     */
-    app.getComponent = function(componentName) {
-        for(let i = 0; i < app.appComponents.length; i++) {
-            if(componentName == app.appComponents[i].componentName) {
-                return app.appComponents[i];
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Form a URL for this application by concatenating the base URL with a URI.
-     *
-     * @param uri
-     * @returns {string}
-     */
-    app.url = function(uri = '') {
-        let url = app.base_url + '/' + uri;
-        return url.replace(/\/$/, ""); // Remove trailing slash, if there is one.
-    };
-
-    /**
-     * Execute a function but only if user is logged in (or display a graceful unauthenticated message).
-     *
-     * @param fnToExecute
-     * @param action
-     */
-    app.isAuthenticated = function(fnToExecute, action = 'do that') {
-        if(! app.authenticatedUser) {
-
-            // Not logged in, so notify user
-            $.notify("You must be logged in to " + action + "!", {
-                autoHideDelay: 8000,
-                className: "danger"
-            });
-            return;
-        }
-
-        // User is logged in, so execute the function
-        fnToExecute.call(this);
-    };
-
-})(window.NickMorgabWebApp, window.jQuery, window.Mousetrap);
+// // Fire the self-executing function to load the application:
+// ;(function(app, $, undefined) {
+//
+//     app.init();
+//
+// })(window.NickMorgabWebApp, window.jQuery);

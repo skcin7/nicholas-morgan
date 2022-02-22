@@ -17,7 +17,8 @@ try {
     //     'X-Requested-With': 'XMLHttpRequest'
     // };
 
-    require('bootstrap');
+    // require('bootstrap');
+    window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
     // require('./lib/jquery.appear');
     require('./lib/jquery.autosize');
     // require('./lib/jquery.colorbox');

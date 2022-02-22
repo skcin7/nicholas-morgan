@@ -1,8 +1,8 @@
 main#page_content[name=pgp] {
 
     #pgpkey_fieldset {
-        border-color: theme-color('branding') !important;
-        box-shadow: 4px 4px 0 lighten(theme-color('branding'), 25%);
+        border-color: $branding-color !important;
+        box-shadow: 4px 4px 0 lighten($branding-color, 25%);
         padding: 0.5rem;
         padding-top: 0;
 

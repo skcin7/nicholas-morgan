@@ -21,12 +21,18 @@ $cyan: #6cb2eb;
 
 
 
+//$enable-rounded: false;
+//$enable-shadows: false;
+//$black: #000000;
+//$white: #ffffff;
+////$branding-color: #3490DC;
+//$theme-colors: (
+//    //"branding": #3490DC,
+//    "branding": #f90101,
+//);
+
+$branding-color: #f90101;
+$black: #000;
+$white: #fff;
 $enable-rounded: false;
 $enable-shadows: false;
-$black: #000000;
-$white: #ffffff;
-//$branding-color: #3490DC;
-$theme-colors: (
-    //"branding": #3490DC,
-    "branding": #f90101,
-);

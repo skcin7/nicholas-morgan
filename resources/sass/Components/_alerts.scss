@@ -8,33 +8,33 @@
     //);
 
     //background-image: linear-gradient(-45deg,
-    //    darken(theme-color('warning'), 25%) 25%, transparent 25%, transparent 50%, darken(theme-color('warning'), 25%) 50%, darken(theme-color('warning'), 25%) 75%, transparent 75%, transparent);
+    //    darken($warning, 25%) 25%, transparent 25%, transparent 50%, darken($warning, 25%) 50%, darken($warning, 25%) 75%, transparent 75%, transparent);
     //background-size: 35px 35px;
     border-width: 2px !important;
     font-weight: bold;
     padding: 1rem !important;
 
     &.alert-danger {
-        border-color: darken(theme-color('danger'), 15%) !important;
-        box-shadow: 4px 4px 0 lighten(theme-color('danger'), 15%);
-        color: darken(theme-color('danger'), 15%);
+        border-color: darken($danger, 15%) !important;
+        box-shadow: 4px 4px 0 lighten($danger, 15%);
+        color: darken($danger, 15%);
     }
 
     &.alert-info {
-        border-color: darken(theme-color('info'), 25%) !important;
-        box-shadow: 4px 4px 0 lighten(theme-color('info'), 15%);
-        color: darken(theme-color('info'), 25%);
+        border-color: darken($info, 25%) !important;
+        box-shadow: 4px 4px 0 lighten($info, 15%);
+        color: darken($info, 25%);
     }
 
     &.alert-success {
-        border-color: darken(theme-color('success'), 15%) !important;
-        box-shadow: 4px 4px 0 lighten(theme-color('success'), 15%);
-        color: darken(theme-color('success'), 15%);
+        border-color: darken($success, 15%) !important;
+        box-shadow: 4px 4px 0 lighten($success, 15%);
+        color: darken($success, 15%);
     }
 
     &.alert-warning {
-        border-color: darken(theme-color('warning'), 35%) !important;
-        box-shadow: 4px 4px 0 lighten(theme-color('warning'), 15%);
-        color: darken(theme-color('warning'), 35%);
+        border-color: darken($warning, 35%) !important;
+        box-shadow: 4px 4px 0 lighten($warning, 15%);
+        color: darken($warning, 35%);
     }
 }

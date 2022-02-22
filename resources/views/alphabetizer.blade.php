@@ -28,7 +28,7 @@
                         <u>Input</u>
 
                         <div class="btn-group dropdown">
-                            <button id="alphabetizationInputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                            <button id="alphabetizationInputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                                 Options
                             </button>
                             <div class="dropdown-menu" aria-labelledby="alphabetizationInputOptionsDropdown">
@@ -53,7 +53,7 @@
                         <u>Output</u>
 
                         <div class="btn-group dropdown">
-                            <button id="alphabetizationOutputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                            <button id="alphabetizationOutputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                                 Options
                             </button>
                             <div class="dropdown-menu" aria-labelledby="alphabetizationOutputOptionsDropdown">

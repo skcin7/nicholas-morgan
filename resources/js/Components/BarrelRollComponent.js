@@ -1,6 +1,6 @@
 import {BaseComponent} from './BaseComponent';
 
-class BarrelRoll extends BaseComponent {
+class BarrelRollComponent extends BaseComponent {
     /**
      * The class name added to the body tag when a barrel roll is being performed.
      *
@@ -19,7 +19,7 @@ class BarrelRoll extends BaseComponent {
      * Create a new BarrelRoll.
      */
     constructor() {
-        super('BarrelRoll');
+        super('BarrelRollComponent');
     }
 
     /**
@@ -79,4 +79,4 @@ class BarrelRoll extends BaseComponent {
     };
 }
 
-export {BarrelRoll};
+export {BarrelRollComponent};

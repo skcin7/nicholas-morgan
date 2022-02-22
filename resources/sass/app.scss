@@ -1,5 +1,4 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 // Variables:
@@ -132,7 +131,7 @@ body {
             flex-shrink: 1;
 
             #navbar {
-                border-top: 4px solid theme-color("branding");
+                border-top: 4px solid $branding-color;
                 border-bottom: 2px solid #444;
 
                 .dropdown-menu {
@@ -157,7 +156,7 @@ body {
                 text-align: center;
 
                 h1 {
-                    background-color: theme-color('branding');
+                    background-color: $branding-color;
                     color: #fff;
                     display: inline-block;
                     font-size: 46px;
@@ -172,13 +171,17 @@ body {
             flex-grow: 1;
             flex-shrink: 1;
             flex-basis: auto;
-            position: relative;
+
+            display: flex;
+            flex-flow: column;
+
+            //position: relative;
             //text-shadow: 1px 1px #fff;
 
             .container, .container-fluid {
-                padding-bottom: 1rem !important;
-                padding-top: 1rem !important;
-                margin-bottom: 1rem !important;
+                //padding-bottom: 1rem !important;
+                //padding-top: 1rem !important;
+                //margin-bottom: 1rem !important;
 
                 h1, h2, h3 {
                     font-style: italic;
@@ -208,7 +211,7 @@ body {
 
         footer#footer {
             background-image: url('./images/dark_paths.png');
-            border-top: 2px solid theme-color("branding");
+            border-top: 2px solid $branding-color;
             color: #fff;
             flex-basis: auto;
             flex-grow: 0;
@@ -230,7 +233,7 @@ body {
                     position: relative;
 
                     &:hover {
-                        color: theme-color("branding");
+                        color: $branding-color;
                         top: -1px;
                     }
                 }
@@ -351,7 +354,7 @@ fieldset {
 
 // Add an external link icon for links that are external
 .external_link_arrow {
-    //border-bottom: 1px dotted theme-color('primary');
+    //border-bottom: 1px dotted $primary;
     //text-decoration: none;
     //font-variant: small-caps;
     //font-weight: bold;
@@ -371,7 +374,7 @@ fieldset {
     }
 
     //&:hover {
-    //    border-bottom: 1px solid theme-color('primary');
+    //    border-bottom: 1px solid $primary;
     //}
 }
 
@@ -401,7 +404,7 @@ fieldset {
     margin-top: 0px;
 
     .modal-content {
-        border: 2px solid theme-color("branding") !important;
+        border: 2px solid $branding-color !important;
         //border-radius: 0 !important;
     }
 
@@ -420,4 +423,8 @@ fieldset {
     .thead-dark {
         border: 1px solid #454d55;
     }
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

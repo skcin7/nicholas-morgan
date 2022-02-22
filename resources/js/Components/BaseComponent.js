@@ -1,4 +1,4 @@
-import {Console} from './Console';
+import {Console} from './ConsoleComponent';
 
 class BaseComponent {
     componentName = '';
@@ -17,12 +17,12 @@ class BaseComponent {
 
     loadBeginMessage() {
         // console.log('Loading ' + this.getComponentName() + ' component...');
-        Console.log('Loading ' + this.getComponentName() + ' component...');
+        Console.log('Loading Component: ' + this.getComponentName());
     }
 
     loadEndMessage() {
         // console.log('Loaded ' + this.getComponentName() + ' component.');
-        Console.log('Loaded ' + this.getComponentName() + ' component.');
+        Console.log('Loaded Component: ' + this.getComponentName());
     }
 }
 

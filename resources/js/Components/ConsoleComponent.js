@@ -1,7 +1,7 @@
 import {BaseComponent} from './BaseComponent';
 import {InvalidValueError} from '../Errors/InvalidValueError';
 
-class Console {
+class ConsoleComponent {
     /**
      * Log a message to the console.
      *
@@ -9,26 +9,28 @@ class Console {
      * @param logLevel
      */
     static log(message, logLevel) {
-        logLevel = (typeof logLevel !== 'undefined') ? logLevel : '';
+        logLevel = (typeof logLevel !== 'undefined') ? logLevel : 'debug';
 
         switch(logLevel) {
             case 'debug':
-                Console.debug(message);
-                break;
-            case 'info':
-                Console.info(message);
-                break;
-            case 'warn':
-                Console.warn(message);
-                break;
-            case 'error':
-                Console.error(message);
-                break;
             case '':
             default:
-                //console.log(message)
-                console.log('%c' + message, 'color: #626262; font-weight: bold; font-size: 14px;');
+                ConsoleComponent.debug(message);
                 break;
+            case 'info':
+                ConsoleComponent.info(message);
+                break;
+            case 'warn':
+                ConsoleComponent.warn(message);
+                break;
+            case 'error':
+                ConsoleComponent.error(message);
+                break;
+            // case '':
+            // default:
+            //     //console.log(message)
+            //     console.log('%c' + message, 'color: #626262; font-weight: bold; font-size: 14px;');
+            //     break;
         }
     }
 
@@ -97,4 +99,4 @@ class Console {
     }
 }
 
-export {Console};
+export {ConsoleComponent as Console};

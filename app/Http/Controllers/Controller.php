@@ -87,6 +87,19 @@ class Controller extends BaseController
         return response()->json($data, $statusCode);
     }
 
+    public function respondWithBlade($viewname, $with = [], $show_avatar = true, $show_hero = true)
+    {
+        $with = array_merge($with, [
+            'show_avatar' => $show_avatar,
+            'show_hero' => $show_hero,
+        ]);
+
+        return view($viewname, $with);
+
+//            ->with('writing', $writing)
+//            ->with('title_prefix', $writing->title);
+    }
+
 
 
 

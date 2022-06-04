@@ -3,14 +3,24 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\SuccessfulLogin;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasApiTokens;
+    use SoftDeletes;
+
+    /**
+     * The database table used by the model.
+     * @var string
+     */
+    public $table = 'users';
 
     /**
      * The model's default values for attributes.
@@ -20,8 +30,8 @@ class User extends Authenticatable
     protected $attributes = [
         'name' => '',
         'email' => '',
-        'is_admin' => false,
-        'secret_json' => '',
+        'is_mastermind' => false,
+        'secret_data' => '',
         'last_login_at' => null,
         'login_count' => 0,
     ];
@@ -33,8 +43,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_admin' => 'boolean',
-        'secret_json' => 'string',
+        'is_mastermind' => 'boolean',
+        'secret_data' => 'string',
         'last_login_at' => 'datetime',
         'login_count' => 'integer',
     ];
@@ -56,29 +66,55 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
-        'is_admin',
-        'secret_json',
+        'is_mastermind',
+        'secret_data',
+        'deleted_at',
+        'created_at',
+        'updated_at',
     ];
 
     /**
-     * Determine if the user is an admin.
-     *
+     * Determine if user is a mastermind.
      * @return bool
      */
-    public function isAdmin()
+    public function isMastermind(): bool
     {
-        return (bool) $this->is_admin;
+        return (bool) $this->getAttribute('is_mastermind');
     }
 
     /**
      * A user can have many successful logins.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function logins()
+    public function successfulLogins(): HasMany
     {
-        return $this->hasMany('App\Login');
+        return $this->hasMany('App\SuccessfulLogin');
+    }
+
+    /**
+     * Set the secret data attribute.
+     * @param $secret_data
+     * @return void
+     */
+    public function setSecretDataAttribute($secret_data)
+    {
+        $this->setAttribute('secret_data', encrypt(json_encode($secret_data)));
+    }
+
+    /**
+     * Store a successful login about this user.
+     * @param $secret_data
+     * @return void
+     */
+    public function storeSuccessfulLogin($secret_data)
+    {
+        $successful_login = new SuccessfulLogin();
+        $successful_login->user()->associate($this);
+//        $successful_login->secret_data = $secret_data;
+        $successful_login->setAttribute('secret_data', $secret_data);
+        $successful_login->save();
     }
 }

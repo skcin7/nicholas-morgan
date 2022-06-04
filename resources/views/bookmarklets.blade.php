@@ -22,7 +22,7 @@
                         <tr data-bookmarklet_id="{{ $bookmarklet->id }}">
                             <td>
                                 {{ $bookmarklet->name }}
-                                @if(admin())
+                                @if(mastermind())
                                     <button class="btn btn-secondary" type="button" data-action="edit_bookmarklet" data-id="{{ $bookmarklet->id }}"><i class="icon-pencil"></i> Edit</button>
                                 @endif
                             </td>
@@ -39,12 +39,12 @@
             <div class="alert alert-warning">No Bookmarklets are here!</div>
         @endif
 
-        @if(admin())
+        @if(mastermind())
             <button class="btn btn-primary" type="button" data-action="add_bookmarklet">Create Bookmarklet</button>
         @endif
     </div>
 
-    @if(admin())
+    @if(mastermind())
         @include('modals._bookmarklet_modal')
     @endif
 @endsection

@@ -18,11 +18,12 @@ try {
     // };
 
     // require('bootstrap');
-    window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+    // window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+    window.bootstrap = require('bootstrap');
     // require('./lib/jquery.appear');
     require('./lib/jquery.autosize');
     // require('./lib/jquery.colorbox');
-    // require('./lib/jquery.notify');
+    require('./lib/jquery.notify');
     // require('./lib/jquery.scrollup');
 
     // // Require all the Components

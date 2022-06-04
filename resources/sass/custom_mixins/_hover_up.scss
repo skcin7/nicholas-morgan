@@ -1,0 +1,7 @@
+@mixin hover_up() {
+    position: relative;
+
+    &:hover {
+        top: -2px;
+    }
+}

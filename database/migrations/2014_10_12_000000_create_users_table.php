@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->boolean('is_admin');
-            $table->text('secret_json');
+            $table->boolean('is_mastermind');
+            $table->text('secret_data');
             $table->timestamp('last_login_at')->nullable();
             $table->integer('login_count');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

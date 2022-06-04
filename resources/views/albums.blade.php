@@ -14,7 +14,7 @@
                         <img class="img-thumbnail float-left mr-3 album_cover" src="{{ $album->getCoverUrl() }}"/>
                         <h3 class="album_title">
                             {{ $album->title }}
-                            @if(admin())
+                            @if(mastermind())
                                 <button class="btn btn-secondary btn-sm" type="button" data-action="edit_album" data-album-id="{{ $album->id }}"><i class="icon-pencil"></i> Edit Album</button>
                             @endif
                         </h3>
@@ -33,13 +33,13 @@
 
         <p>That's It! (more to come soon)</p>
 
-        @if(admin())
+        @if(mastermind())
             <button class="btn btn-primary" type="button" data-action="add_album">Add An Album</button>
         @endif
 
     </div>
 
-    @if(admin())
+    @if(mastermind())
         @include('_album_modal')
     @endif
 

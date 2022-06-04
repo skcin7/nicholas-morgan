@@ -73,6 +73,6 @@ class Kernel extends HttpKernel
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
 
         // Added By Me:
-        'admin' => \App\Http\Middleware\CheckForAdmin::class,
+        'mastermind' => \App\Http\Middleware\CheckForMastermind::class,
     ];
 }

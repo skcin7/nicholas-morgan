@@ -4,7 +4,7 @@
 
 @section('process_alphabetization_button')
     <div style="max-width: 190px;">
-        <button type="button" class="btn btn-primary w-100 d-flex make_magic_happen_button" type="button" data-action="PROCESS_ALPHABETIZATION">
+        <button type="button" class="btn btn-primary w-100 d-flex make_magic_happen_button lh-sm" type="button" data-action="PROCESS_ALPHABETIZATION">
             <div class="col p-0">→</div>
             <div class="col p-0">Alphabetize<br/><span class="make_magic_happen smaller">MAKE MAGIC HAPPEN</span></div>
             <div class="col p-0">→</div>
@@ -19,16 +19,16 @@
 {{--            @yield('process_alphabetization_button')--}}
 {{--        </div>--}}
 
-        <h1 class="text-center my-0">Alphabetizer</h1>
+        <h1 class="text-center my-0 fst-normal">Alphabetizer</h1>
 
         <div class="row mb-3">
             <div class="col-md">
-                <fieldset class="mb-0" id="input_fieldset">
-                    <legend>
+                <fieldset class="fieldset p-3 mb-0" id="input_fieldset">
+                    <legend class="bigger px-0">
                         <u>Input</u>
 
                         <div class="btn-group dropdown">
-                            <button id="alphabetizationInputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                            <button id="alphabetizationInputOptionsDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                                 Options
                             </button>
                             <div class="dropdown-menu" aria-labelledby="alphabetizationInputOptionsDropdown">
@@ -41,19 +41,19 @@
                     <div class="form-group row mb-0">
                         <div class="col">
                             <div class="input-group">
-                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize shadow-none" id="alphabetizer_input" name="alphabetizer_input" placeholder="Write the un-alphabetized text here, each entry on a separate line...." rows="10" spellcheck="false"></textarea>
+                                <textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control autosize shadow-none" id="alphabetizer_input" name="alphabetizer_input" placeholder="Unalphabetized Input..." rows="10" spellcheck="false"></textarea>
                             </div>
                         </div>
                     </div>
                 </fieldset>
             </div>
             <div class="col-md">
-                <fieldset class="mb-0" id="output_fieldset">
-                    <legend>
+                <fieldset class="fieldset p-3 mb-0" id="output_fieldset">
+                    <legend class="bigger px-0">
                         <u>Output</u>
 
                         <div class="btn-group dropdown">
-                            <button id="alphabetizationOutputOptionsDropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                            <button id="alphabetizationOutputOptionsDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
                                 Options
                             </button>
                             <div class="dropdown-menu" aria-labelledby="alphabetizationOutputOptionsDropdown">
@@ -83,8 +83,8 @@
                     <button type="button" class="btn btn-secondary" data-action="TOGGLE_ALPHABETIZER_OPTIONS">Options</button>
                 </div>
 
-                <fieldset class="p-2 d-none" id="alphabetization_options_fieldset">
-                    <legend class="text-center font-weight-bold"><u>Alphabetization Options:</u></legend>
+                <fieldset class="fieldset p-2 d-none" id="alphabetization_options_fieldset">
+                    <legend class="text-center bigger font-weight-bold"><u>Alphabetizer Options:</u></legend>
                     <ul class="list-unstyled mb-0">
                         <li>
                             <div class="form-check abc-checkbox abc-checkbox-primary">

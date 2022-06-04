@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '-1');
 /** Adminer - Compact database management
 * @link https://www.adminer.org/
 * @author Jakub Vrana, https://www.vrana.cz/

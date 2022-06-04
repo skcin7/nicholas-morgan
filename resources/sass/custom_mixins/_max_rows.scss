@@ -1,0 +1,8 @@
+// Maximum number of rows of text to be shown before overflowing with an ellipsis.
+@mixin max_rows($max_rows_number) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $max_rows_number; // Number of lines of text to show
+    -webkit-box-orient: vertical;
+}

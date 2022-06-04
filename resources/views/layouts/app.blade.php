@@ -20,22 +20,30 @@
 <body>
     <div id="app">
         <header id="header">
-            @if(isset($show_avatar) && $show_avatar)
-                <div id="avatar">
-                    <a href="{{ url('/') }}"><img src="{{ asset('images/avatar.jpg') }}"></a>
-                </div>
-            @endif
+{{--            @if(isset($show_avatar) && $show_avatar)--}}
+{{--                <div id="avatar">--}}
+{{--                    <a href="{{ url('/') }}"><img src="{{ asset('images/Avatar_460x460.jpg') }}"></a>--}}
+{{--                </div>--}}
+{{--            @endif--}}
 
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="navbar">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('welcome') }}">Nick Morgan</a>
+
+                    <a class="navbar-brand hover_up" href="{{ route('web.welcome') }}">
+                        <img class="rounded-circle" src="{{ asset('images/Avatar_460x460.jpg') }}" width="50" height="50">
+                        <span class="bigger">Nick Morgan</span>
+                    </a>
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
-                            @if(admin())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('web.projects') }}">{{ __('Projects') }}</a>
+                            </li>
+                            @if(mastermind())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge bg-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>
                                 </li>
@@ -45,8 +53,8 @@
 {{--                                    </a>--}}
 {{--                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserAccountMenuLink">--}}
 {{--                                        @if(admin())--}}
-{{--                                            <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>--}}
-{{--                                            <li><a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a></li>--}}
+{{--                                            <h6 class="dropdown-header fw-bold">ADMINISTRATION</h6>--}}
+{{--                                            <li><a class="dropdown-item" href="{{ route('web.mastermind') }}">Admin Home</a></li>--}}
 {{--                                            <div class="dropdown-divider"></div>--}}
 {{--                                        @endif--}}
 {{--                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>--}}
@@ -87,9 +95,9 @@
                                         {{ '@' . Auth::user()->name }} <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserAccountMenuLink">
-                                        @if(admin())
-                                            <h6 class="dropdown-header font-weight-bold">ADMINISTRATION</h6>
-                                            <li><a class="dropdown-item" href="{{ route('admin') }}">Admin Home</a></li>
+                                        @if(mastermind())
+                                            <h6 class="dropdown-header fw-bold">MASTERMIND</h6>
+                                            <li><a class="dropdown-item" href="{{ route('web.mastermind') }}"><i class="icon-skull"></i> Mastermind Home</a></li>
                                             <div class="dropdown-divider"></div>
                                         @endif
                                         <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>
@@ -142,18 +150,37 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div class="container-fluid my-2 text-left">
+{{--                <p class="mb-0 text-muted">Copyright <i class="icon-copyright"></i> {{ date('Y') }} Nick Morgan. Made With <i class="icon-heart" style="color: red;"></i>. All Rights Reserved.</p>--}}
+{{--                <ul class="list-unstyled d-inline mb-0 pb-0">--}}
+{{--                    <li class="d-inline-block me-2 pe-2">--}}
+{{--                        <a class="hover_up" href="{{ route('web.contact') }}">Contact Info</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="d-inline-block me-2 pe-2">--}}
+{{--                        <a class="hover_up" href="{{ route('web.pgp') }}">PGP</a>--}}
+{{--                    </li>--}}
+{{--                    @guest--}}
+{{--                        <a href="{{ route('login') }}"><i class="icon-skull"></i></a>--}}
+{{--                    @else--}}
+{{--                        <a href="{{ route('logout') }}" title="Logout" data-bs-toggle="tooltip" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i></a>--}}
+{{--                    @endguest--}}
+{{--                </ul>--}}
+
+
+
                 <div class="row my-3">
                     <div class="col footer_copyright_column">
-                        <i class="icon-copyright"></i>{{ date('Y') }} <a href="{{ route('welcome') }}">Nick Morgan</a>. All Rights Reserved.
+                        <i class="icon-copyright"></i>{{ date('Y') }} <a href="{{ route('web.welcome') }}">Nick Morgan</a>. All Rights Reserved.
                         @guest
                             <a href="{{ route('login') }}"><i class="icon-skull"></i></a>
                         @else
                             <a href="{{ route('logout') }}" title="Logout" data-bs-toggle="tooltip" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i></a>
                         @endguest
                         <br/>
-                        <span class="smaller">
-                            <a class="border-underlined" href="{{ route('contact') }}">Contact Me</a>
-                            | <a class="border-underlined" href="{{ route('pgp') }}">PGP</a>
+                        <span class="small">
+                            <a class="border-underlined" href="{{ route('web.contact') }}">Contact Info</a>
+                            | <a class="border-underlined" href="{{ route('web.pgp') }}">PGP</a>
 {{--                            | <a class="border-underlined" href="#" data-action="play_nes">Defeat The Vile Red Falcon</a>--}}
                         </span>
                     </div>

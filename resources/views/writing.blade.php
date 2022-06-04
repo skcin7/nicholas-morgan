@@ -24,7 +24,7 @@
                     <br/>Edited {{ $writing->updated_at->format('F j, Y') }}
                 @endif
 
-                @if(admin())
+                @if(mastermind())
                     @if($writing->isPublished())
                         <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-bs-toggle="tooltip" data-placement="bottom"></i>
                     @endif
@@ -42,7 +42,7 @@
             <li class="py-3" id="writing_details_author">
                 @nick
             </li>
-{{--            @if(admin())--}}
+{{--            @if(mastermind())--}}
 {{--                <li class="py-3" id="writing_details_admin_options">--}}
 {{--                    <div class="btn-group dropdown">--}}
 {{--                        <button id="writing{{ $writing->id }}Dropdown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">--}}

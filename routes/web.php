@@ -1,17 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlphabetizerController;
 use App\Http\Controllers\AvatarsController;
-use App\Http\Controllers\AppController;
 use App\Http\Controllers\BookmarkletsController;
 use App\Http\Controllers\ExamplesController;
+use App\Http\Controllers\MastermindController;
+use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WritingsController;
 use App\Http\Controllers\WritingCategoriesController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,23 +32,23 @@ Auth::routes([
 
 // Basic App Routes:
 
-Route::get('/', [AppController::class, 'welcome'])->name('welcome');
-Route::get('welcome', [AppController::class, 'welcome'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'welcome'])->name('web.welcome');
+//Route::get('welcome', [WelcomeController::class, 'welcome'])->name('welcome');
 
-Route::get('contact', [AppController::class, 'contact'])->name('contact');
-Route::get('contact_card', [AppController::class, 'downloadContactCard'])->name('contact_card');
-Route::get('about', [AppController::class, 'about'])->name('about');
-Route::get('pgp', [AppController::class, 'pgp'])->name('pgp');
-Route::get('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
-Route::post('followers_difference', [AppController::class, 'followersDifference'])->name('followers_difference');
-Route::get('mail', [AppController::class, 'redirectToGmail'])->name('mail');
-Route::get('gmail', [AppController::class, 'redirectToGmail'])->name('gmail');
+Route::get('contact', [WelcomeController::class, 'contact'])->name('web.contact');
+Route::get('contact_card', [WelcomeController::class, 'downloadContactCard'])->name('contact_card');
+Route::get('about', [WelcomeController::class, 'about'])->name('about');
+Route::get('pgp', [WelcomeController::class, 'pgp'])->name('web.pgp');
+Route::get('followers_difference', [WelcomeController::class, 'followersDifference'])->name('followers_difference');
+Route::post('followers_difference', [WelcomeController::class, 'followersDifference'])->name('followers_difference');
+Route::get('mail', [WelcomeController::class, 'redirectToGmail'])->name('mail');
+Route::get('gmail', [WelcomeController::class, 'redirectToGmail'])->name('gmail');
 
-//Route::get('/', 'AppController@welcome')->name('welcome');
-//Route::get('contact', 'AppController@contact')->name('contact');
-//Route::get('contact_card', 'AppController@downloadContactCard')->name('contact_card');
-//Route::get('followers_difference', 'AppController@followersDifference')->name('followers_difference');
-//Route::post('followers_difference', 'AppController@followersDifference')->name('followers_difference');
+//Route::get('/', 'WelcomeController@welcome')->name('welcome');
+//Route::get('contact', 'WelcomeController@contact')->name('contact');
+//Route::get('contact_card', 'WelcomeController@downloadContactCard')->name('contact_card');
+//Route::get('followers_difference', 'WelcomeController@followersDifference')->name('followers_difference');
+//Route::post('followers_difference', 'WelcomeController@followersDifference')->name('followers_difference');
 
 // Resume related routes go in here:
 Route::group(['prefix' => 'resume'], function() {
@@ -56,34 +56,39 @@ Route::group(['prefix' => 'resume'], function() {
     Route::get('game_collecting', [ResumeController::class, 'getGameCollectingResume'])->name('resume.game_collecting');
 });
 
-// Admin Routes
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
-    Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::get('phpinfo', [AdminController::class, 'phpinfo'])->name('admin.phpinfo');
-    Route::get('adminer', [AdminController::class, 'adminer'])->name('admin.adminer');
+// Mastermind Routes
+Route::group(['middleware' => 'mastermind', 'prefix' => 'mastermind'], function() {
+    Route::get('/', [MastermindController::class, 'mastermindHome'])->name('web.mastermind');
+    Route::get('phpinfo', [MastermindController::class, 'phpinfo'])->name('web.mastermind.phpinfo');
+    Route::get('adminer', [MastermindController::class, 'adminer'])->name('web.mastermind.adminer');
+
+//    // Projects
+//    Route::group(['prefix' => 'projects'], function() {
+//        Route::get('/', [ProjectsController::class, 'manage'])->name('web.mastermind.projects');
+//    });
 
     // Writings
     Route::group(['prefix' => 'writings'], function() {
-        Route::get('/', [WritingsController::class, 'admin'])->name('admin.writings');
+        Route::get('/', [WritingsController::class, 'admin'])->name('web.mastermind.writings');
     });
 
     // Writing Categories
     Route::group(['prefix' => 'writing_categories'], function() {
-        Route::get('/', [WritingCategoriesController::class, 'admin'])->name('admin.writing_categories');
-        Route::post('create', [WritingCategoriesController::class, 'create'])->name('admin.writing_categories.create');
-        Route::post('{name}/update', [WritingCategoriesController::class, 'update'])->name('admin.writing_categories.update');
-        Route::post('{name}/delete', [WritingCategoriesController::class, 'delete'])->name('admin.writing_categories.delete');
+        Route::get('/', [WritingCategoriesController::class, 'admin'])->name('web.mastermind.writing_categories');
+        Route::post('create', [WritingCategoriesController::class, 'create'])->name('web.mastermind.writing_categories.create');
+        Route::post('{name}/update', [WritingCategoriesController::class, 'update'])->name('web.mastermind.writing_categories.update');
+        Route::post('{name}/delete', [WritingCategoriesController::class, 'delete'])->name('web.mastermind.writing_categories.delete');
     });
 
     // Avatars
     Route::group(['prefix' => 'avatars'], function() {
-        Route::get('/', [AvatarsController::class, 'admin'])->name('admin.avatars');
-        Route::post('/', [AvatarsController::class, 'create'])->name('admin.avatars.create');
+        Route::get('/', [AvatarsController::class, 'admin'])->name('web.mastermind.avatars');
+        Route::post('/', [AvatarsController::class, 'create'])->name('web.mastermind.avatars.create');
     });
 
     // Admin quotes routes:
     Route::group(['prefix' => 'quotes'], function() {
-        Route::get('/', [QuotesController::class, 'manage'])->name('admin.quotes');
+        Route::get('/', [QuotesController::class, 'manage'])->name('web.mastermind.quotes');
     });
 });
 
@@ -94,6 +99,11 @@ Route::group(['prefix' => 'alphabetizer'], function() {
 Route::group(['prefix' => 'bookmarklets'], function() {
     Route::get('/', [BookmarkletsController::class, 'index'])->name('bookmarklets');
 });
+
+Route::group(['prefix' => 'projects'], function() {
+    Route::get('/', [ProjectsController::class, 'index'])->name('web.projects');
+});
+
 
 Route::get('writings', [WritingsController::class, 'index'])->name('writings');
 Route::get('writings/create', [WritingsController::class, 'showCreate'])->name('writing.showCreate');

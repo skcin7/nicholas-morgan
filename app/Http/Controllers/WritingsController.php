@@ -78,14 +78,14 @@ class WritingsController extends Controller
         $writingsQuery = $this->getWritingsQuery($request);
 
         // When not admin, only show the writings that should be shown.
-        if(! admin()) {
+        if(! mastermind()) {
             $writingsQuery->where('is_published', true)
                 ->where('is_hidden', false)
                 ->where('is_unlisted', false);
         }
 
         // Include trashed writings for admins.
-        if(admin()) {
+        if(mastermind()) {
             $writingsQuery->withTrashed();
         }
 
@@ -156,12 +156,12 @@ class WritingsController extends Controller
         $writingQuery = Writing::query();
 
         // Include trashed (deleted) writings too but only for admins.
-        if(admin()) {
+        if(mastermind()) {
             $writingQuery->withTrashed();
         }
 
         // If user is not an admin, then require the writing to be published in order to show it.
-        if(! admin()) {
+        if(! mastermind()) {
             // But also if writing is forced to be shown, then don't require it to be published anyway even for non-admins.
             if(! request()->input('show_unpublished')) {
                 $writingQuery->where('is_published', true);
@@ -193,7 +193,7 @@ class WritingsController extends Controller
         $writing = $this->getWritingById($id);
 
         // If not published or hidden, show a 404 error if user is not an admin.
-        if(! admin()) {
+        if(! mastermind()) {
             if(! $writing->isPublished() || $writing->isHidden()) {
                 abort(404, 'Writing could not be found.');
             }

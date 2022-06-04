@@ -10,7 +10,7 @@
         <h1 class="text-center my-0">Writings</h1>
         <p>This is a collection of random writings which I have wrote.</p>
 
-        @if(admin())
+        @if(mastermind())
             <a class="btn btn-primary" href="{{ route('writing.showCreate') }}">Create Writing</a>
         @endif
 

@@ -86,7 +86,7 @@ class UsersController extends Controller
      */
     public function secret(Request $request, $id)
     {
-        if(! admin()) {
+        if(! mastermind()) {
             abort(404);
         }
 
@@ -107,7 +107,7 @@ class UsersController extends Controller
      */
     public function logins(Request $request, $id)
     {
-        if(! admin()) {
+        if(! mastermind()) {
             abort(404);
         }
 

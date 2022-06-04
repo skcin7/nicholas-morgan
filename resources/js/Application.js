@@ -9,14 +9,14 @@ import {Url} from './Components/Url';
 
 // import {Alphabetizer, Welcome} from './Pages/*';
 import {Alphabetizer} from './Pages/Alphabetizer';
-import {ExamplePage} from './Pages/ExamplePage';0
+import {ExamplePage} from './Pages/ExamplePage';
 import {Pgp} from './Pages/Pgp';
 import {Welcome} from './Pages/Welcome';
 import {WritingPage} from './Pages/WritingPage';
 
 class Application {
     static appName = 'Nick Morgan';
-    static appVersion = '0.0.1';
+    static appVersion = '0.0.1-alpha';
 
     /**
      * The level of urgency to show logs for.
@@ -70,7 +70,11 @@ class Application {
     init() {
         // // Initialize all Bootstrap tooltip elements.
         // $('body').tooltip({
-        //     selector: '[data-bs-toggle="tooltip"]',0
+        //     selector: '[data-bs-toggle="tooltip"]',
+        // });
+
+        // $('body').tooltip({
+        //     selector: '[data-bs-toggle="tooltip"]',
         // });
 
 

@@ -243,7 +243,7 @@ flex-basis: auto;"></textarea>
             {{--                    <br/>Edited {{ $writing->updated_at->format('F j, Y') }}--}}
             {{--                @endif--}}
 
-            {{--                @if(admin())--}}
+            {{--                @if(mastermind())--}}
             {{--                    @if($writing->isPublished())--}}
             {{--                        <i class="icon-success" title="Published {{ $writing->created_at->format('n/j/Y') }}" data-toggle="tooltip" data-placement="bottom"></i>--}}
             {{--                    @endif--}}
@@ -261,7 +261,7 @@ flex-basis: auto;"></textarea>
             {{--            <li id="writing_details_author">--}}
             {{--                @nick--}}
             {{--            </li>--}}
-            {{--            @if(admin())--}}
+            {{--            @if(mastermind())--}}
             {{--                <li id="writing_details_admin_options">--}}
             {{--                    <div class="btn-group dropdown">--}}
             {{--                        <button id="writing{{ $writing->id }}Dropdown" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">--}}

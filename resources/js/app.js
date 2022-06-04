@@ -150,6 +150,7 @@
 // Bootstrap the application's JavaScript dependencies:
 require('./bootstrap');
 
+
 // Import Components
 import {Application} from './Application';
 

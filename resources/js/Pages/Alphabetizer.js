@@ -127,8 +127,27 @@ class Alphabetizer extends BasePage {
         // Create the event listener to process the alphabetization.
         $('body').on('click', '[data-action=PROCESS_ALPHABETIZATION]', function(event) {
             event.preventDefault();
-
-            component.processAlphabetization();
+            let alphabetizer_input = $('#alphabetizer_input').val();
+            if(alphabetizer_input.length == 0) {
+                $.notify('No Input To Alphabetize.', {
+                    "autoHide": true,
+                    "autoHideDelay": 5000,
+                    "className": "danger",
+                    "position": 'right bottom',
+                    "elementPosition": 'right bottom',
+                    "globalPosition": 'right bottom',
+                });
+                return;
+            }
+            component.processAlphabetization(alphabetizer_input);
+            $.notify('Input Was Alphabetized.', {
+                "autoHide": true,
+                "autoHideDelay": 5000,
+                "className": "success",
+                "position": 'right bottom',
+                "elementPosition": 'right bottom',
+                "globalPosition": 'right bottom',
+            });
         });
 
         $('body').on('click', '[data-action=COPY_ALPHABETIZATION_INPUT]', function(event) {
@@ -139,6 +158,14 @@ class Alphabetizer extends BasePage {
 
             // Don't let the copy happen if there are no characters to be copied.
             if(alphabetizationInput.length === 0) {
+                $.notify('No Input To Copy.', {
+                    "autoHide": true,
+                    "autoHideDelay": 5000,
+                    "className": "danger",
+                    "position": 'right bottom',
+                    "elementPosition": 'right bottom',
+                    "globalPosition": 'right bottom',
+                });
                 return;
             }
 
@@ -148,18 +175,27 @@ class Alphabetizer extends BasePage {
             document.execCommand("copy");
             $tempTextareaElem.remove();
 
-            // Add the copy to clipboard feedback, but only if the feedback element is not already there.
-            if(! $('#alphabetizer_input').closest('.input-group').prev().hasClass('copied_to_clipboard_feedback')) {
-                let $feedbackElem = $('<span class="text-success font-weight-bold font-italic copied_to_clipboard_feedback">Copied to Clipboard!</span>');
-                $feedbackElem.insertBefore($('#alphabetizer_input').closest('.input-group'));
+            $.notify('Input Copied To Clipboard.', {
+                "autoHide": true,
+                "autoHideDelay": 5000,
+                "className": "success",
+                "position": 'right bottom',
+                "elementPosition": 'right bottom',
+                "globalPosition": 'right bottom',
+            });
 
-                // Remove it after 5 seconds.
-                setTimeout(function() {
-                    $feedbackElem.fadeOut('fast', function() {
-                        $(this).remove();
-                    });
-                }, 5000);
-            }
+            // // Add the copy to clipboard feedback, but only if the feedback element is not already there.
+            // if(! $('#alphabetizer_input').closest('.input-group').prev().hasClass('copied_to_clipboard_feedback')) {
+            //     let $feedbackElem = $('<span class="text-success font-weight-bold font-italic copied_to_clipboard_feedback">Copied to Clipboard!</span>');
+            //     $feedbackElem.insertBefore($('#alphabetizer_input').closest('.input-group'));
+            //
+            //     // Remove it after 5 seconds.
+            //     setTimeout(function() {
+            //         $feedbackElem.fadeOut('fast', function() {
+            //             $(this).remove();
+            //         });
+            //     }, 5000);
+            // }
         });
 
         $('body').on('click', '[data-action=CLEAR_ALPHABETIZATION_INPUT]', function(event) {
@@ -180,6 +216,14 @@ class Alphabetizer extends BasePage {
 
             // Don't let the copy happen if there are no characters to be copied.
             if(alphabetizationOutput.length === 0) {
+                $.notify('No Output To Copy.', {
+                    "autoHide": true,
+                    "autoHideDelay": 5000,
+                    "className": "danger",
+                    "position": 'right bottom',
+                    "elementPosition": 'right bottom',
+                    "globalPosition": 'right bottom',
+                });
                 return;
             }
 
@@ -189,18 +233,27 @@ class Alphabetizer extends BasePage {
             document.execCommand("copy");
             $tempTextareaElem.remove();
 
-            // Add the copy to clipboard feedback, but only if the feedback element is not already there.
-            if(! $('#alphabetizer_output').prev().hasClass('copied_to_clipboard_feedback')) {
-                let $feedbackElem = $('<span class="text-success font-weight-bold font-italic copied_to_clipboard_feedback">Copied to Clipboard!</span>');
-                $feedbackElem.insertBefore($('#alphabetizer_output'));
+            $.notify('Output Copied To Clipboard.', {
+                "autoHide": true,
+                "autoHideDelay": 5000,
+                "className": "success",
+                "position": 'right bottom',
+                "elementPosition": 'right bottom',
+                "globalPosition": 'right bottom',
+            });
 
-                // Remove it after 5 seconds.
-                setTimeout(function() {
-                    $feedbackElem.fadeOut('fast', function() {
-                        $(this).remove();
-                    });
-                }, 5000);
-            }
+            // // Add the copy to clipboard feedback, but only if the feedback element is not already there.
+            // if(! $('#alphabetizer_output').prev().hasClass('copied_to_clipboard_feedback')) {
+            //     let $feedbackElem = $('<span class="text-success font-weight-bold font-italic copied_to_clipboard_feedback">Copied to Clipboard!</span>');
+            //     $feedbackElem.insertBefore($('#alphabetizer_output'));
+            //
+            //     // Remove it after 5 seconds.
+            //     setTimeout(function() {
+            //         $feedbackElem.fadeOut('fast', function() {
+            //             $(this).remove();
+            //         });
+            //     }, 5000);
+            // }
         });
 
         $('body').on('click', '[data-action=CLEAR_ALPHABETIZATION_OUTPUT]', function(event) {
@@ -311,11 +364,11 @@ class Alphabetizer extends BasePage {
     //     localStorage.setItem('alphabetizingOptions', JSON.stringify(this.alphabetizingOptions));
     // }
 
-    processAlphabetization() {
+    processAlphabetization(alphabetizationInput) {
         // // Get the alphabetization input.
         // // Set a copy of it to ensure the latest version is in localStorage.
         // let alphabetizationInput = this.getAlphabetizerInput();
-        let alphabetizationInput = $('#alphabetizer_input').val(); // Using the current value in the text box.
+        // let alphabetizationInput = $('#alphabetizer_input').val(); // Using the current value in the text box.
         this.setAlphabetizerInput(alphabetizationInput);
 
         // Split each line of the input into an array.

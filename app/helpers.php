@@ -8,14 +8,14 @@
 |
 */
 
-if (! function_exists('admin')) {
+if (! function_exists('mastermind')) {
     /**
-     * admin() - Determine if the user is admin.
+     * mastermind() - Determine if the user is mastermind.
      *
      * @return string
      */
-    function admin() {
-        return request()->user() && request()->user()->isAdmin();
+    function mastermind() {
+        return request()->user() && request()->user()->isMastermind();
     }
 }
 

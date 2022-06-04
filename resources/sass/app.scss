@@ -1,35 +1,41 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-// Variables:
-@import 'variables';
+//// Variables:
+//@import 'variables';
 
 // Bootstrap:
-@import '~bootstrap/scss/bootstrap';
+@import './normalize';
+@import '../bootstrap/bootstrap_loader';
+//@import '~bootstrap/scss/bootstrap';
 
-// Fontello:
-@import "../fontello/css/fontello";
-@import "../fontello/css/animation";
+// Custom Mixins:
+@import './custom_mixins';
+
+//// Fontello:
+//@import "../fontello/css/fontello";
+//@import "../fontello/css/animation";
 
 // Components:
-@import "./Components/alerts";
-@import "./Components/barrelroll";
-@import "./Components/mirror";
-@import "./Components/rotate";
+@import "./components/alerts";
+@import "./components/do_a_barrel_roll";
+@import "./components/fontello";
+@import "./components/mirror";
+@import "./components/notify";
+@import "./components/rotate";
 
 //// Components (Old):
 //@import "./Components/abc_checkbox";
 //@import "./Components/alerts";
-//@import "./Components/notifyjs";
 //@import "./Components/textarea_code";
 
 // Pages:
-@import "./Pages/alphabetizer";
-@import "./Pages/pgp";
-@import "./Pages/welcome";
-@import "./Pages/writing";
-@import "./Pages/writing_edit";
-@import "./Pages/writings";
+@import "./pages/alphabetizer";
+@import "./pages/pgp";
+@import "./pages/welcome";
+@import "./pages/writing";
+@import "./pages/writing_edit";
+@import "./pages/writings";
 
 //// Pages (Old):
 //@import "./pages/about";
@@ -129,6 +135,12 @@ body {
             flex-basis: auto;
             flex-grow: 0;
             flex-shrink: 1;
+
+            .nav-link:hover {
+                background-color: #eee;
+                box-shadow: 4px 4px 0 lighten(#888, 25%);
+                outline: 1px solid #888;
+            }
 
             #navbar {
                 border-top: 4px solid $branding-color;
@@ -310,46 +322,47 @@ body {
     }
 }
 
-// uniform way for all fieldsets to look
-fieldset {
+// Uniform way for all fieldsets to look
+.fieldset {
     background-color: #fff;
     border: 2px solid #ddd;
     margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 0.5rem;
+
+    &.fieldset-sm {
+        padding: 0.5rem !important;
+    }
 
     legend {
+        background-color: #fff;
         border-bottom: none;
+        float: none !important;
         font-size: 15px;
         margin: 0;
         margin-bottom: 0px;
         margin-bottom: 0;
-        padding: 0;
+        padding: 0 0.25rem;
         width: auto;
     }
 }
 
-.small {
-    font-size: 90%;
-}
-
-.smaller {
-    font-size: 80%;
-}
-
 .smallest {
-    font-size: 70%;
+    font-size: 70% !important;
 }
-
+.smaller {
+    font-size: 80% !important;
+}
+.small {
+    font-size: 90% !important;
+}
 .big {
-    font-size: 110%;
+    font-size: 110% !important;
 }
-
 .bigger {
-    font-size: 120%;
+    font-size: 120% !important;
 }
-
 .biggest {
-    font-size: 130%;
+    font-size: 130% !important;
 }
 
 // Add an external link icon for links that are external
@@ -427,4 +440,29 @@ fieldset {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+
+.table.border_2 {
+    td, th {
+        border-width: 2px;
+    }
+}
+.border_2 {
+    border-width: 2px !important;
+}
+.box_shadow {
+    box-shadow: 4px 4px 0 lighten(#888, 25%);
+}
+
+
+
+
+.hover_up {
+    @include hover_up;
+}
+
+
+.user_select_all {
+    user-select: all;
 }

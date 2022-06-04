@@ -43,7 +43,7 @@ class SuccessfulLogin extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

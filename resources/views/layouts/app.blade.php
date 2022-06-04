@@ -100,7 +100,7 @@
                                             <li><a class="dropdown-item" href="{{ route('web.mastermind') }}"><i class="icon-skull"></i> Mastermind Home</a></li>
                                             <div class="dropdown-divider"></div>
                                         @endif
-                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Really log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="(function() { if(confirm('Are you sure you want to log out?')) { document.getElementById('logout_form').submit(); }})(); return false;"><i class="icon-off"></i> {{ __('Logout') }}</a></li>
                                         <form action="{{ route('logout') }}" class="d-none" id="logout_form" method="post">@csrf</form>
                                     </ul>
                                 </li>

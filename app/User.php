@@ -94,15 +94,15 @@ class User extends Authenticatable
         return $this->hasMany('App\SuccessfulLogin');
     }
 
-    /**
-     * Set the secret data attribute.
-     * @param $secret_data
-     * @return void
-     */
-    public function setSecretDataAttribute($secret_data)
-    {
-        $this->setAttribute('secret_data', encrypt(json_encode($secret_data)));
-    }
+//    /**
+//     * Set the secret data attribute.
+//     * @param $secret_data
+//     * @return void
+//     */
+//    public function setSecretDataAttribute($secret_data)
+//    {
+//        $this->setAttribute('secret_data', encrypt(json_encode($secret_data)));
+//    }
 
     /**
      * Store a successful login about this user.

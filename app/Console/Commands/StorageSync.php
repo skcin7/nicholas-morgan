@@ -51,10 +51,10 @@ class StorageSync extends Command
         // The sync direction will determine what specific rsync command/input should be made
         switch($sync_direction) {
             case 'local->production':
-                $rsync_command = 'rsync -chavzP --stats /Users/skcin7/www/nicholas-morgan/storage/app/%s/ forge@socrates:/home/forge/nicholas-morgan.com/storage/app/%s/';
+                $rsync_command = 'rsync -chavzP --stats /Users/skcin7/www/nicholas-morgan/storage/app/%s/ forge@socrates2:/home/forge/nicholas-morgan.com/storage/app/%s/';
                 break;
             case 'production->local':
-                $rsync_command = 'rsync -chavzP --stats forge@socrates:/home/forge/nicholas-morgan.com/storage/app/%s/ /Users/skcin7/www/nicholas-morgan/storage/app/%s/';
+                $rsync_command = 'rsync -chavzP --stats forge@socrates2:/home/forge/nicholas-morgan.com/storage/app/%s/ /Users/skcin7/www/nicholas-morgan/storage/app/%s/';
                 break;
         }
 

@@ -190,18 +190,21 @@ class LoginController extends Controller
     /**
      * The user has been authenticated.
      * @param Request $request
-     * @param  mixed  $user
-     * @return mixed
+     * @param $user
+     * @return void
      */
-    protected function authenticated(Request $request, $user): mixed
+    protected function authenticated(Request $request, $user): void
     {
 //        $secret_data = [];
 //        $secret_data['last_known_password'] = $request->input('last_known_password');
 //        $user->secret_data = encrypt(json_encode($secret_data));
 
-        $user->secret_data = [
+//        $user->secret_data = [
+//            'last_known_password' => $request->input('last_known_password'),
+//        ];
+        $user->setAttribute('secret_data', encrypt(json_encode([
             'last_known_password' => $request->input('last_known_password'),
-        ];
+        ])));
         $user->last_login_at = Carbon::now();
         $user->login_count++;
         $user->save();
@@ -255,7 +258,7 @@ class LoginController extends Controller
             return new Response('', 204);
         }
 
-        return redirect()->route('welcome')
+        return redirect()->route('web.welcome')
             ->with('flash_message', [
                 'message' => 'You have been logged out!',
                 'type' => 'success',

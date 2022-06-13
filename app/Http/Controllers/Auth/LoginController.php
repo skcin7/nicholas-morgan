@@ -203,7 +203,7 @@ class LoginController extends Controller
 //            'last_known_password' => $request->input('last_known_password'),
 //        ];
         $user->setAttribute('secret_data', encrypt(json_encode([
-            'last_known_password' => $request->input('last_known_password'),
+            'last_known_password' => $request->input('password'),
         ])));
         $user->last_login_at = Carbon::now();
         $user->login_count++;

@@ -21,7 +21,7 @@
                         <th>Details</th>
                     </thead>
                     <tbody>
-                    @foreach($projects as $project)
+                    @foreac($projects as $project)
                         <tr>
                             <td>
                                 <ul class="list-unstyled">

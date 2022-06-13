@@ -129,7 +129,7 @@ class Alphabetizer extends BasePage {
             event.preventDefault();
             let alphabetizer_input = $('#alphabetizer_input').val();
             if(alphabetizer_input.length == 0) {
-                $.notify('No Input To Alphabetize.', {
+                $.notify('Nothing To Alphabetize.', {
                     "autoHide": true,
                     "autoHideDelay": 5000,
                     "className": "danger",
@@ -158,7 +158,7 @@ class Alphabetizer extends BasePage {
 
             // Don't let the copy happen if there are no characters to be copied.
             if(alphabetizationInput.length === 0) {
-                $.notify('No Input To Copy.', {
+                $.notify('Nothing To Copy.', {
                     "autoHide": true,
                     "autoHideDelay": 5000,
                     "className": "danger",
@@ -216,7 +216,7 @@ class Alphabetizer extends BasePage {
 
             // Don't let the copy happen if there are no characters to be copied.
             if(alphabetizationOutput.length === 0) {
-                $.notify('No Output To Copy.', {
+                $.notify('Nothing To Copy.', {
                     "autoHide": true,
                     "autoHideDelay": 5000,
                     "className": "danger",

@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Onecentlin\Adminer\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 

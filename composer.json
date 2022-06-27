@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "league/commonmark": "^1.5",
+        "onecentlin/laravel-adminer": "^6.0",
         "paragonie/random_compat": "2.*",
         "spatie/flysystem-dropbox": "^1.2"
     },

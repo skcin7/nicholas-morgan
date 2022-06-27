@@ -40,9 +40,9 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.projects') }}">{{ __('Projects') }}</a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" href="{{ route('web.projects') }}">{{ __('Projects') }}</a>--}}
+{{--                            </li>--}}
                             @if(mastermind())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('writings') }}" data-action="CHANGE_PAGE" data-pagename="writings">{{ __('Writings') }} <span class="badge bg-dark">{{ \App\Writing::getActiveWritingsCount() }}</span></a>

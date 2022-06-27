@@ -34,6 +34,6 @@ class MastermindController extends Controller
      */
     public function adminer()
     {
-        return redirect()->to(url('adminer/4.7.8/adminer-4.7.8-en.php'));
+        return redirect()->to(url('adminer_versions/4.7.8/adminer-4.7.8-en.php'));
     }
 }
